@@ -202,6 +202,11 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_3[] = {
   { CHECKBOX_CreateIndirect, "LED22", ID_CHECKBOX_22, 180, 200, 80, 30, 0, 0x0, 0 },
   { CHECKBOX_CreateIndirect, "LED23", ID_CHECKBOX_23, 270, 200, 80, 30, 0, 0x0, 0 },
   { CHECKBOX_CreateIndirect, "LED24", ID_CHECKBOX_24, 360, 200, 80, 30, 0, 0x0, 0 },
+	{ BUTTON_CreateIndirect, "return", ID_BUTTON_32, 0, 250, 80, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "son",    ID_BUTTON_33, 93, 252, 80, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "father", ID_BUTTON_34, 180, 250, 80, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "mather", ID_BUTTON_35, 270, 250, 80, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "next",   ID_BUTTON_36, 360, 250, 80, 40, 0, 0x0, 0 },
 };
 
 
@@ -334,9 +339,9 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
 
         break;
       case WM_NOTIFICATION_RELEASED:
+				mode=1;
 				GUI_EndDialog(pMsg->hWin, 0);
 			  CreateBoundary_2();
-
         break;
 
       }
@@ -433,7 +438,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_7: // Notifications sent by 'LED0'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[0]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -444,7 +452,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_8: // Notifications sent by 'LED1'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
- 
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[1]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -455,7 +466,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_9: // Notifications sent by 'LED2'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[2]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -466,7 +480,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_10: // Notifications sent by 'LED3'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[3]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
  
@@ -477,7 +494,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_11: // Notifications sent by 'LED4'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[4]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -488,7 +508,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_12: // Notifications sent by 'LED5'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[5]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -499,7 +522,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_13: // Notifications sent by 'LED6'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[6]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -510,7 +536,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_14: // Notifications sent by 'LED7'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[7]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -521,7 +550,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_15: // Notifications sent by 'LED8'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[8]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
   
@@ -532,7 +564,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_16: // Notifications sent by 'LED9'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[9]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -543,7 +578,10 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_17: // Notifications sent by 'LED10'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					if(mode==1)
+					{
+					printf("%c\r\n",buf_led[10]);
+					}
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -715,7 +753,7 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
 
         break;
       case WM_NOTIFICATION_RELEASED:
-
+        mode=0;
 				GUI_EndDialog(pMsg->hWin, 0);
 			  CreateBoundary_1();
        break;
@@ -729,14 +767,15 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
       case WM_NOTIFICATION_CLICKED:
 
         break;
-
+			case WM_NOTIFICATION_RELEASED:
+				
         break;
 
       }
       break;
     case ID_BUTTON_34: // Notifications sent by 'father'
       switch(NCode) {
-
+			case WM_NOTIFICATION_CLICKED:
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -885,6 +924,21 @@ static void _cbDialog_3(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_CHECKBOX_24);
     CHECKBOX_SetText(hItem, "LED24");
     CHECKBOX_SetTextColor(hItem, 0x000000FF);
+
+	  hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_32);
+    BUTTON_SetFont(hItem, GUI_FONT_16B_1);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_33);
+    BUTTON_SetFont(hItem, GUI_FONT_13B_1);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_34);
+    BUTTON_SetFont(hItem, GUI_FONT_13B_1);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_35);
+    BUTTON_SetFont(hItem, GUI_FONT_13B_1);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_36);
+    BUTTON_SetFont(hItem, GUI_FONT_16B_1);
 
     break;
   case WM_NOTIFY_PARENT:
@@ -1241,7 +1295,62 @@ static void _cbDialog_3(WM_MESSAGE * pMsg) {
 
       }
       break;
+    case ID_BUTTON_32: // Notifications sent by 'return'       //·µ»Ø
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
 
+        break;
+      case WM_NOTIFICATION_RELEASED:
+        mode=0;
+				GUI_EndDialog(pMsg->hWin, 0);
+			  CreateBoundary_1();
+			
+       break;
+      }
+      break;
+    case ID_BUTTON_33: // Notifications sent by 'son'
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
+
+        break;
+			case WM_NOTIFICATION_RELEASED:
+				
+        break;
+      }
+      break;
+    case ID_BUTTON_34: // Notifications sent by 'father'
+      switch(NCode) {
+			case WM_NOTIFICATION_CLICKED:
+				
+        break;
+      case WM_NOTIFICATION_RELEASED:
+
+        break;
+
+      }
+      break;
+    case ID_BUTTON_35: // Notifications sent by 'mather'
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
+
+        break;
+      case WM_NOTIFICATION_RELEASED:
+
+        break;
+
+      }
+      break;
+    case ID_BUTTON_36: // Notifications sent by 'next'
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
+
+        break;
+      case WM_NOTIFICATION_RELEASED:
+
+        break;
+
+      }
+			break;
     }
     break;
 
