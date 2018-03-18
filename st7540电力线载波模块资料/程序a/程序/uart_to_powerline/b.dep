@@ -1,0 +1,20 @@
+;	STMicroelectronics dependencies file
+
+[Version]
+Keyword=ST7Project
+Number=1.3
+
+[Root.Source Files.main.c.Config.0]
+ExternDep= main.c C:\softwares\COSMIC\CXSTM8\Hstm8\modsl0.h  C:\softwares\COSMIC\CXSTM8\Hstm8\stdlib.h main.h iostm8s103.h  C:\softwares\COSMIC\CXSTM8\Hstm8\stdio.h  C:\softwares\COSMIC\CXSTM8\Hstm8\ctype.h  C:\softwares\COSMIC\CXSTM8\Hstm8\string.h queue.h uart.h bit_define.h  power_line.h
+
+[Root.Source Files.power_line.c.Config.0]
+ExternDep= power_line.c C:\softwares\COSMIC\CXSTM8\Hstm8\modsl0.h  bit_define.h power_line.h iostm8s103.h
+
+[Root.Source Files.stm8_interrupt_vector.c.Config.0]
+ExternDep= stm8_interrupt_vector.c  C:\softwares\COSMIC\CXSTM8\Hstm8\modsl0.h
+
+[Root.Source Files.uart.c.Config.0]
+ExternDep= uart.c C:\softwares\COSMIC\CXSTM8\Hstm8\modsl0.h uart.h main.h  iostm8s103.h C:\softwares\COSMIC\CXSTM8\Hstm8\stdio.h  C:\softwares\COSMIC\CXSTM8\Hstm8\ctype.h  C:\softwares\COSMIC\CXSTM8\Hstm8\string.h queue.h
+
+[Root.app.queue.c.Config.0]
+ExternDep= queue.c C:\softwares\COSMIC\CXSTM8\Hstm8\modsl0.h queue.h  main.h iostm8s103.h C:\softwares\COSMIC\CXSTM8\Hstm8\stdio.h  C:\softwares\COSMIC\CXSTM8\Hstm8\ctype.h  C:\softwares\COSMIC\CXSTM8\Hstm8\string.h

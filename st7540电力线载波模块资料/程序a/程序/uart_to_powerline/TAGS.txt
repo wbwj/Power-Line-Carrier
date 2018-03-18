@@ -1,0 +1,424 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BIT0	bit_define.h	1;"	macro
+BIT1	bit_define.h	2;"	macro
+BIT2	bit_define.h	3;"	macro
+BIT3	bit_define.h	4;"	macro
+BIT4	bit_define.h	5;"	macro
+BIT5	bit_define.h	6;"	macro
+BIT6	bit_define.h	7;"	macro
+BIT7	bit_define.h	8;"	macro
+BIT8	bit_define.h	9;"	macro
+BIT9	bit_define.h	10;"	macro
+BITA	bit_define.h	11;"	macro
+BITB	bit_define.h	12;"	macro
+BITC	bit_define.h	13;"	macro
+BITD	bit_define.h	14;"	macro
+BITE	bit_define.h	15;"	macro
+BITF	bit_define.h	16;"	macro
+BUFSIZ	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	26;"	macro
+CLK_ini	main.c	29;"	function	signature:(void)
+DisableInt	main.h	29;"	macro
+EEPROM_H	eeprom.h	9;"	macro
+EEPROM_WRITE_BYTE	eeprom.c	10;"	function	signature:(int a,u8 d)
+EEPROM_WRITE_BYTE	eeprom.h	13;"	prototype	signature:(int a,u8 d)
+EEPROM_WRITE_WORD	eeprom.c	22;"	function	signature:(int a,u32 d)
+EEPROM_WRITE_WORD	eeprom.h	14;"	prototype	signature:(int a,u32 d)
+EOF	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	27;"	macro
+EXIT_FAILURE	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	7;"	macro
+EXIT_SUCCESS	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	8;"	macro
+EnableInt	main.h	30;"	macro
+FRAME_HEAD	power_line.h	1;"	macro
+GPIO_init	main.c	54;"	function	signature:(void)
+LOW_POWER_WAIT	main.h	32;"	macro
+MAIN_H	main.h	8;"	macro
+MB_CUR_MAX	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	9;"	macro
+NULL	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	28;"	macro
+NULL	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	10;"	macro
+NULL	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	8;"	macro
+NonHandledInterrupt	stm8_interrupt_vector.c	15;"	function	signature:(void)
+QUEUE_H	queue.h	9;"	macro
+Queue	queue.h	21;"	typedef	typeref:struct:__anon1
+Queue_cnt	queue.c	62;"	function	signature:(Queue *q)
+Queue_cnt	queue.h	29;"	prototype	signature:(Queue *q)
+Queue_get	queue.c	21;"	function	signature:(s8 *d,Queue *q)
+Queue_get	queue.h	27;"	prototype	signature:(s8 *d,Queue *q)
+Queue_ini	queue.c	11;"	function	signature:(u8 *d,u8 num,Queue *q)
+Queue_ini	queue.h	23;"	prototype	signature:(u8 *d,u8 num,Queue *q)
+Queue_pre_read	queue.c	68;"	function	signature:(s8 *d,Queue *q)
+Queue_pre_read	queue.h	28;"	prototype	signature:(s8 *d,Queue *q)
+Queue_set	queue.c	43;"	function	signature:(s8 d,Queue *q)
+Queue_set	queue.h	26;"	prototype	signature:(s8 d,Queue *q)
+RAND_MAX	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	11;"	macro
+START_TASK	main.h	36;"	macro
+STIMER_H	stimer.h	10;"	macro
+STimer	stimer.h	19;"	typedef	typeref:struct:_STimer
+STimer_int	stimer.c	18;"	function	signature:(void)
+STimer_int	stimer.h	22;"	prototype	signature:(void)
+STimer_start	stimer.c	12;"	function	signature:(STimer *t)
+STimer_start	stimer.h	21;"	prototype	signature:(STimer *t)
+SYS_SERVICE	main.h	31;"	macro
+SYS_task	main.c	28;"	variable
+TASK_BT	main.h	39;"	macro
+TASK_CMD	main.h	38;"	macro
+TIM4_ini	main.c	40;"	function	signature:(void)
+Tim4_int	main.c	214;"	function	signature:(void)
+Tim4_int	stm8_interrupt_vector.c	5;"	prototype	file:	signature:(void)
+UART_H	uart.h	9;"	macro
+_STimer	stimer.h	14;"	struct
+__CTYPE	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	6;"	macro
+__MODSL0__	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\modsl0.h	8;"	macro
+__SIZE_T__	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	9;"	macro
+__SIZE_T__	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	14;"	macro
+__STDIO__	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	6;"	macro
+__STDLIB__	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	5;"	macro
+__STRING__	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	6;"	macro
+__WCHAR_T__	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	19;"	macro
+_stext	stm8_interrupt_vector.c	23;"	prototype	file:
+_vectab	stm8_interrupt_vector.c	25;"	variable
+abort	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	53;"	macro
+abs	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	33;"	prototype	signature:(int i)
+atof	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	34;"	prototype	signature:(char *nptr)
+atoi	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	35;"	prototype	signature:(char *nptr)
+atol	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	36;"	prototype	signature:(char *nptr)
+baud	uart.c	18;"	variable
+calloc	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	37;"	prototype	signature:(unsigned int nelem, unsigned int elsize)
+cb	stimer.h	17;"	member	struct:_STimer
+conti_0_check	power_line.c	240;"	function	signature:(int conti_0_num)
+conti_0_check	power_line.h	17;"	prototype	signature:(int conti_0_num)
+curr_state	power_line.c	5;"	variable
+data_cnt	queue.h	20;"	member	struct:__anon1
+data_recv	power_line.c	163;"	function	signature:(unsigned long *return_value_h,unsigned long *return_value_l,int try_times)
+data_recv	power_line.h	8;"	prototype	signature:(unsigned long *return_value_h,unsigned long *return_value_l,int try_times)
+data_to_uart	uart.c	46;"	function	signature:(void)
+data_to_uart	uart.h	16;"	prototype	signature:(void)
+data_trans	power_line.c	111;"	function	signature:(unsigned long tx_data_h,unsigned long tx_data_l)
+data_trans	power_line.h	7;"	prototype	signature:(unsigned long tx_data_h,unsigned long tx_data_l)
+delay	power_line.c	12;"	function	signature:(volatile unsigned long delay_time)
+delay	power_line.h	4;"	prototype	signature:(volatile unsigned long delay_time)
+div	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	38;"	prototype	signature:(int numer, int denom)
+div_t	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	26;"	typedef	typeref:struct:__anon2
+end	queue.h	16;"	member	struct:__anon1
+err	main.h	45;"	prototype	signature:(void)
+exit	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	39;"	prototype	signature:(int status)
+frame_head_srch	power_line.c	211;"	function	signature:(int try_times)
+frame_head_srch	power_line.h	9;"	prototype	signature:(int try_times)
+free	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	40;"	prototype	signature:(void *ptr)
+get_pin_cdpd	power_line.c	325;"	function	signature:(void)
+get_pin_cdpd	power_line.h	16;"	prototype	signature:(void)
+get_pin_rxd	power_line.c	277;"	function	signature:(void)
+get_pin_rxd	power_line.h	10;"	prototype	signature:(void)
+getchar	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	15;"	prototype	signature:(void)
+gets	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	16;"	prototype	signature:(char *s)
+interrupt_handler	stm8_interrupt_vector.c	12;"	member	struct:interrupt_vector	file:
+interrupt_handler_t	stm8_interrupt_vector.c	8;"	typedef	file:
+interrupt_instruction	stm8_interrupt_vector.c	11;"	member	struct:interrupt_vector	file:
+interrupt_vector	stm8_interrupt_vector.c	10;"	struct	file:
+isFull	queue.h	19;"	member	struct:__anon1
+isalnum	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	10;"	prototype	signature:(char c)
+isalpha	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	11;"	prototype	signature:(char c)
+iscntrl	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	12;"	prototype	signature:(char c)
+isdigit	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	13;"	prototype	signature:(char c)
+isdigit	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	26;"	macro
+isgraph	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	14;"	prototype	signature:(char c)
+islower	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	15;"	prototype	signature:(char c)
+islower	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	27;"	macro
+isprint	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	16;"	prototype	signature:(char c)
+ispunct	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	17;"	prototype	signature:(char c)
+isqrt	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	50;"	prototype	signature:(unsigned int)
+isspace	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	18;"	prototype	signature:(char c)
+isupper	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	19;"	prototype	signature:(char c)
+isupper	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	28;"	macro
+isxdigit	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	20;"	prototype	signature:(char c)
+labs	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	41;"	prototype	signature:(long l)
+ldiv	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	42;"	prototype	signature:(long numer, long denom)
+ldiv_t	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	31;"	typedef	typeref:struct:__anon3
+len	queue.h	17;"	member	struct:__anon1
+lsqrt	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	51;"	prototype	signature:(unsigned long)
+main	main.c	125;"	function
+malloc	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	43;"	prototype	signature:(unsigned int size)
+memchr	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	26;"	prototype	signature:(void *s, char c, unsigned int n)
+memcmp	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	20;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memcpy	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	27;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memmove	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	28;"	prototype	signature:(void *s1, void *s2, unsigned int n)
+memset	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	29;"	prototype	signature:(void *s, char c, unsigned int n)
+next_state_table	power_line.c	7;"	variable
+p	stimer.h	18;"	member	struct:_STimer	typeref:struct:_STimer::_STimer
+p_front	stimer.c	10;"	variable	file:
+power_line_init	power_line.c	17;"	function	signature:(void)
+power_line_init	power_line.h	3;"	prototype	signature:(void)
+printf	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	17;"	prototype	signature:(char *format, ...)
+putchar	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	18;"	prototype	signature:(char c)
+puts	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	19;"	prototype	signature:(char *s)
+q_data	queue.h	18;"	member	struct:__anon1
+quot	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	24;"	member	struct:__anon2
+quot	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	29;"	member	struct:__anon3
+rand	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	44;"	prototype	signature:(void)
+read_ctrl_reg	power_line.c	46;"	function	signature:(void)
+read_ctrl_reg	power_line.h	5;"	prototype	signature:(void)
+realloc	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	45;"	prototype	signature:(void *ptr, unsigned int size)
+rem	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	25;"	member	struct:__anon2
+rem	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	30;"	member	struct:__anon3
+s16	main.h	20;"	typedef
+s32	main.h	21;"	typedef
+s8	main.h	19;"	typedef
+scanf	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	20;"	prototype	signature:(char *format, ...)
+set_pin_reg_data	power_line.c	301;"	function	signature:(unsigned char set_to_val)
+set_pin_reg_data	power_line.h	12;"	prototype	signature:(unsigned char set_to_val)
+set_pin_rxtx	power_line.c	313;"	function	signature:(unsigned char set_to_val)
+set_pin_rxtx	power_line.h	13;"	prototype	signature:(unsigned char set_to_val)
+set_pin_txd	power_line.c	289;"	function	signature:(unsigned char set_to_val)
+set_pin_txd	power_line.h	11;"	prototype	signature:(unsigned char set_to_val)
+size_t	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	10;"	typedef
+size_t	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	15;"	typedef
+sprintf	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	22;"	prototype	signature:(char *s, char *format, ...)
+srand	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	46;"	prototype	signature:(unsigned int seed)
+sscanf	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdio.h	21;"	prototype	signature:(char *s, char *format, ...)
+start	queue.h	15;"	member	struct:__anon1
+strcat	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	12;"	prototype	signature:(char *s1, char *s2)
+strchr	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	13;"	prototype	signature:(char *s, char c)
+strcmp	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	21;"	prototype	signature:(char *s1, char *s2)
+strcpy	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	14;"	prototype	signature:(char *s1, char *s2)
+strcspn	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	23;"	prototype	signature:(char *s1, char *s2)
+strlen	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	24;"	prototype	signature:(char *s)
+strncat	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	15;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncmp	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	22;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strncpy	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	16;"	prototype	signature:(char *s1, char *s2, unsigned int n)
+strpbrk	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	17;"	prototype	signature:(char *s1, char *s2)
+strrchr	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	18;"	prototype	signature:(char *s, char c)
+strspn	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	25;"	prototype	signature:(char *s1, char *s2)
+strstr	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\string.h	19;"	prototype	signature:(char *s1, char *s2)
+strtod	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	47;"	prototype	signature:(char *s, char **endptr)
+strtol	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	48;"	prototype	signature:(char *s, char **endptr, int base)
+strtoul	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\stdlib.h	54;"	macro
+sys_time	main.c	27;"	variable
+time	stimer.h	16;"	member	struct:_STimer
+tolower	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	21;"	prototype	signature:(char c)
+toupper	..\..\..\..\..\..\..\..\softwares\cosmic\cxstm8\hstm8\ctype.h	22;"	prototype	signature:(char c)
+trap_int	main.c	220;"	function	signature:(void)
+trap_int	stm8_interrupt_vector.c	4;"	prototype	file:	signature:(void)
+u16	main.h	17;"	typedef
+u32	main.h	18;"	typedef
+u8	main.h	16;"	typedef
+uart1_int	stm8_interrupt_vector.c	6;"	prototype	file:	signature:(void)
+uart1_int	uart.c	69;"	function	signature:(void)
+uart_busy	uart.c	17;"	variable
+uart_ini	uart.c	19;"	function	signature:(u16 b)
+uart_ini	uart.h	14;"	prototype	signature:(u16 b)
+uart_rx_queue	uart.c	11;"	variable
+uart_rx_queue_buff	uart.c	14;"	variable	file:
+uart_tx_queue	uart.c	12;"	variable
+uart_tx_queue_buff	uart.c	15;"	variable	file:
+void_fun	main.h	44;"	prototype	signature:(void)
+vs16	main.h	26;"	typedef
+vs32	main.h	27;"	typedef
+vs8	main.h	25;"	typedef
+vu16	main.h	23;"	typedef
+vu32	main.h	24;"	typedef
+vu8	main.h	22;"	typedef
+wait	main.c	209;"	function	signature:(vu32 i)
+wait	main.h	43;"	prototype	signature:(vu32 i)
+wait_negedge	power_line.c	266;"	function	signature:(void)
+wait_negedge	power_line.h	15;"	prototype	signature:(void)
+wait_posedge	power_line.c	255;"	function	signature:(void)
+wait_posedge	power_line.h	14;"	prototype	signature:(void)
+write_ctrl_reg	power_line.c	76;"	function	signature:(unsigned long write_data)
+write_ctrl_reg	power_line.h	6;"	prototype	signature:(unsigned long write_data)
+x5000	iostm8s103.h	9;"	variable
+x5001	iostm8s103.h	10;"	variable
+x5002	iostm8s103.h	11;"	variable
+x5003	iostm8s103.h	12;"	variable
+x5004	iostm8s103.h	13;"	variable
+x5005	iostm8s103.h	17;"	variable
+x5006	iostm8s103.h	18;"	variable
+x5007	iostm8s103.h	19;"	variable
+x5008	iostm8s103.h	20;"	variable
+x5009	iostm8s103.h	21;"	variable
+x500a	iostm8s103.h	25;"	variable
+x500b	iostm8s103.h	26;"	variable
+x500c	iostm8s103.h	27;"	variable
+x500d	iostm8s103.h	28;"	variable
+x500e	iostm8s103.h	29;"	variable
+x500f	iostm8s103.h	33;"	variable
+x5010	iostm8s103.h	34;"	variable
+x5011	iostm8s103.h	35;"	variable
+x5012	iostm8s103.h	36;"	variable
+x5013	iostm8s103.h	37;"	variable
+x5014	iostm8s103.h	41;"	variable
+x5015	iostm8s103.h	42;"	variable
+x5016	iostm8s103.h	43;"	variable
+x5017	iostm8s103.h	44;"	variable
+x5018	iostm8s103.h	45;"	variable
+x5019	iostm8s103.h	49;"	variable
+x501a	iostm8s103.h	50;"	variable
+x501b	iostm8s103.h	51;"	variable
+x501c	iostm8s103.h	52;"	variable
+x501d	iostm8s103.h	53;"	variable
+x505a	iostm8s103.h	57;"	variable
+x505b	iostm8s103.h	58;"	variable
+x505c	iostm8s103.h	59;"	variable
+x505d	iostm8s103.h	60;"	variable
+x505e	iostm8s103.h	61;"	variable
+x505f	iostm8s103.h	62;"	variable
+x5062	iostm8s103.h	63;"	variable
+x5064	iostm8s103.h	64;"	variable
+x50a0	iostm8s103.h	68;"	variable
+x50a1	iostm8s103.h	69;"	variable
+x50b3	iostm8s103.h	73;"	variable
+x50c0	iostm8s103.h	77;"	variable
+x50c1	iostm8s103.h	78;"	variable
+x50c3	iostm8s103.h	79;"	variable
+x50c4	iostm8s103.h	80;"	variable
+x50c5	iostm8s103.h	81;"	variable
+x50c6	iostm8s103.h	82;"	variable
+x50c7	iostm8s103.h	83;"	variable
+x50c8	iostm8s103.h	84;"	variable
+x50c9	iostm8s103.h	85;"	variable
+x50ca	iostm8s103.h	86;"	variable
+x50cb	iostm8s103.h	87;"	variable
+x50cc	iostm8s103.h	88;"	variable
+x50cd	iostm8s103.h	89;"	variable
+x50d1	iostm8s103.h	93;"	variable
+x50d2	iostm8s103.h	94;"	variable
+x50e0	iostm8s103.h	95;"	variable
+x50e1	iostm8s103.h	96;"	variable
+x50e2	iostm8s103.h	97;"	variable
+x50f0	iostm8s103.h	101;"	variable
+x50f1	iostm8s103.h	102;"	variable
+x50f2	iostm8s103.h	103;"	variable
+x50f3	iostm8s103.h	104;"	variable
+x5200	iostm8s103.h	108;"	variable
+x5201	iostm8s103.h	109;"	variable
+x5202	iostm8s103.h	110;"	variable
+x5203	iostm8s103.h	111;"	variable
+x5204	iostm8s103.h	112;"	variable
+x5205	iostm8s103.h	113;"	variable
+x5206	iostm8s103.h	114;"	variable
+x5207	iostm8s103.h	115;"	variable
+x5210	iostm8s103.h	119;"	variable
+x5211	iostm8s103.h	120;"	variable
+x5212	iostm8s103.h	121;"	variable
+x5213	iostm8s103.h	122;"	variable
+x5214	iostm8s103.h	123;"	variable
+x5216	iostm8s103.h	124;"	variable
+x5217	iostm8s103.h	125;"	variable
+x5218	iostm8s103.h	126;"	variable
+x5219	iostm8s103.h	127;"	variable
+x521a	iostm8s103.h	128;"	variable
+x521b	iostm8s103.h	129;"	variable
+x521c	iostm8s103.h	130;"	variable
+x521d	iostm8s103.h	131;"	variable
+x521e	iostm8s103.h	132;"	variable
+x5230	iostm8s103.h	136;"	variable
+x5231	iostm8s103.h	137;"	variable
+x5232	iostm8s103.h	138;"	variable
+x5233	iostm8s103.h	139;"	variable
+x5234	iostm8s103.h	140;"	variable
+x5235	iostm8s103.h	141;"	variable
+x5236	iostm8s103.h	142;"	variable
+x5237	iostm8s103.h	143;"	variable
+x5238	iostm8s103.h	144;"	variable
+x5239	iostm8s103.h	145;"	variable
+x523a	iostm8s103.h	146;"	variable
+x5250	iostm8s103.h	150;"	variable
+x5251	iostm8s103.h	151;"	variable
+x5252	iostm8s103.h	152;"	variable
+x5253	iostm8s103.h	153;"	variable
+x5254	iostm8s103.h	154;"	variable
+x5255	iostm8s103.h	155;"	variable
+x5256	iostm8s103.h	156;"	variable
+x5257	iostm8s103.h	157;"	variable
+x5258	iostm8s103.h	158;"	variable
+x5259	iostm8s103.h	159;"	variable
+x525a	iostm8s103.h	160;"	variable
+x525b	iostm8s103.h	161;"	variable
+x525c	iostm8s103.h	162;"	variable
+x525d	iostm8s103.h	163;"	variable
+x525e	iostm8s103.h	164;"	variable
+x525f	iostm8s103.h	165;"	variable
+x5260	iostm8s103.h	166;"	variable
+x5261	iostm8s103.h	167;"	variable
+x5262	iostm8s103.h	168;"	variable
+x5263	iostm8s103.h	169;"	variable
+x5264	iostm8s103.h	170;"	variable
+x5265	iostm8s103.h	171;"	variable
+x5266	iostm8s103.h	172;"	variable
+x5267	iostm8s103.h	173;"	variable
+x5268	iostm8s103.h	174;"	variable
+x5269	iostm8s103.h	175;"	variable
+x526a	iostm8s103.h	176;"	variable
+x526b	iostm8s103.h	177;"	variable
+x526c	iostm8s103.h	178;"	variable
+x526d	iostm8s103.h	179;"	variable
+x526e	iostm8s103.h	180;"	variable
+x526f	iostm8s103.h	181;"	variable
+x5300	iostm8s103.h	185;"	variable
+x5303	iostm8s103.h	186;"	variable
+x5304	iostm8s103.h	187;"	variable
+x5305	iostm8s103.h	188;"	variable
+x5306	iostm8s103.h	189;"	variable
+x5307	iostm8s103.h	190;"	variable
+x5308	iostm8s103.h	191;"	variable
+x5309	iostm8s103.h	192;"	variable
+x530a	iostm8s103.h	193;"	variable
+x530b	iostm8s103.h	194;"	variable
+x530c	iostm8s103.h	195;"	variable
+x530d	iostm8s103.h	196;"	variable
+x530e	iostm8s103.h	197;"	variable
+x530f	iostm8s103.h	198;"	variable
+x5310	iostm8s103.h	199;"	variable
+x5311	iostm8s103.h	200;"	variable
+x5312	iostm8s103.h	201;"	variable
+x5313	iostm8s103.h	202;"	variable
+x5314	iostm8s103.h	203;"	variable
+x5315	iostm8s103.h	204;"	variable
+x5316	iostm8s103.h	205;"	variable
+x5340	iostm8s103.h	209;"	variable
+x5343	iostm8s103.h	210;"	variable
+x5344	iostm8s103.h	211;"	variable
+x5345	iostm8s103.h	212;"	variable
+x5346	iostm8s103.h	213;"	variable
+x5347	iostm8s103.h	214;"	variable
+x5348	iostm8s103.h	215;"	variable
+x53e0	iostm8s103.h	219;"	variable
+x5400	iostm8s103.h	220;"	variable
+x5401	iostm8s103.h	221;"	variable
+x5402	iostm8s103.h	222;"	variable
+x5403	iostm8s103.h	223;"	variable
+x5404	iostm8s103.h	224;"	variable
+x5405	iostm8s103.h	225;"	variable
+x5406	iostm8s103.h	226;"	variable
+x5407	iostm8s103.h	227;"	variable
+x5408	iostm8s103.h	228;"	variable
+x5409	iostm8s103.h	229;"	variable
+x540a	iostm8s103.h	230;"	variable
+x540b	iostm8s103.h	231;"	variable
+x540c	iostm8s103.h	232;"	variable
+x540d	iostm8s103.h	233;"	variable
+x540e	iostm8s103.h	234;"	variable
+x540f	iostm8s103.h	235;"	variable
+x7f60	iostm8s103.h	239;"	variable
+x7f70	iostm8s103.h	243;"	variable
+x7f71	iostm8s103.h	244;"	variable
+x7f72	iostm8s103.h	245;"	variable
+x7f73	iostm8s103.h	246;"	variable
+x7f74	iostm8s103.h	247;"	variable
+x7f75	iostm8s103.h	248;"	variable
+x7f76	iostm8s103.h	249;"	variable
+x7f77	iostm8s103.h	250;"	variable
+x7f80	iostm8s103.h	254;"	variable
+x7f90	iostm8s103.h	258;"	variable
+x7f91	iostm8s103.h	259;"	variable
+x7f92	iostm8s103.h	260;"	variable
+x7f93	iostm8s103.h	261;"	variable
+x7f94	iostm8s103.h	262;"	variable
+x7f95	iostm8s103.h	263;"	variable
+x7f96	iostm8s103.h	264;"	variable
+x7f97	iostm8s103.h	265;"	variable
+x7f98	iostm8s103.h	266;"	variable
+x7f99	iostm8s103.h	267;"	variable
+x7f9a	iostm8s103.h	268;"	variable
