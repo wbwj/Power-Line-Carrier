@@ -509,14 +509,14 @@
               <FilePath>..\HARDWARE\BEEP\beep.c</FilePath>
             </File>
             <File>
-              <FileName>buf_switch.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\BUF_SWITCH\buf_switch.c</FilePath>
-            </File>
-            <File>
               <FileName>stmflash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\STMFLASH\stmflash.c</FilePath>
+            </File>
+            <File>
+              <FileName>buf_switch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\BUF_SWITCH\buf_switch.c</FilePath>
             </File>
           </Files>
         </Group>

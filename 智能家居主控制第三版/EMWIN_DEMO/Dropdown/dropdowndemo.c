@@ -122,8 +122,8 @@ WM_HWIN CreateBoundary_9(void);     //创建第九个界面
 #define ID_BUTTON_44    (GUI_ID_USER + 0x59)     //数字7
 #define ID_BUTTON_45    (GUI_ID_USER + 0x5A)     //数字8
 #define ID_BUTTON_46    (GUI_ID_USER + 0x5B)     //数字9
-#define ID_BUTTON_47    (GUI_ID_USER + 0x5C)     //返回初始化主界面
-#define ID_BUTTON_48    (GUI_ID_USER + 0x5D)     //密码确认按键（利用继电器模拟密码正确后打开）
+#define ID_BUTTON_32    (GUI_ID_USER + 0x22)   //返回主界面
+#define ID_BUTTON_36    (GUI_ID_USER + 0x26)   //进入下一界面
 
 
 
@@ -224,8 +224,8 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_4[] = {
   { BUTTON_CreateIndirect, "7", ID_BUTTON_44, 0, 170, 150, 60, 0, 0x0, 0 },
   { BUTTON_CreateIndirect, "8", ID_BUTTON_45, 160, 170, 150, 60, 0, 0x0, 0 },
   { BUTTON_CreateIndirect, "9", ID_BUTTON_46, 320, 170, 150, 60, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Return", ID_BUTTON_47, 0, 240, 120, 50, 0, 0x0, 0 },//返回
-  { BUTTON_CreateIndirect, "Affirm", ID_BUTTON_48, 320, 240, 120, 50, 0, 0x0, 0 },//确定
+	{ BUTTON_CreateIndirect, "return", ID_BUTTON_32, 0, 250, 80, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "next",   ID_BUTTON_36, 360, 250, 80, 40, 0, 0x0, 0 },
 };
 
 
@@ -1363,9 +1363,19 @@ static void _cbDialog_3(WM_MESSAGE * pMsg) {
 /************************************密码界面配置**************************************/
 static void _cbDialog_4(WM_MESSAGE * pMsg) {
 	WM_HWIN hItem_2;
+	WM_HWIN hItem;
   int NCode;
   int Id;
   switch (pMsg->MsgId) {
+  case WM_INIT_DIALOG:
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_32);
+    BUTTON_SetFont(hItem, GUI_FONT_16B_1);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_36);
+    BUTTON_SetFont(hItem, GUI_FONT_16B_1);
+
+    break;
   case WM_NOTIFY_PARENT:
 		//重新创建标题栏字体，字体大小
 		hItem_2 = pMsg->hWin;
@@ -1805,7 +1815,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_23: // Notifications sent by 'Return'
+    case ID_BUTTON_32: // 返回
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
         break;
@@ -1815,7 +1825,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_24: // Notifications sent by 'Affirm'
+    case ID_BUTTON_36: // 确认
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				  STMFLASH_Read(Flash_Save_Passward_Addr,(u16*)data_Passward,Passward_Size);
