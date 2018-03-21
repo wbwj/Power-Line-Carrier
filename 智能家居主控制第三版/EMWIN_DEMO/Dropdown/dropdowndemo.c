@@ -5,9 +5,10 @@
 #include "usart.h"
 #include "buf_switch.h"
 #include "stmflash.h"
+#include "os.h"
+#include "delay.h"
 
 u32 Implementation_Password=0;//用户输入的密码
-
 u8 Passward_Buf[6]={1,2,3,4,5,3};  //需要写入的密码数组(六位)
 #define Passward_Size sizeof(Passward_Buf)   //密码的长度，往flash中写入使用
 #define Flash_Save_Passward_Addr 0x08070000  //从0x08000000----0x08070000中存放密码
@@ -22,7 +23,11 @@ u8 three;//密码第三位
 u8 two;//密码第二位
 u8 one;//密码第一位
 u8 Passward_i=0; //读取输入密码按位赋值
-u8 mode=0;
+u8 mode=0;    //模式选择
+u16 response=400; //点灯响应时间(ms)
+u8 i=0;  //灯的指针
+
+OS_ERR err;//系统指针
 
 extern char buf_led[]; //通过电力线载波发送的数据缓冲区
 
@@ -289,20 +294,40 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
     case ID_BUTTON_0: // 所有灯亮
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					i=0;
         break;
       case WM_NOTIFICATION_RELEASED:   //按下时松开触摸屏有效
-				printf("%c\r\n",buf_led[0]);
-			  printf("%c\r\n",buf_led[1]);
-			  printf("%c\r\n",buf_led[2]);
-			  printf("%c\r\n",buf_led[3]);
-		  	printf("%c\r\n",buf_led[4]);
-			  printf("%c\r\n",buf_led[5]);
-			  printf("%c\r\n",buf_led[6]);
-			  printf("%c\r\n",buf_led[7]);
-			  printf("%c\r\n",buf_led[8]);
-			  printf("%c\r\n",buf_led[9]);
-		  	printf("%c\r\n",buf_led[10]);
+				for(i=0;i<11;i++)
+			{
+				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+				printf("%c\r\n",buf_led[i]);
+//				if(i>=10)
+//				{
+//					i=0;
+//				}
+			}
+//				printf("%c\r\n",buf_led[0]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[1]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[2]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[3]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//		  	printf("%c\r\n",buf_led[4]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[5]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[6]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[7]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[8]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[9]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//		  	printf("%c\r\n",buf_led[10]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
  				GUI_EndDialog(pMsg->hWin, 0);
 			  CreateBoundary_2();
 
@@ -313,20 +338,40 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
     case ID_BUTTON_1: // Notifications sent by 'LED_Destroy'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					i=0;
         break;
       case WM_NOTIFICATION_RELEASED:
-				printf("%c\r\n",buf_led[0]);
-			  printf("%c\r\n",buf_led[1]);
-			  printf("%c\r\n",buf_led[2]);
-			  printf("%c\r\n",buf_led[3]);
-		  	printf("%c\r\n",buf_led[4]);
-			  printf("%c\r\n",buf_led[5]);
-			  printf("%c\r\n",buf_led[6]);
-			  printf("%c\r\n",buf_led[7]);
-			  printf("%c\r\n",buf_led[8]);
-			  printf("%c\r\n",buf_led[9]);
-		  	printf("%c\r\n",buf_led[10]);
+				for(i=0;i<11;i++)
+			{
+				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+				printf("%c\r\n",buf_led[i]);
+//				if(i>=10)
+//				{
+//					i=0;
+//				}
+			}
+//				printf("%c\r\n",buf_led[0]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[1]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[2]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[3]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//		  	printf("%c\r\n",buf_led[4]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[5]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[6]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[7]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[8]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//			  printf("%c\r\n",buf_led[9]);
+//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
+//		  	printf("%c\r\n",buf_led[10]);
+//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
 				GUI_EndDialog(pMsg->hWin, 0);
 			  CreateBoundary_2();
         break;

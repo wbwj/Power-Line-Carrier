@@ -92,7 +92,7 @@ int main(void)
 {	
 	
 	
-	OS_ERR err;
+	extern OS_ERR err;
 	CPU_SR_ALLOC();
 	
 	delay_init();	    	//延时函数初始化	  

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\MALLOC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\MALLOC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Sun Mar 18 15:34:35 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Wed Mar 21 19:09:45 2018
 <BR><P>
 <H3>Maximum Stack Usage =        756 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -4807,6 +4807,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;touch_task
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led0_task
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_cbDialog_1
 </UL>
 
 <P><STRONG><a name="[2d9]"></a>OSTimeDlyResume</STRONG> (Thumb, 184 bytes, Stack size 24 bytes, os_time.o(.text), UNUSED)
@@ -11751,11 +11752,12 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> dropdowndemo.o(.text)
 </UL>
-<P><STRONG><a name="[66]"></a>_cbDialog_1</STRONG> (Thumb, 368 bytes, Stack size 16 bytes, dropdowndemo.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 444 + Unknown Stack Size
+<P><STRONG><a name="[66]"></a>_cbDialog_1</STRONG> (Thumb, 372 bytes, Stack size 32 bytes, dropdowndemo.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 460 + Unknown Stack Size
 <LI>Call Chain = _cbDialog_1 &rArr; CreateBoundary_2 &rArr; GUI_CreateDialogBox &rArr; WM_SetFocusOnNextChild &rArr; _SetFocusOnNextChild &rArr; WM_SetFocus &rArr; WM__SendMessage &rArr; WM_DefaultProc &rArr;  WM_SendToParent (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[367]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetId
+<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSTimeDlyHMSM
+<LI><a href="#[367]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetId
 <LI><a href="#[362]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetDialogItem
 <LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_DefaultProc
 <LI><a href="#[368]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_EndDialog

@@ -45,7 +45,7 @@ int main(void)
 	TIM1_OPM_RCR_Init(999,72-1); //1MHz¼ÆÊıÆµÂÊ  µ¥Âö³å+ÖØ¸´¼ÆÊıÄ£Ê½£¨XÖá£©
 	TIM8_OPM_RCR_Init(999,72-1); //1MHz¼ÆÊıÆµÂÊ  µ¥Â+-9ö³å+ÖØ¸´¼ÆÊıÄ£Ê½£¨YÖá£©
 	T_Adc_Init();           //Ö÷¿ØĞ¾Æ¬²É¼¯ÎÂ¶È³õÊ¼»¯
-	Humiture_Initialize();  //¸÷¸öÄ£¿é¼ì²â³õÊ¼»¯
+//	Humiture_Initialize();  //¸÷¸öÄ£¿é¼ì²â³õÊ¼»¯
 	OLED_ShowString(30,0, "a: 00.00" ,12);	 //Éè¶¨Ö÷¿ØĞ¾Æ¬ÎÂ¶È³õÊ¼Öµ
 	OLED_ShowString(30,12,"b:  C",12);       //ÊÒÄÚÎÂ¶È
 	OLED_ShowString(30,24,"c:  %",12);       //ÊÒÄÚÊª¶È
@@ -58,8 +58,8 @@ int main(void)
 			RX_1();                          //½ÓÊÕÖ÷»ú¹ıÀ´µÄÊı¾İ
 		  Adc_Voltage_Transition();        //Òı½Å²É¼¯µ½µÄµçÑ¹
 		  Adc_Control_Chip_Temperature();	 //Ö÷¿ØĞ¾Æ¬²É¼¯µ½µÄÎÂ¶È
-			Adc_Humiture_Measure_Indoor();          //ÊÒÄÚ²É¼¯µ½µÄÎÂÊª¶È
-		  Adc_Humiture_Measure_Outdoor();          //ÊÒÄÚ²É¼¯µ½µÄÎÂÊª¶È
+//			Adc_Humiture_Measure_Indoor();          //ÊÒÄÚ²É¼¯µ½µÄÎÂÊª¶È
+//		  Adc_Humiture_Measure_Outdoor();          //ÊÒÄÚ²É¼¯µ½µÄÎÂÊª¶È
       Window_Control();                //´°»§¿ØÖÆ
 			Curtain_Control();               //´°Á±¿ØÖÆ
 		

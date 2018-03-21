@@ -21,15 +21,30 @@ Target DLL:      Segger\JL2CM3.dll V2.99.13.0
 Dialog DLL:      TARMSTM.DLL V1.64.0.0
  
 <h2>Project:</h2>
-F:\桌面\智能家居从机处理0第二版\USER\Power_Line_Carrier_RXD.uvprojx
+E:\GitHub\Power-Line-Carrier\智能家居从机处理0第二版\USER\Power_Line_Carrier_RXD.uvprojx
 Project File Date:  12/06/2017
 
 <h2>Output:</h2>
 Build target 'Power_Line_Carrier_RXD'
-"..\OBJ\USART.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+..\HARDWARE\RX\rx.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\MANAGE\manage.h(9): warning:  #1295-D: Deprecated declaration Adc_Raindrop_Indoor - give arg types
+  void Adc_Raindrop_Indoor();             //室内雨滴传感器（判断是否会出现水贱到从机主控芯片上面）
+..\HARDWARE\MANAGE\manage.h(10): warning:  #1295-D: Deprecated declaration Adc_Raindrop_outdoor - give arg types
+  void Adc_Raindrop_outdoor();            //室外雨滴传感器（判断外面是否下雨）
+..\HARDWARE\MANAGE\manage.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\MOTOR\stepmotor.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c: 5 warnings, 0 errors
+linking...
+Program Size: Code=24814 RO-data=6930 RW-data=120 ZI-data=4056  
+FromELF: creating hex file...
+"..\OBJ\USART.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  F:\桌面\智能家居从机处理0第二版\USER\RTE
+  E:\GitHub\Power-Line-Carrier\智能家居从机处理0第二版\USER\RTE
   C:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0
 
 <h2>Collection of Component Files used:</h2>
