@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\MALLOC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\MALLOC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Wed Mar 21 19:09:45 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Mar 22 14:00:43 2018
 <BR><P>
 <H3>Maximum Stack Usage =        756 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1924,8 +1924,10 @@ Global Symbols
 
 <P><STRONG><a name="[571]"></a>STMFLASH_ReadHalfWord</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stmflash.o(.text), UNUSED)
 
-<P><STRONG><a name="[1d3]"></a>STMFLASH_Write_NoCheck</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, stmflash.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramHalfWord
+<P><STRONG><a name="[1d3]"></a>STMFLASH_Write_NoCheck</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, stmflash.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = STMFLASH_Write_NoCheck &rArr; FLASH_ProgramHalfWord &rArr; FLASH_WaitForLastOperation
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ProgramHalfWord
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
@@ -1937,14 +1939,17 @@ Global Symbols
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_cbDialog_4
 </UL>
 
-<P><STRONG><a name="[1d5]"></a>STMFLASH_Write</STRONG> (Thumb, 186 bytes, Stack size 40 bytes, stmflash.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[1d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_Unlock
+<P><STRONG><a name="[1d5]"></a>STMFLASH_Write</STRONG> (Thumb, 186 bytes, Stack size 40 bytes, stmflash.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = STMFLASH_Write &rArr; STMFLASH_Write_NoCheck &rArr; FLASH_ProgramHalfWord &rArr; FLASH_WaitForLastOperation
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_Unlock
 <LI><a href="#[1d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_Lock
 <LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 <LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Read
 <LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write_NoCheck
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Test_Write
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_cbDialog_4
 </UL>
 
 <P><STRONG><a name="[1da]"></a>Test_Write</STRONG> (Thumb, 12 bytes, Stack size 16 bytes, stmflash.o(.text), UNUSED)
@@ -3088,25 +3093,27 @@ Global Symbols
 
 <P><STRONG><a name="[632]"></a>FLASH_PrefetchBufferCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text), UNUSED)
 
-<P><STRONG><a name="[1d6]"></a>FLASH_Unlock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text), UNUSED)
+<P><STRONG><a name="[1d6]"></a>FLASH_Unlock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
 <P><STRONG><a name="[633]"></a>FLASH_UnlockBank1</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text), UNUSED)
 
-<P><STRONG><a name="[1d9]"></a>FLASH_Lock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text), UNUSED)
+<P><STRONG><a name="[1d9]"></a>FLASH_Lock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
 <P><STRONG><a name="[634]"></a>FLASH_LockBank1</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text), UNUSED)
 
-<P><STRONG><a name="[20b]"></a>FLASH_GetBank1Status</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text), UNUSED)
+<P><STRONG><a name="[20b]"></a>FLASH_GetBank1Status</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f10x_flash.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForLastBank1Operation
 <LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForLastOperation
 </UL>
 
-<P><STRONG><a name="[20a]"></a>FLASH_WaitForLastOperation</STRONG> (Thumb, 34 bytes, Stack size 4 bytes, stm32f10x_flash.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_GetBank1Status
+<P><STRONG><a name="[20a]"></a>FLASH_WaitForLastOperation</STRONG> (Thumb, 34 bytes, Stack size 4 bytes, stm32f10x_flash.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = FLASH_WaitForLastOperation
+</UL>
+<BR>[Calls]<UL><LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_GetBank1Status
 </UL>
 <BR>[Called By]<UL><LI><a href="#[215]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_UserOptionByteConfig
 <LI><a href="#[214]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ReadOutProtection
@@ -3119,8 +3126,10 @@ Global Symbols
 <LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ErasePage
 </UL>
 
-<P><STRONG><a name="[1d8]"></a>FLASH_ErasePage</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, stm32f10x_flash.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForLastOperation
+<P><STRONG><a name="[1d8]"></a>FLASH_ErasePage</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, stm32f10x_flash.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = FLASH_ErasePage &rArr; FLASH_WaitForLastOperation
+</UL>
+<BR>[Calls]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForLastOperation
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
@@ -3152,8 +3161,10 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForLastOperation
 </UL>
 
-<P><STRONG><a name="[1d4]"></a>FLASH_ProgramHalfWord</STRONG> (Thumb, 48 bytes, Stack size 20 bytes, stm32f10x_flash.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForLastOperation
+<P><STRONG><a name="[1d4]"></a>FLASH_ProgramHalfWord</STRONG> (Thumb, 48 bytes, Stack size 20 bytes, stm32f10x_flash.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = FLASH_ProgramHalfWord &rArr; FLASH_WaitForLastOperation
+</UL>
+<BR>[Calls]<UL><LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_WaitForLastOperation
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write_NoCheck
 </UL>
@@ -11705,11 +11716,12 @@ Local Symbols
 <LI><a href="#[327]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dir_find
 </UL>
 
-<P><STRONG><a name="[67]"></a>_cbDialog_4</STRONG> (Thumb, 792 bytes, Stack size 24 bytes, dropdowndemo.o(.text))
+<P><STRONG><a name="[67]"></a>_cbDialog_4</STRONG> (Thumb, 766 bytes, Stack size 24 bytes, dropdowndemo.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 572 + Unknown Stack Size
 <LI>Call Chain = _cbDialog_4 &rArr; FRAMEWIN_SetFont &rArr; FRAMEWIN__UpdateButtons &rArr; WM_MoveWindow &rArr; WM__MoveWindow &rArr; _MoveDescendents &rArr;  _MoveDescendents (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Read
+<BR>[Calls]<UL><LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
+<LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Read
 <LI><a href="#[367]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetId
 <LI><a href="#[362]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_GetDialogItem
 <LI><a href="#[361]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WM_DefaultProc
@@ -11738,7 +11750,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> dropdowndemo.o(.text)
 </UL>
-<P><STRONG><a name="[69]"></a>_cbDialog_2</STRONG> (Thumb, 562 bytes, Stack size 16 bytes, dropdowndemo.o(.text))
+<P><STRONG><a name="[69]"></a>_cbDialog_2</STRONG> (Thumb, 554 bytes, Stack size 16 bytes, dropdowndemo.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 444 + Unknown Stack Size
 <LI>Call Chain = _cbDialog_2 &rArr; CreateBoundary_1 &rArr; GUI_CreateDialogBox &rArr; WM_SetFocusOnNextChild &rArr; _SetFocusOnNextChild &rArr; WM_SetFocus &rArr; WM__SendMessage &rArr; WM_DefaultProc &rArr;  WM_SendToParent (Cycle)
 </UL>

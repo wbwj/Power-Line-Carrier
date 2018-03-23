@@ -23,7 +23,7 @@ void RX_1()
 				}
 				else if(USART_RX_BUF[t]==49)
 				{
-//					LED1=!LED1;
+					LED1=!LED1;
 				}
 			  else if(USART_RX_BUF[t]==50)
 				{

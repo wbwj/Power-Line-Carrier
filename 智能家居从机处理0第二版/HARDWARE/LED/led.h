@@ -4,7 +4,7 @@
 
 
 #define LED0 PBout(1)
-//#define LED1 PBout(2)
+#define LED1 PBout(2)
 #define LED2 PBout(5)
 #define LED3 PEout(5)
 #define LED4 PFout(9)

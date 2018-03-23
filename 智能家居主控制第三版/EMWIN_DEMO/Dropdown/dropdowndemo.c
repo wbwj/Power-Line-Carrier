@@ -9,7 +9,7 @@
 #include "delay.h"
 
 u32 Implementation_Password=0;//用户输入的密码
-u8 Passward_Buf[6]={1,2,3,4,5,3};  //需要写入的密码数组(六位)
+u8 Passward_Buf[6]={1,2,3,4,5,6};  //需要写入的密码数组(六位)
 #define Passward_Size sizeof(Passward_Buf)   //密码的长度，往flash中写入使用
 #define Flash_Save_Passward_Addr 0x08070000  //从0x08000000----0x08070000中存放密码
 
@@ -32,6 +32,7 @@ OS_ERR err;//系统指针
 extern char buf_led[]; //通过电力线载波发送的数据缓冲区
 
 u8 data_Passward[Passward_Size]; //读取密码时使用
+
 
 WM_HWIN CreateBoundary_1(void);     //创建第一个界面(初始界面)
 WM_HWIN CreateBoundary_2(void);     //创建第二个界面（LED界面）
@@ -262,9 +263,7 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
 
   switch (pMsg->MsgId) {
   case WM_INIT_DIALOG:
-    //
-    // Initialization of 'LED_Bright'
-    //
+		
     hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_0);
     BUTTON_SetFont(hItem, GUI_FONT_13B_1);
 
@@ -301,33 +300,7 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
 			{
 				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
 				printf("%c\r\n",buf_led[i]);
-//				if(i>=10)
-//				{
-//					i=0;
-//				}
 			}
-//				printf("%c\r\n",buf_led[0]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[1]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[2]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[3]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//		  	printf("%c\r\n",buf_led[4]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[5]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[6]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[7]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[8]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[9]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//		  	printf("%c\r\n",buf_led[10]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
  				GUI_EndDialog(pMsg->hWin, 0);
 			  CreateBoundary_2();
 
@@ -335,7 +308,7 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
 
       }
       break;
-    case ID_BUTTON_1: // Notifications sent by 'LED_Destroy'
+    case ID_BUTTON_1: // 所有灯灭
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 					i=0;
@@ -345,40 +318,14 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
 			{
 				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
 				printf("%c\r\n",buf_led[i]);
-//				if(i>=10)
-//				{
-//					i=0;
-//				}
 			}
-//				printf("%c\r\n",buf_led[0]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[1]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[2]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[3]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//		  	printf("%c\r\n",buf_led[4]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[5]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[6]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[7]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[8]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//			  printf("%c\r\n",buf_led[9]);
-//			  OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
-//		  	printf("%c\r\n",buf_led[10]);
-//				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时500ms
 				GUI_EndDialog(pMsg->hWin, 0);
 			  CreateBoundary_2();
         break;
 
       }
       break;
-    case ID_BUTTON_2: // Notifications sent by 'User-Part'
+    case ID_BUTTON_2: // 所有灯独立控制
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 
@@ -418,7 +365,7 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
     case ID_BUTTON_5: // Notifications sent by 'passward_x'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-
+					STMFLASH_Write(Flash_Save_Passward_Addr,(u16*)Passward_Buf,Passward_Size);//将修改好的密码存入flash，之后使用
         break;
       case WM_NOTIFICATION_RELEASED:
 
@@ -1430,9 +1377,13 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
     Id    = WM_GetId(pMsg->hWinSrc);
     NCode = pMsg->Data.v;
     switch(Id) {
-			case ID_BUTTON_13: // Notifications sent by '0'
+			case ID_BUTTON_37: // Notifications sent by '0'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
+//				for(Bit=1;Bit<7;Bit++)
+//			{
+//				Passward_Buf[i]=0;
+//			}
 				Bit++;
 			if(Bit==1)
 			{
@@ -1473,7 +1424,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_14: // Notifications sent by '1'
+    case ID_BUTTON_38: // Notifications sent by '1'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1516,7 +1467,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_15: // Notifications sent by '2'
+    case ID_BUTTON_39: // Notifications sent by '2'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1559,7 +1510,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_16: // Notifications sent by '3'
+    case ID_BUTTON_40: // Notifications sent by '3'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1602,7 +1553,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_17: // Notifications sent by '4'
+    case ID_BUTTON_41: // Notifications sent by '4'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1645,7 +1596,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_18: // Notifications sent by '5'
+    case ID_BUTTON_42: // Notifications sent by '5'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1688,7 +1639,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_19: // Notifications sent by '6'
+    case ID_BUTTON_43: // Notifications sent by '6'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1731,7 +1682,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_20: // Notifications sent by '7'
+    case ID_BUTTON_44: // Notifications sent by '7'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1774,7 +1725,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_21: // Notifications sent by '8'
+    case ID_BUTTON_45: // Notifications sent by '8'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1817,7 +1768,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
         break;
       }
       break;
-    case ID_BUTTON_22: // Notifications sent by '9'
+    case ID_BUTTON_46: // Notifications sent by '9'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
 				Bit++;
@@ -1863,6 +1814,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
     case ID_BUTTON_32: // 返回
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
+				
         break;
       case WM_NOTIFICATION_RELEASED:
 				GUI_EndDialog(pMsg->hWin, 0);
@@ -1878,20 +1830,34 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
 			{
 				 Test[Passward_i]=data_Passward[Passward_i];
 			}
-//			    Test[0]=data_Passward[0];
-//			    Test[1]=data_Passward[1];
-//			    Test[2]=data_Passward[2];
-//			    Test[3]=data_Passward[3];
-//			    Test[4]=data_Passward[4];
-//			    Test[5]=data_Passward[5];
-			    Test_Passward=Test[0]*100000+Test[1]*10000+Test[2]*1000+Test[3]*100+Test[4]*10+Test[5];
-			    printf("%d\r\n",Test[0]);
-			    printf("%d\r\n",Test[1]);
-			    printf("%d\r\n",Test[2]);
-			    printf("%d\r\n",Test[3]);
-			    printf("%d\r\n",Test[4]);
-			    printf("%d\r\n",Test[5]);
+			    Test_Passward=Test[5]*100000+Test[4]*10000+Test[3]*1000+Test[2]*100+Test[1]*10+Test[0];		
+//			    printf("%d\r\n",Test[0]);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",Test[1]);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",Test[2]);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",Test[3]);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",Test[4]);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",Test[5]);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+			
 					Implementation_Password=six*100000+five*10000+four*1000+three*100+two*10+one;
+//					printf("%d\r\n",six);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",five);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",four);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",three);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",two);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+//			    printf("%d\r\n",one);
+//			OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
+					
 			  if(Test_Passward==Implementation_Password)
 				{
 					printf("%c\r\n",buf_led[11]);
