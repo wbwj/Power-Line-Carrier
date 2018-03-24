@@ -3,7 +3,7 @@
 #include "sys.h"
 
 
-#define LED0 PBout(1)
+#define LED0 PBout(1)    //LED引脚定义为输出模式
 #define LED1 PBout(2)
 #define LED2 PBout(5)
 #define LED3 PEout(5)

@@ -11,11 +11,11 @@
 #define DHT11_IO_OUT_Outdoor() {GPIOG->CRH&=0XFFF0FFFF;GPIOG->CRH|=3<<16;}
 
 ////IO操作函数											   
-#define	DHT11_DQ_OUT_Indoor PGout(11) //数据端口	PA0 
-#define	DHT11_DQ_IN_Indoor  PGin(11)  //数据端口	PA0 
+#define	DHT11_DQ_OUT_Indoor PGout(11) //数据端口	PG11
+#define	DHT11_DQ_IN_Indoor  PGin(11)  //数据端口	PG11 
 
-#define	DHT11_DQ_OUT_Outdoor PGout(12) //数据端口	PA0 
-#define	DHT11_DQ_IN_Outdoor  PGin(12)  //数据端口	PA0 
+#define	DHT11_DQ_OUT_Outdoor PGout(12) //数据端口	PG12 
+#define	DHT11_DQ_IN_Outdoor  PGin(12)  //数据端口	PG12 
 
 
 u8 DHT11_Init_Indoor(void);//初始化DHT11_1

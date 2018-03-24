@@ -1,12 +1,12 @@
-#include "dropdowndemo.h"
-#include "DIALOG.h"
-#include "led.h"
-#include "beep.h"
-#include "usart.h"
-#include "buf_switch.h"
-#include "stmflash.h"
-#include "os.h"
-#include "delay.h"
+#include "dropdowndemo.h"     //配置界面头文件
+#include "DIALOG.h"           //生成GUI
+#include "led.h"              //配置LED
+#include "beep.h"             //配置蜂鸣器
+#include "usart.h"            //串口通讯函数 
+#include "buf_switch.h"       //配置串口发送数据
+#include "stmflash.h"         //单片机flash内存
+#include "os.h"               //系统头文件
+#include "delay.h"            //延时头文件（调试时使用）
 
 u32 Implementation_Password=0;//用户输入的密码
 u8 Passward_Buf[6]={1,2,3,4,5,6};  //需要写入的密码数组(六位)
@@ -14,7 +14,7 @@ u8 Passward_Buf[6]={1,2,3,4,5,6};  //需要写入的密码数组(六位)
 #define Flash_Save_Passward_Addr 0x08070000  //从0x08000000----0x08070000中存放密码
 
 u32 Test[6]={0};  //用于比较密码使用
-u32 Test_Passward=123456;//初始密码
+u32 Test_Passward;//初始密码
 u8 Bit=0;//判断是第几位
 u8 six;//密码第六位
 u8 five;//密码第五位
@@ -39,10 +39,10 @@ WM_HWIN CreateBoundary_2(void);     //创建第二个界面（LED界面）
 WM_HWIN CreateBoundary_3(void);     //创建第三个界面（flash选择LED界面）
 WM_HWIN CreateBoundary_4(void);     //创建第四个界面（flash读取LED界面）
 WM_HWIN CreateBoundary_5(void);     //创建第五个界面（密码界面）
-WM_HWIN CreateBoundary_6(void);     //创建第六个界面（面膜界面）
-WM_HWIN CreateBoundary_7(void);     //创建第七个界面（）
-WM_HWIN CreateBoundary_8(void);     //创建第八个界面
-WM_HWIN CreateBoundary_9(void);     //创建第九个界面
+WM_HWIN CreateBoundary_6(void);     //创建第六个界面（界面）
+WM_HWIN CreateBoundary_7(void);     //创建第七个界面（界面）
+WM_HWIN CreateBoundary_8(void);     //创建第八个界面（界面）
+WM_HWIN CreateBoundary_9(void);     //创建第九个界面（界面）
 
 
 /*****************初始界面对话框（总体界面）***************************/
@@ -234,27 +234,6 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_4[] = {
   { BUTTON_CreateIndirect, "next",   ID_BUTTON_36, 360, 250, 80, 40, 0, 0x0, 0 },
 };
 
-
-
-///**************************密码修改界面*************************************************/
-//static const GUI_WIDGET_CREATE_INFO _aDialogCreate_5[] = {
-//	{ FRAMEWIN_CreateIndirect, "The password interface", ID_FRAMEWIN_1, 0, 0, 480, 320, 0, 0x0, 0 },
-//	{ BUTTON_CreateIndirect, "0", ID_BUTTON_13, 160, 240, 120, 50, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "1", ID_BUTTON_14, 0, 50, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "2", ID_BUTTON_15, 160, 50, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "3", ID_BUTTON_16, 320, 50, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "4", ID_BUTTON_17, 0, 110, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "5", ID_BUTTON_18, 160, 110, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "6", ID_BUTTON_19, 320, 110, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "7", ID_BUTTON_20, 0, 170, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "8", ID_BUTTON_21, 160, 170, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "9", ID_BUTTON_22, 320, 170, 150, 60, 0, 0x0, 0 },
-//  { BUTTON_CreateIndirect, "Return", ID_BUTTON_23, 0, 240, 120, 50, 0, 0x0, 0 },//返回
-//  { BUTTON_CreateIndirect, "Affirm", ID_BUTTON_24, 320, 240, 120, 50, 0, 0x0, 0 },//确定
-//};
-
-
-
 /*********************************界面初始化配置*******************************************/
 static void _cbDialog_1(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
@@ -293,16 +272,11 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
     case ID_BUTTON_0: // 所有灯亮
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					i=0;
         break;
       case WM_NOTIFICATION_RELEASED:   //按下时松开触摸屏有效
-				for(i=0;i<11;i++)
-			{
-				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
-				printf("%c\r\n",buf_led[i]);
-			}
- 				GUI_EndDialog(pMsg->hWin, 0);
-			  CreateBoundary_2();
+				printf("%c\r\n",buf_led[0]);
+// 				GUI_EndDialog(pMsg->hWin, 0);
+//			  CreateBoundary_2();
 
         break;
 
@@ -311,16 +285,11 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
     case ID_BUTTON_1: // 所有灯灭
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					i=0;
         break;
       case WM_NOTIFICATION_RELEASED:
-				for(i=0;i<11;i++)
-			{
-				OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//延时200ms
-				printf("%c\r\n",buf_led[i]);
-			}
-				GUI_EndDialog(pMsg->hWin, 0);
-			  CreateBoundary_2();
+				printf("%c\r\n",buf_led[1]);
+//				GUI_EndDialog(pMsg->hWin, 0);
+//			  CreateBoundary_2();
         break;
 
       }
@@ -430,13 +399,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_7: // Notifications sent by 'LED0'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[0]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+            if(mode==1)
+					{
+					printf("%c\r\n",buf_led[2]);
+					}
         break;
 
       }
@@ -444,13 +413,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_8: // Notifications sent by 'LED1'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[1]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+           if(mode==1)
+					{
+					printf("%c\r\n",buf_led[3]);
+					}
         break;
 
       }
@@ -458,13 +427,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_9: // Notifications sent by 'LED2'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[2]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+             if(mode==1)
+					{
+					printf("%c\r\n",buf_led[4]);
+					}
         break;
  
       }
@@ -472,13 +441,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_10: // Notifications sent by 'LED3'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[3]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
- 
+            if(mode==1)
+					{
+					printf("%c\r\n",buf_led[5]);
+					}
         break;
 
       }
@@ -486,13 +455,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_11: // Notifications sent by 'LED4'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[4]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+           if(mode==1)
+					{
+					printf("%c\r\n",buf_led[6]);
+					}
         break;
 
       }
@@ -500,13 +469,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_12: // Notifications sent by 'LED5'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[5]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+          if(mode==1)
+					{
+					printf("%c\r\n",buf_led[7]);
+					}
         break;
 
       }
@@ -514,13 +483,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_13: // Notifications sent by 'LED6'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[6]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+           if(mode==1)
+					{
+					printf("%c\r\n",buf_led[8]);
+					}
         break;
 
       }
@@ -528,13 +497,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_14: // Notifications sent by 'LED7'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[7]);
-					}
+				
         break;
       case WM_NOTIFICATION_RELEASED:
-
+          	if(mode==1)
+					{
+					printf("%c\r\n",buf_led[9]);
+					}
         break;
 
       }
@@ -542,13 +511,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_15: // Notifications sent by 'LED8'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[8]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-  
+           if(mode==1)
+					{
+					printf("%c\r\n",buf_led[10]);
+					}
         break;
 
       }
@@ -556,13 +525,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_16: // Notifications sent by 'LED9'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[9]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+           if(mode==1)
+					{
+					printf("%c\r\n",buf_led[11]);
+					}
         break;
 
       }
@@ -570,13 +539,13 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
     case ID_BUTTON_17: // Notifications sent by 'LED10'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-					if(mode==1)
-					{
-					printf("%c\r\n",buf_led[10]);
-					}
+					
         break;
       case WM_NOTIFICATION_RELEASED:
-
+          if(mode==1)
+					{
+					printf("%c\r\n",buf_led[12]);
+					}
         break;
 
       }
