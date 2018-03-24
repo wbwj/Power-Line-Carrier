@@ -82,11 +82,6 @@ void RX_1()       //接收数据函数
 				{
 					LED8=!LED8;  				
 				}
-				else if(USART_RX_BUF[t]==98)
-				{
-					front_door = !front_door;   //模拟大门打开
-				}
-				
 				else if(USART_RX_BUF[t]==99)
 				{
 					LED9=!LED9;
@@ -94,7 +89,14 @@ void RX_1()       //接收数据函数
 				else if(USART_RX_BUF[t]==100)
 				{
 					LED10=!LED10;
+				} 
+				if(USART_RX_BUF[t]==98)
+				{
+					front_door = 0;   //模拟大门打开
+					
 				}
+				
+				
 				
 				printf("  %d\r\n",USART_RX_BUF[t]);//用于调试时查看数据是否完整接收
 			}

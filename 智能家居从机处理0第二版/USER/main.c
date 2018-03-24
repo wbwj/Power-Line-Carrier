@@ -13,6 +13,32 @@
 #include "start.h"  //ÐèÒª¼ì²âµÄ¸÷¸öÄ£¿é¼ì²â³õÊ¼»¯
 #include "driver.h" //²½½øµç»ú¿ØÖÆ
 #include "stepmotor.h"  //´°»§ÒÔ¼°´°Á±¿ØÖÆ
+
+/*************************Òý½Å¶¨Òå******************************
+PG8£ºXÖá·½Ïò¿ØÖÆÒý½Å
+PG9£ºXÖáÊ¹ÄÜ½Å
+PA11£ºXÖáPWM¿ØÖÆ½Å
+PG6£ºYÖá·½Ïò¿ØÖÆ½Å
+PG7£ºYÖáÊ¹ÄÜ½Å
+PC9£ºYÖáPWM·½Ïò¿ØÖÆ½Å
+PG11£ºÊÒÄÚÎÂÊª¶È´«¸ÐÆ÷ÊäÈë¶Ë
+PG12£ºÊÒÍâÎÂÊª¶È´«¸ÐÆ÷ÊäÈë¶Ë
+PA1£º²É¼¯Íâ²¿µçÑ¹£¨3.3V Èç¹ûÐèÒª²âÁ¿¸ßµçÑ¹ÔòÐèÒª½ø¹ý×ªÑ¹µ½0-3.3V£©ÓÐº¦ÆøÌå¼ì²âÊ¹ÓÃ
+PA2£º²É¼¯Íâ²¿µçÑ¹£¨3.3V Èç¹ûÐèÒª²âÁ¿¸ßµçÑ¹ÔòÐèÒª½ø¹ý×ªÑ¹µ½0-3.3V£©
+PB1£ºLED0
+PB2£º	LED1
+PB5£ºLED2
+PE5£ºLED3
+PF9£ºLED4
+PF10£ºLED5
+PF11£ºLED6
+PG1£ºLED7
+PG2£ºLED8
+PG3£ºLED9
+PG4£ºLED10
+PG5£ºÊ¹ÓÃ¼ÌµçÆ÷Ä£Äâ¿ªÃÅ¹ØÃÅ
+
+*****************************************************************/
  
  
 
@@ -43,7 +69,7 @@ int main(void)
 	Driver_Init_X();		 //XÖáÇý¶¯Æ÷³õÊ¼»¯
 	Driver_Init_Y();		 //YÖáÇý¶¯Æ÷³õÊ¼»¯
 	TIM1_OPM_RCR_Init(999,72-1); //1MHz¼ÆÊýÆµÂÊ  µ¥Âö³å+ÖØ¸´¼ÆÊýÄ£Ê½£¨XÖá£©
-	TIM8_OPM_RCR_Init(999,72-1); //1MHz¼ÆÊýÆµÂÊ  µ¥Â+-9ö³å+ÖØ¸´¼ÆÊýÄ£Ê½£¨YÖá£©
+	TIM8_OPM_RCR_Init(999,72-1); //1MHz¼ÆÊýÆµÂÊ  µ¥Âö³å+ÖØ¸´¼ÆÊýÄ£Ê½£¨YÖá£©
 	T_Adc_Init();           //Ö÷¿ØÐ¾Æ¬²É¼¯ÎÂ¶È³õÊ¼»¯
 //	Humiture_Initialize();  //¸÷¸öÄ£¿é¼ì²â³õÊ¼»¯
 	OLED_ShowString(30,0, "a: 00.00" ,12);	 //Éè¶¨Ö÷¿ØÐ¾Æ¬ÎÂ¶È³õÊ¼Öµ

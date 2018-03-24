@@ -13,8 +13,8 @@ extern short temp_Control_Chip;
 //extern u8 Humiture_t;                
 extern u8 Humiture_Temperature_Indoor;   //室内温度
 extern u8 Humiture_Humidity_Indoor;      //室内湿度
-extern u8 Humiture_Temperature_Outdoor;   //室内温度
-extern u8 Humiture_Humidity_Outdoor;      //室内湿度
+extern u8 Humiture_Temperature_Outdoor;   //室外温度
+extern u8 Humiture_Humidity_Outdoor;      //室外湿度
 
 void Adc_Voltage_Transition()             //用来测量小于3.3V电压使用    
 {

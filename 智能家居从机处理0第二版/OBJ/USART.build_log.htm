@@ -26,7 +26,20 @@ Project File Date:  12/06/2017
 
 <h2>Output:</h2>
 Build target 'Power_Line_Carrier_RXD'
-"..\OBJ\USART.axf" - 0 Error(s), 0 Warning(s).
+compiling stepmotor.c...
+..\HARDWARE\MOTOR\stepmotor.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\MANAGE\manage.h(9): warning:  #1295-D: Deprecated declaration Adc_Raindrop_Indoor - give arg types
+  void Adc_Raindrop_Indoor();             //室内雨滴传感器（判断是否会出现水贱到从机主控芯片上面）
+..\HARDWARE\MANAGE\manage.h(10): warning:  #1295-D: Deprecated declaration Adc_Raindrop_outdoor - give arg types
+  void Adc_Raindrop_outdoor();            //室外雨滴传感器（判断外面是否下雨）
+..\HARDWARE\MANAGE\manage.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\MOTOR\stepmotor.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=25038 RO-data=6930 RW-data=120 ZI-data=4056  
+FromELF: creating hex file...
+"..\OBJ\USART.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   E:\GitHub\Power-Line-Carrier\智能家居从机处理0第二版\USER\RTE
