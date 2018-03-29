@@ -1,0 +1,25 @@
+Field=Comment~String~Comment~100|Field=Description~String~Description~100|Field=Designator~String~Designator~100|Field=Footprint~String~Footprint~100|Field=LibRef~String~LibRef~100|Field=Quantity~Integer~Quantity~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~新苗.PrjPCB|ReportField=ProjectFullPath~E:\GitHub\Power-Line-Carrier\PCB工程\新苗.PrjPCB|ReportField=Title~Bill of Materials For Project [新苗.PrjPCB] (No PCB Document Selected)|ReportField=TotalQuantity~35|ReportField=ReportTime~13:39:16|ReportField=ReportDate~2018/3/29|ReportField=ReportDateTime~2018/3/29 13:39:16|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~2018/3/29|ReportField=CurrentTime~13:38:12|ReportField=Date~|ReportField=DocumentFullPathAndName~E:\GitHub\Power-Line-Carrier\PCB工程\新苗.SchDoc|ReportField=DocumentName~新苗.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~2018/3/28|ReportField=Organization~|ReportField=ProjectName~新苗.PrjPCB|ReportField=Revision~|ReportField=Rule~|ReportField=SheetNumber~|ReportField=SheetTotal~|ReportField=Time~|ReportField=Title~|ReportField=DataSourceFileName~新苗.PrjPCB|ReportField=DataSourceFullPath~E:\GitHub\Power-Line-Carrier\PCB工程\新苗.PrjPCB
+BATT||BAT1|BATM|BAT|1
+BEEP||BEEP1|BELL-5|BEEP|1
+0.1uF||C1, C2, C3, C9, C10, C11|0603P|C|6
+47uF||C4|CC6.56.5|CAP|1
+22pF||C5, C6, C7, C8|0603P|C|4
+1uF||C12|0603P|C|1
+104||C13, C14|0603P|C|2
+JTAG||JTAG1|JTAG_20|JTAG|1
+4.7uH||L1|L_SOP74|L_SOP|1
+RED|Typical RED, GREEN, YELLOW, AMBER GaAs LED|LED1|SMDLED|LED2|1
+Header 3X2|Header, 3-Pin, Dual row|P1|HDR2X3|Header 3X2|1
+Header 4|Header, 4-Pin|P2|HDR1X4|Header 4|1
+Header 17X2|Header, 17-Pin, Dual row|P3|HDR2X17|Header 17X2|1
+S8050|8050/BCW846/BCW847|Q1|SOT-23R|NPN|1
+100K||R1, R2|0603P|R|2
+0||R3|0603P|R|1
+1K||R4, R6|0603P|R|2
+510||R5|0603P|R|1
+10K||R7|0603P|R|1
+KEY_M||RESET|KEY_M|KEY_M|1
+STM32F103ZET6|STM32F103ZET6|U1|LQFP144|STM32F103ZET6|1
+AMS1117-3.3||U2|AMS1117|AMS1117|1
+8MHz|Crystal Oscillator|Y1|XTAL_US|XTAL|1
+32.768KHz|Crystal Oscillator|Y2|XTAL_US|XTAL|1

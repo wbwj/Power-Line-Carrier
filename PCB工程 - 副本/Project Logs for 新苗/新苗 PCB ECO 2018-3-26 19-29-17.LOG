@@ -1,0 +1,146 @@
+Removed Pin From Net: NetName=JNRST Pin=P2-3
+Removed Pin From Net: NetName=GND Pin=P2-4
+Removed Pin From Net: NetName=JTDI Pin=P2-5
+Removed Pin From Net: NetName=GND Pin=P2-6
+Removed Pin From Net: NetName=JTMS Pin=P2-7
+Removed Pin From Net: NetName=GND Pin=P2-8
+Removed Pin From Net: NetName=JTCK Pin=P2-9
+Removed Pin From Net: NetName=GND Pin=P2-10
+Removed Pin From Net: NetName=GND Pin=P2-12
+Removed Pin From Net: NetName=JTDO Pin=P2-13
+Removed Pin From Net: NetName=GND Pin=P2-14
+Removed Pin From Net: NetName=NRST Pin=P2-15
+Removed Pin From Net: NetName=GND Pin=P2-16
+Removed Pin From Net: NetName=GND Pin=P2-18
+Removed Pin From Net: NetName=+5 Pin=P2-19
+Removed Pin From Net: NetName=GND Pin=P2-20
+Removed Pin From Net: NetName=BOOT1 Pin=R1-1
+Removed Pin From Net: NetName=NetP1_3 Pin=R1-2
+Removed Pin From Net: NetName=NetP1_4 Pin=R2-1
+Removed Pin From Net: NetName=BOOT0 Pin=R2-2
+Removed Pin From Net: NetName=VDDA Pin=R3-2
+Removed Member From Class: ClassName=新苗 Member=P2
+Change Component DesignItemId : Designator=R1 Old DesignItemId=Res3 New DesignItemId=R
+Change Component DesignItemId : Designator=R2 Old DesignItemId=Res3 New DesignItemId=R
+Change Component DesignItemId : Designator=R3 Old DesignItemId=Res3 New DesignItemId=R
+Change Component Footprint: Designator=R1 Old Footprint=J1-0603 New Footprint=0603P
+Change Component Footprint: Designator=R2 Old Footprint=J1-0603 New Footprint=0603P
+Change Component Footprint: Designator=R3 Old Footprint=J1-0603 New Footprint=0603P
+Change Component Comment : Designator=R3 Old Comment=Res3 New Comment=0
+Change Component Comment : Designator=R1 Old Comment=Res3 New Comment=100K
+Change Component Comment : Designator=R2 Old Comment=Res3 New Comment=100K
+Added Component: Designator=C1(0603P)
+Added Component: Designator=C2(0603P)
+Added Component: Designator=C3(0603P)
+Added Component: Designator=C4(0603P)
+Added Component: Designator=C5(0603P)
+Added Component: Designator=C6(0603P)
+Added Component: Designator=C7(0603P)
+Added Component: Designator=C8(0603P)
+Added Component: Designator=C9(0603P)
+Added Component: Designator=C10(0603P)
+Added Component: Designator=C11(0603P)
+Added Component: Designator=C12(0603P)
+Added Component: Designator=JTAG1(JTAG_20)
+Added Component: Designator=L1(L_SOP74)
+Added Component: Designator=LED1(SMDLED)
+Added Component: Designator=R4(0603P)
+Added Component: Designator=R5(0603P)
+Added Component: Designator=RESET1(KEY_M)
+Added Component: Designator=U?(AMS1117)
+Added Component: Designator=Y1(XTAL_US)
+Added Component: Designator=Y2(XTAL_US)
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=NRST Pin=C1-2
+Added Pin To Net: NetName=+5 Pin=C2-1
+Added Pin To Net: NetName=3V3 Pin=C3-2
+Added Pin To Net: NetName=3V3 Pin=C4-2
+Added Pin To Net: NetName=GND Pin=C5-1
+Added Pin To Net: NetName=X1 Pin=C5-2
+Added Pin To Net: NetName=GND Pin=C6-1
+Added Pin To Net: NetName=X2 Pin=C6-2
+Added Pin To Net: NetName=GND Pin=C7-1
+Added Pin To Net: NetName=PC15 Pin=C7-2
+Added Pin To Net: NetName=GND Pin=C8-1
+Added Pin To Net: NetName=PC14 Pin=C8-2
+Added Pin To Net: NetName=GND Pin=C9-1
+Added Pin To Net: NetName=3V3 Pin=C9-2
+Added Pin To Net: NetName=GND Pin=C10-1
+Added Pin To Net: NetName=3V3 Pin=C10-2
+Added Pin To Net: NetName=GND Pin=C11-1
+Added Pin To Net: NetName=3V3 Pin=C11-2
+Added Pin To Net: NetName=GND Pin=C12-1
+Added Pin To Net: NetName=VDDA Pin=C12-2
+Added Pin To Net: NetName=3V3 Pin=JTAG1-1
+Added Pin To Net: NetName=3V3 Pin=JTAG1-2
+Added Pin To Net: NetName=JNRST Pin=JTAG1-3
+Added Pin To Net: NetName=GND Pin=JTAG1-4
+Added Pin To Net: NetName=JTDI Pin=JTAG1-5
+Added Pin To Net: NetName=GND Pin=JTAG1-6
+Added Pin To Net: NetName=JTMS Pin=JTAG1-7
+Added Pin To Net: NetName=GND Pin=JTAG1-8
+Added Pin To Net: NetName=JTCK Pin=JTAG1-9
+Added Pin To Net: NetName=GND Pin=JTAG1-10
+Added Pin To Net: NetName=GND Pin=JTAG1-12
+Added Pin To Net: NetName=JTDO Pin=JTAG1-13
+Added Pin To Net: NetName=GND Pin=JTAG1-14
+Added Pin To Net: NetName=NRST Pin=JTAG1-15
+Added Pin To Net: NetName=GND Pin=JTAG1-16
+Added Pin To Net: NetName=GND Pin=JTAG1-18
+Added Pin To Net: NetName=+5 Pin=JTAG1-19
+Added Pin To Net: NetName=GND Pin=JTAG1-20
+Added Pin To Net: NetName=VDDA Pin=L1-1
+Added Pin To Net: NetName=3V3 Pin=L1-2
+Added Pin To Net: NetName=GND Pin=LED1-2
+Added Pin To Net: NetName=NetP1_3 Pin=R1-1
+Added Pin To Net: NetName=BOOT1 Pin=R1-2
+Added Pin To Net: NetName=BOOT0 Pin=R2-1
+Added Pin To Net: NetName=NetP1_4 Pin=R2-2
+Added Pin To Net: NetName=VDDA Pin=R3-1
+Added Pin To Net: NetName=NRST Pin=R4-1
+Added Pin To Net: NetName=3V3 Pin=R5-2
+Added Pin To Net: NetName=NRST Pin=RESET1-1
+Added Pin To Net: NetName=NRST Pin=RESET1-1
+Added Pin To Net: NetName=GND Pin=RESET1-2
+Added Pin To Net: NetName=GND Pin=RESET1-2
+Added Pin To Net: NetName=3V3 Pin=U?-2
+Added Pin To Net: NetName=+5 Pin=U?-3
+Added Pin To Net: NetName=3V3 Pin=U?-4
+Added Pin To Net: NetName=X1 Pin=Y1-1
+Added Pin To Net: NetName=X2 Pin=Y1-2
+Added Pin To Net: NetName=PC15 Pin=Y2-1
+Added Pin To Net: NetName=PC14 Pin=Y2-2
+Added Pin To Net: NetName=3.3 Pin=R4-2
+Added Net: Name=3.3
+Added Pin To Net: NetName=NetC2_2 Pin=C2-2
+Added Pin To Net: NetName=NetC2_2 Pin=C3-1
+Added Pin To Net: NetName=NetC2_2 Pin=C4-1
+Added Pin To Net: NetName=NetC2_2 Pin=U?-1
+Added Net: Name=NetC2_2
+Added Pin To Net: NetName=NetLED1_1 Pin=LED1-1
+Added Pin To Net: NetName=NetLED1_1 Pin=R5-1
+Added Net: Name=NetLED1_1
+Added Pin To Net: NetName=NetR3_2 Pin=R3-2
+Added Pin To Net: NetName=NetR3_2 Pin=U1-32
+Added Net: Name=NetR3_2
+Added Member To Class: ClassName=新苗 Member=Component C1 0.1uF
+Added Member To Class: ClassName=新苗 Member=Component C2 0.1uF
+Added Member To Class: ClassName=新苗 Member=Component C3 0.1uF
+Added Member To Class: ClassName=新苗 Member=Component C4 47uF
+Added Member To Class: ClassName=新苗 Member=Component C5 22pF
+Added Member To Class: ClassName=新苗 Member=Component C6 22pF
+Added Member To Class: ClassName=新苗 Member=Component C7 22pF
+Added Member To Class: ClassName=新苗 Member=Component C8 22pF
+Added Member To Class: ClassName=新苗 Member=Component C9 0.1uF
+Added Member To Class: ClassName=新苗 Member=Component C10 0.1uF
+Added Member To Class: ClassName=新苗 Member=Component C11 0.1uF
+Added Member To Class: ClassName=新苗 Member=Component C12 1uF
+Added Member To Class: ClassName=新苗 Member=Component JTAG1 JTAG
+Added Member To Class: ClassName=新苗 Member=Component L1 4.7uH
+Added Member To Class: ClassName=新苗 Member=Component LED1 RED
+Added Member To Class: ClassName=新苗 Member=Component R4 1K
+Added Member To Class: ClassName=新苗 Member=Component R5 510
+Added Member To Class: ClassName=新苗 Member=Component RESET1 KEY_M
+Added Member To Class: ClassName=新苗 Member=Component U? AMS1117-3.3
+Added Member To Class: ClassName=新苗 Member=Component Y1 8MHz
+Added Member To Class: ClassName=新苗 Member=Component Y2 32.768KHz

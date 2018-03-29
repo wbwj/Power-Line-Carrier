@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=PD5 Pin=2.4'/2.8'LCD-3
+Added Pin To Net: NetName=NRST Pin=2.4'/2.8'LCD-5
+Added Pin To Net: NetName=LCD_CS Pin=U1-127
+Added Member To Class: ClassName=ÐÂÃç Member=Component P2 Header 4

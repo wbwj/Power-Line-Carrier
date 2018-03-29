@@ -1,0 +1,86 @@
+Removed Pin From Net: NetName=NetC2_2 Pin=C4-1
+Removed Pin From Net: NetName=3V3 Pin=C4-2
+Change Component DesignItemId : Designator=C4 Old DesignItemId=C New DesignItemId=CAP
+Change Component Footprint: Designator=C4 Old Footprint=0603P New Footprint=CC6.56.5
+Change Component Designator: OldDesignator=U? NewDesignator=U2
+Added Component: Designator=2.4'/2.8'LCD(db2*17-4.3)
+Added Component: Designator=C13(0603P)
+Added Component: Designator=C14(0603P)
+Added Component: Designator=P2(HDR1X4)
+Added Pin To Net: NetName=GND Pin=2.4'/2.8'LCD-22
+Added Pin To Net: NetName=3V3 Pin=2.4'/2.8'LCD-24
+Added Pin To Net: NetName=3V3 Pin=2.4'/2.8'LCD-25
+Added Pin To Net: NetName=GND Pin=2.4'/2.8'LCD-26
+Added Pin To Net: NetName=GND Pin=2.4'/2.8'LCD-27
+Added Pin To Net: NetName=+5 Pin=2.4'/2.8'LCD-28
+Added Pin To Net: NetName=3V3 Pin=C4-1
+Added Pin To Net: NetName=NetC2_2 Pin=C4-2
+Added Pin To Net: NetName=3V3 Pin=C13-1
+Added Pin To Net: NetName=GND Pin=C13-2
+Added Pin To Net: NetName=GND Pin=C14-1
+Added Pin To Net: NetName=+5 Pin=C14-2
+Added Pin To Net: NetName=PA10 Pin=P2-1
+Added Pin To Net: NetName=PA9 Pin=P2-2
+Added Pin To Net: NetName=GND Pin=P2-3
+Added Pin To Net: NetName=BL Pin=2.4'/2.8'LCD-23
+Added Net: Name=BL
+Added Pin To Net: NetName=CLK Pin=2.4'/2.8'LCD-34
+Added Net: Name=CLK
+Added Pin To Net: NetName=CS Pin=2.4'/2.8'LCD-33
+Added Net: Name=CS
+Added Pin To Net: NetName=D0 Pin=2.4'/2.8'LCD-6
+Added Net: Name=D0
+Added Pin To Net: NetName=D1 Pin=2.4'/2.8'LCD-7
+Added Net: Name=D1
+Added Pin To Net: NetName=D2 Pin=2.4'/2.8'LCD-8
+Added Net: Name=D2
+Added Pin To Net: NetName=D3 Pin=2.4'/2.8'LCD-9
+Added Net: Name=D3
+Added Pin To Net: NetName=D4 Pin=2.4'/2.8'LCD-10
+Added Net: Name=D4
+Added Pin To Net: NetName=D5 Pin=2.4'/2.8'LCD-11
+Added Net: Name=D5
+Added Pin To Net: NetName=D6 Pin=2.4'/2.8'LCD-12
+Added Net: Name=D6
+Added Pin To Net: NetName=D7 Pin=2.4'/2.8'LCD-13
+Added Net: Name=D7
+Added Pin To Net: NetName=D8 Pin=2.4'/2.8'LCD-14
+Added Net: Name=D8
+Added Pin To Net: NetName=D9 Pin=2.4'/2.8'LCD-15
+Added Net: Name=D9
+Added Pin To Net: NetName=D10 Pin=2.4'/2.8'LCD-16
+Added Net: Name=D10
+Added Pin To Net: NetName=D11 Pin=2.4'/2.8'LCD-17
+Added Net: Name=D11
+Added Pin To Net: NetName=D12 Pin=2.4'/2.8'LCD-18
+Added Net: Name=D12
+Added Pin To Net: NetName=D13 Pin=2.4'/2.8'LCD-19
+Added Net: Name=D13
+Added Pin To Net: NetName=D14 Pin=2.4'/2.8'LCD-20
+Added Net: Name=D14
+Added Pin To Net: NetName=D15 Pin=2.4'/2.8'LCD-21
+Added Net: Name=D15
+Added Pin To Net: NetName=LCD_CS Pin=2.4'/2.8'LCD-1
+Added Net: Name=LCD_CS
+Added Pin To Net: NetName=MISO Pin=2.4'/2.8'LCD-29
+Added Net: Name=MISO
+Added Pin To Net: NetName=MOSI Pin=2.4'/2.8'LCD-30
+Added Net: Name=MOSI
+Added Pin To Net: NetName=MO Pin=2.4'/2.8'LCD-32
+Added Net: Name=MO
+Added Pin To Net: NetName=PEN Pin=2.4'/2.8'LCD-31
+Added Net: Name=PEN
+Added Pin To Net: NetName=RD Pin=2.4'/2.8'LCD-4
+Added Net: Name=RD
+Added Pin To Net: NetName=RS Pin=2.4'/2.8'LCD-2
+Added Net: Name=RS
+Added Pin To Net: NetName=RST Pin=2.4'/2.8'LCD-5
+Added Net: Name=RST
+Added Pin To Net: NetName=VCC Pin=P2-4
+Added Net: Name=VCC
+Added Pin To Net: NetName=WR Pin=2.4'/2.8'LCD-3
+Added Net: Name=WR
+Added Member To Class: ClassName=新苗 Member=Component 2.4'/2.8'LCD TFT_LCD
+Added Member To Class: ClassName=新苗 Member=Component C13 104
+Added Member To Class: ClassName=新苗 Member=Component C14 104
+Added Member To Class: ClassName=新苗 Member=Component P2 Header 4
