@@ -2,6 +2,7 @@
 #include "usart.h"
 #include "led.h"
 #include "driver.h"
+#include "timer.h"
 
 extern u16 t;     //用于长度的调度
 extern u16 len;	  //接收发送数据的长度
@@ -93,7 +94,10 @@ void RX_1()       //接收数据函数
 				if(USART_RX_BUF[t]==98)
 				{
 					front_door = 0;   //模拟大门打开
-					
+				}
+				if(front_door == 0)
+				{
+					TIM_Cmd(TIM6,ENABLE);//开启定时器6
 				}
 				
 				

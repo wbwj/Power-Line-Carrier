@@ -355,12 +355,12 @@ ARM Macro Assembler    Page 6
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=..\obj\os_cpu_a.d -o..\obj\os_cpu_a.o -IE:\GitHub\Power-Line-Carri
-er\智能家居主控制第三版\USER\RTE -IC:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0 -I
-C:\keil\ARM\CMSIS\Include -IC:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\In
-clude --predefine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_HD SETA 1
-" --list=.\os_cpu_a.lst ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealVie
-w\os_cpu_a.s
+ork --depend=..\obj\os_cpu_a.d -o..\obj\os_cpu_a.o -II:\机械硬盘\GitHub\Power-L
+ine-Carrier\智能家居主控制第三版\USER\RTE -IC:\keil\ARM\PACK\Keil\STM32F1xx_DFP
+\2.1.0 -IC:\keil\ARM\CMSIS\Include -IC:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\
+Device\Include --predefine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_
+HD SETA 1" --list=.\os_cpu_a.lst ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M3\Generi
+c\RealView\os_cpu_a.s
 
 
 

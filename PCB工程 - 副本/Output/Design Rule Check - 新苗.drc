@@ -1,65 +1,62 @@
 Protel Design System Design Rule Check
-PCB File : E:\GitHub\Power-Line-Carrier\PCB工程 - 副本\新苗.PcbDoc
-Date     : 2018/3/31
-Time     : 12:00:05
+PCB File : I:\机械硬盘\GitHub\Power-Line-Carrier\PCB工程 - 副本\新苗.PcbDoc
+Date     : 2018/4/2
+Time     : 12:59:12
 
 WARNING: Zero hole size via(s) detected
    Via (5282.721mil,3427.507mil) Top Layer to Bottom Layer on Net JTMS
 
-Processing Rule : Width Constraint (Min=30mil) (Max=30mil) (Preferred=30mil) (InNet('+5'))
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=10mil) (Max=30mil) (Preferred=10mil) (All)
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=20mil) (Max=20mil) (Preferred=20mil) (InNet('3V3'))
-Rule Violations :0
-
-Processing Rule : Width Constraint (Min=15mil) (Max=15mil) (Preferred=15mil) (InNet('GND'))
-Rule Violations :0
-
-Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
-Rule Violations :0
-
-Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Net GND Between Pad C10-1 (3776.302,1928.369mil) And Pad C11-1 (3776.779,1865.28mil)
-   Violation between Un-Routed Net Constraint: Net GND Between Pad C9-1 (3777.398,1996.815mil) And Pad C12-1 (3777.945,2065.809mil)
-   Violation between Un-Routed Net Constraint: Net GND Between Track on layer Top Layer (3897.032,2528.614mil) And Track on layer Top Layer (3897.032,2833.136mil)
-   Violation between Un-Routed Net Constraint: Net GND Between Pad C10-1 (3776.302,1928.369mil) And Pad C9-1 (3777.398,1996.815mil)
-   Violation between Un-Routed Net Constraint: Net NRST Between Track on layer Top Layer (2552.866,3538.727mil) And Track on layer Top Layer (2661.822,3544.733mil)
-Rule Violations :5
-
-Processing Rule : Clearance Constraint (Gap=2mil) (All),(All)
-Rule Violations :0
-
-Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
-Rule Violations :0
-
-Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
-Rule Violations :0
-
-Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
-   Violation between Hole Size Constraint (0mil < 1mil) : Via (5282.721mil,3427.507mil) Top Layer to Bottom Layer
+Processing Rule : Net Antennae (Tolerance=0mil) (All)
+   Violation between Net Antennae: Track (3897.032mil,2528.614mil)(3923.405mil,2502.241mil)  Top Layer
 Rule Violations :1
-
-Processing Rule : Hole To Hole Clearance (Gap=1mil) (All),(All)
-Rule Violations :0
-
-Processing Rule : Minimum Solder Mask Sliver (Gap=1mil) (All),(All)
-Rule Violations :0
-
-Processing Rule : Silk To Solder Mask (Clearance=0mil) (IsPad),(All)
-Rule Violations :0
 
 Processing Rule : Silk to Silk (Clearance=1mil) (All),(All)
    Violation between Text "1" (5256.096mil,3345.535mil)  Top Overlay and 
                      Text "P1" (5198.982mil,3347.733mil)  Top Overlay
 Rule Violations :1
 
-Processing Rule : Net Antennae (Tolerance=0mil) (All)
-   Violation between Net Antennae: Track (3897.032mil,2528.614mil)(3923.405mil,2502.241mil)  Top Layer
+Processing Rule : Silk To Solder Mask (Clearance=0mil) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=1mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=1mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
+   Violation between Hole Size Constraint (0mil < 1mil) : Via (5282.721mil,3427.507mil) Top Layer to Bottom Layer
 Rule Violations :1
 
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
 
-Violations Detected : 8
-Time Elapsed        : 00:00:01
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=2mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+   Violation between Un-Routed Net Constraint: Net NRST Between Track on layer Top Layer (2552.866,3538.727mil) And Track on layer Top Layer (2661.822,3544.733mil)
+   Violation between Un-Routed Net Constraint: Net GND Between Pad C10-1 (3776.302,1928.369mil) And Pad C9-1 (3777.398,1996.815mil)
+Rule Violations :2
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=5mil) (Max=50mil) (Preferred=15mil) (InNet('GND'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=20mil) (Max=20mil) (Preferred=20mil) (InNet('3V3'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=30mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=30mil) (Max=30mil) (Preferred=30mil) (InNet('+5'))
+Rule Violations :0
+
+
+Violations Detected : 5
+Time Elapsed        : 00:00:04

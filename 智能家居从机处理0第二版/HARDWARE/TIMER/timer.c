@@ -2,6 +2,7 @@
 #include "led.h"
 
 extern vu16 USART3_RX_STA;
+u8 sec=30;
 
 //定时器7中断服务程序		    
 void TIM7_IRQHandler(void)
@@ -48,6 +49,48 @@ void TIM7_Int_Init(u16 arr,u16 psc)
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
 	NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
 	
+}
+
+void TIM6_Int_Init(u16 arr,u16 psc)    //初始化定时器6计数频率，和一次中断计数时间
+{
+	NVIC_InitTypeDef NVIC_InitStructure;
+	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+	
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6, ENABLE);//TIM6时钟使能
+	
+	TIM_TimeBaseStructure.TIM_Period = arr; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值	
+	TIM_TimeBaseStructure.TIM_Prescaler =psc; //设置用来作为TIMx时钟频率除数的预分频值
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Down;  //TIM向下计数模式
+	TIM_TimeBaseInit(TIM6, &TIM_TimeBaseStructure); //根据指定的参数初始化TIMx的时间基数单位
+	
+	TIM_ITConfig(TIM6,TIM_IT_Update,ENABLE ); //使能指定的TIM6中断,允许更新中断
+	
+	NVIC_InitStructure.NVIC_IRQChannel = TIM6_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0 ;//抢占优先级0
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;		//子优先级3
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
+	NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
+	
+	
+	
+}
+
+
+void TIM6_IRQHandler(void)      //中断函数
+{ 	
+	if (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET)//是更新中断
+	{	 			   
+		TIM_ClearITPendingBit(TIM6, TIM_IT_Update  );  //清除TIM6更新中断标志  
+		LED0=!LED0;
+	}	
+			sec--;
+			if(sec==0)
+			{
+				front_door=1;
+				sec=30;
+				TIM_Cmd(TIM6,DISABLE);//开启定时器6
+			}    
 }
 
 

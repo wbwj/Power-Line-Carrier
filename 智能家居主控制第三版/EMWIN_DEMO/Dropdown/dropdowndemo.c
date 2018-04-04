@@ -1829,7 +1829,7 @@ static void _cbDialog_4(WM_MESSAGE * pMsg) {
 					
 			  if(Test_Passward==Implementation_Password)
 				{
-					printf("%c\r\n",buf_led[11]);
+					printf("%c\r\n",buf_led[13]);
 //					printf("correct\r\n");
 				}
 //				else

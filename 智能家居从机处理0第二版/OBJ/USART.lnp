@@ -15,6 +15,7 @@
 "..\obj\start.o"
 "..\obj\driver.o"
 "..\obj\stepmotor.o"
+"..\obj\raindrop.o"
 "..\obj\delay.o"
 "..\obj\sys.o"
 "..\obj\usart.o"

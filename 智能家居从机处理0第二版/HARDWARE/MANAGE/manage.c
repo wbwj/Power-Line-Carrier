@@ -5,6 +5,7 @@
 #include "tsensor.h"
 #include "dht11.h"
 #include "led.h"
+#include "raindrop.h"
 
 
 extern u16 adcx_Voltage;           //ADC1通道1电压转换
@@ -29,7 +30,7 @@ void Adc_Voltage_Transition()             //用来测量小于3.3V电压使用
 	  OLED_Refresh_Gram();
 	if(adcx_Voltage>1000)
 		{
-			LED0=!LED0;
+//			LED0=!LED0;
 			delay_ms(1000);
 		}
 }
@@ -64,7 +65,7 @@ void Adc_Humiture_Measure_Outdoor()     //测量室外温湿度
 }
 
 
-void Adc_Co_Gas(void)                  //有害气体含量   
+void Adc_Co_Gas(void)                  //有害气体含量 （直接使用了ADC电压直接转换）  
 {
 	
 }  
@@ -72,7 +73,14 @@ void Adc_Co_Gas(void)                  //有害气体含量
 
 void Adc_Raindrop_Indoor()             //室内雨滴传感器（判断是否会出现水贱到从机主控芯片上面）
 {
-
+	if(raindrop_Indoor==0)
+	{
+		LED4=0;
+	}
+	else if(raindrop_Indoor==1)
+	{
+		LED4=1;
+	}
 }
 
 void Adc_Raindrop_outdoor()            //室外雨滴传感器（判断外面是否下雨）
