@@ -1,0 +1,232 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        09/06/2016  20:20:02  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\2.DEVELOPSOFT\KEIL\C51\BIN\BL51.EXE .\list\main.obj, .\list\delay.obj, .\list\uart.obj TO .\list\IO-LED PRINT (.\list
+>> \IO-LED.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\list\main.obj (MAIN)
+  .\list\delay.obj (DELAY)
+  .\list\uart.obj (UART)
+  E:\2.DEVELOPSOFT\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  E:\2.DEVELOPSOFT\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\list\IO-LED (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0046H     UNIT         ?PR?MAIN?MAIN
+            CODE    0049H     002CH     UNIT         ?CO?MAIN
+            CODE    0075H     0025H     UNIT         ?PR?_SENDSTRING?UART
+            CODE    009AH     001DH     UNIT         ?PR?UARTINIT?UART
+            CODE    00B7H     0019H     UNIT         ?C?LIB_CODE
+            CODE    00D0H     0010H     UNIT         ?PR?_DELAY_MS?DELAY
+            CODE    00E0H     000CH     UNIT         ?C_C51STARTUP
+            CODE    00ECH     0008H     UNIT         ?PR?_SENDDATA?UART
+            CODE    00F4H     0006H     UNIT         ?PR?GPIO_CONFIG?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\list\IO-LED (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?GPIO_CONFIG?MAIN
+  +--> ?PR?UARTINIT?UART
+  +--> ?CO?MAIN
+  +--> ?PR?_SENDSTRING?UART
+  +--> ?PR?_DELAY_MS?DELAY
+
+?PR?_SENDSTRING?UART           0008H    0003H
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/06/2016  20:20:02  PAGE 2
+
+
+  +--> ?PR?_SENDDATA?UART
+
+
+
+SYMBOL TABLE OF MODULE:  .\list\IO-LED (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00CAH         PUBLIC        P5M0
+  D:00B0H         PUBLIC        P3
+  D:00C9H         PUBLIC        P5M1
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+  D:00E8H         PUBLIC        P6
+  D:00F8H         PUBLIC        P7
+  C:00F4H         PUBLIC        GPIO_config
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  C:0003H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:00C8H.5       PUBLIC        P55
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          GPIO_CONFIG
+  C:00F4H         LINE#         33
+  C:00F4H         LINE#         34
+  C:00F4H         LINE#         35
+  C:00F7H         LINE#         36
+  C:00F9H         LINE#         37
+  -------         ENDPROC       GPIO_CONFIG
+  -------         PROC          MAIN
+  C:0003H         LINE#         45
+  C:0003H         LINE#         46
+  C:0003H         LINE#         47
+  C:0006H         LINE#         48
+  C:0009H         LINE#         50
+  C:0009H         LINE#         51
+  C:0009H         LINE#         52
+  C:0012H         LINE#         53
+  C:001BH         LINE#         54
+  C:001DH         LINE#         55
+  C:0022H         LINE#         56
+  C:0027H         LINE#         57
+  C:002CH         LINE#         58
+  C:0031H         LINE#         63
+  C:0033H         LINE#         64
+  C:0038H         LINE#         65
+  C:003DH         LINE#         66
+  C:0042H         LINE#         67
+  C:0047H         LINE#         68
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/06/2016  20:20:02  PAGE 3
+
+
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+  D:00E8H         PUBLIC        P6
+  D:00F8H         PUBLIC        P7
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:00D0H         PUBLIC        _delay_ms
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_MS
+  D:0007H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:00D0H         LINE#         34
+  C:00D0H         LINE#         35
+  C:00D0H         LINE#         37
+  C:00D0H         LINE#         38
+  C:00D4H         LINE#         39
+  C:00DDH         LINE#         40
+  C:00DFH         LINE#         41
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        DELAY
+
+  -------         MODULE        UART
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+  D:00E8H         PUBLIC        P6
+  D:00F8H         PUBLIC        P7
+  C:0075H         PUBLIC        _SendString
+  C:00ECH         PUBLIC        _SendData
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  B:0098H.1       PUBLIC        TI
+  D:00D8H         PUBLIC        CCON
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  C:009AH         PUBLIC        UartInit
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/06/2016  20:20:02  PAGE 4
+
+
+  D:008EH         PUBLIC        AUXR
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          UARTINIT
+  C:009AH         LINE#         4
+  C:009AH         LINE#         5
+  C:009AH         LINE#         6
+  C:009DH         LINE#         7
+  C:00A0H         LINE#         8
+  C:00A3H         LINE#         9
+  C:00A6H         LINE#         10
+  C:00A9H         LINE#         11
+  C:00ACH         LINE#         12
+  C:00AFH         LINE#         13
+  C:00B2H         LINE#         14
+  C:00B4H         LINE#         15
+  C:00B6H         LINE#         16
+  -------         ENDPROC       UARTINIT
+  -------         PROC          _SENDDATA
+  D:0007H         SYMBOL        ch
+  C:00ECH         LINE#         21
+  C:00ECH         LINE#         22
+  C:00ECH         LINE#         23
+  C:00EEH         LINE#         24
+  C:00F1H         LINE#         25
+  C:00F3H         LINE#         26
+  -------         ENDPROC       _SENDDATA
+  -------         PROC          _SENDSTRING
+  D:0008H         SYMBOL        s
+  C:0075H         LINE#         31
+  C:007BH         LINE#         32
+  C:007BH         LINE#         33
+  C:0086H         LINE#         34
+  C:0086H         LINE#         35
+  C:0097H         LINE#         36
+  C:0099H         LINE#         37
+  -------         ENDPROC       _SENDSTRING
+  -------         ENDMOD        UART
+
+  -------         MODULE        ?C?CLDPTR
+  C:00B7H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+Program Size: data=12.0 xdata=0 code=250
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

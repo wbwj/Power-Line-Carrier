@@ -1,0 +1,544 @@
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\list\main.obj
+COMPILER INVOKED BY: E:\2.DevelopSoft\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\list\main.lst) OBJEC
+                    -T(.\list\main.obj)
+
+line level    source
+
+   1          /*********************************************************************
+   2                           作者：神秘藏宝室
+   3                           店铺：ILoveMCU.taobao.com
+   4          
+   5                  本例程仅适用于在本店购买模块的用户使用，鄙视其它店铺的盗用行为
+   6                  版权所有，盗版必究！！！
+   7                  MC20 GSM/GPRS/GPS开发板：
+   8                  https://item.taobao.com/item.htm?id=562661881042
+   9                  SIM800 GSM/GPRS模块
+  10                  https://item.taobao.com/item.htm?id=521599424969
+  11                  STC15W/IAP15W最小系统：
+  12                  https://item.taobao.com/item.htm?id=539809674723
+  13                  USB-TTL模块：
+  14                  https://item.taobao.com/item.htm?id=39481188174
+  15                  移动场合供电用锂电池套装：
+  16                  https://item.taobao.com/item.htm?id=530904849115
+  17          *********************************************************************/
+  18          
+  19          /******************************************************************************
+  20                          晶振 11.0592MHz         
+  21                          串口1用于发送给电脑调试信息       波特率9600
+  22                          串口3用于接GPRS模块       GSM的TXD接P0.0,GPRS的RXD接P0.1         波特率9600
+  23          ******************************************************************************/
+  24          #include "main.h"
+  25          #include "delay.h"
+  26          #include "uart.h"
+  27          
+  28          #include <stdio.h>
+  29          #include <stdlib.h>
+  30          #include <string.h>
+  31          
+  32          
+  33          /*************  功能说明        **************
+  34          
+  35          本程序演示LED闪烁  
+  36          
+  37          
+  38          ******************************************/
+  39          
+  40          /*************  本地常量声明    **************/
+  41          #define Success 1U
+  42          #define Failure 0U
+  43          
+  44          /*************  本地变量声明    **************/
+  45          unsigned long  Time_Cont = 0;       //定时器计数器
+  46          bit ledState = LED_OFF;
+  47          
+  48          unsigned int gprsBufferCount = 0;
+  49          //code char OneNetServer[] = "api.heclouds.com";       //不需要修改
+  50          code char OneNetServer[] = "183.230.40.33";       //不需要修改
+  51          
+  52          
+  53          code char device_id[] = "3225187";    //修改为自己的设备ID
+  54          code char API_KEY[] = "R9xO5NZm6oVI4YBHvCPKEqtwYtMA";    //修改为自己的API_KEY
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 2   
+
+  55          code char sensor_gps[] = "location";                            //不需要修改
+  56          
+  57          
+  58          
+  59          /*************  本地函数声明    **************/
+  60          
+  61          
+  62          
+  63          /*************  外部函数和变量声明 *****************/
+  64          
+  65          
+  66          
+  67          /******************** IO配置函数 **************************/
+  68          void    GPIO_config(void)
+  69          {
+  70   1              P5M0 = 0;               //设置准双向口
+  71   1              P5M1 = 0;
+  72   1      }
+  73          
+  74          /******************** 主函数 **************************/
+  75          void main(void)
+  76          {       
+  77   1              GPIO_config();
+  78   1              UartInit();
+  79   1      
+  80   1              SendString("ILoveMCU.taobao.com");
+  81   1              delay_ms(200);
+  82   1              clrStruct();
+  83   1      
+  84   1              initGprs();
+  85   1              while(1)
+  86   1              {
+  87   2                      if (sendCommand("AT+QGNSSRD=\"NMEA/RMC\"\r\n", "OK\r\n", 2000, 10) == Success);
+  88   2                      else errorLog(10);
+  89   2                      
+  90   2                      Save_Data.isGetData = true;
+  91   2                      memset(Save_Data.GPS_Buffer, 0, 120);      //清空
+  92   2                      memcpy(Save_Data.GPS_Buffer, Uart3_Rec_Buf, point3);
+  93   2      
+  94   2                      parseGpsBuffer();
+  95   2                      printGpsBuffer();       
+  96   2              }
+  97   1      }
+  98          
+  99          void initGprs()
+ 100          {
+ 101   1      
+ 102   1              if (sendCommand("AT\r\n", "OK\r\n", 3000, 10) == Success);
+ 103   1              else errorLog(1);
+ 104   1              delay_ms(10);
+ 105   1      
+ 106   1              if (sendCommand("AT+CPIN?\r\n", "READY", 1000, 10) == Success);
+ 107   1              else errorLog(2);
+ 108   1              delay_ms(10);
+ 109   1      
+ 110   1              if (sendCommand("AT+CREG?\r\n", "CREG: 0,1", 1000, 10) == Success);
+ 111   1              else
+ 112   1              {
+ 113   2                      delay_ms(10);
+ 114   2                      if (sendCommand("AT+CREG?\r\n", "CREG: 0,5", 1000, 10) == Success);
+ 115   2                      else errorLog(3);
+ 116   2              }
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 3   
+
+ 117   1      
+ 118   1              if (sendCommand("AT+QGNSSC?\r\n", "+QGNSSC: 1", 1000, 1) == Success);
+ 119   1              else if (sendCommand("AT+QGNSSC=1\r\n", "OK\r\n", 100, 10) == Success);
+ 120   1              else errorLog(4);
+ 121   1      
+ 122   1              if (sendCommand("AT+QICLOSE\r\n", "\r\n", 5000, 10) == Success);
+ 123   1              else errorLog(5);
+ 124   1              delay_ms(100);
+ 125   1              
+ 126   1              if (sendCommand("AT+QIDEACT\r\n", "\r\n", 5000, 10) == Success);
+ 127   1              else errorLog(6);
+ 128   1              delay_ms(100);
+ 129   1      
+ 130   1      
+ 131   1      }
+ 132          
+ 133          unsigned int sendCommand(char *Command, char *Response, unsigned long Timeout, unsigned char Retry)
+ 134          {
+ 135   1              unsigned char n;
+ 136   1              Uart3CLR_Buf();
+ 137   1              for (n = 0; n < Retry; n++)
+ 138   1              {
+ 139   2                      SendString("\r\n---------send AT Command:---------\r\n");
+ 140   2                      SendString(Command);
+ 141   2      
+ 142   2                      Uart3SendString(Command);               //发送GPRS指令
+ 143   2      
+ 144   2                      Time_Cont = 0;
+ 145   2                      while (Time_Cont < Timeout)
+ 146   2                      {
+ 147   3                              delay_ms(100);
+ 148   3                              Time_Cont += 100;
+ 149   3                              if (strstr(Uart3_Rec_Buf, Response) != NULL)
+ 150   3                              {
+ 151   4                                      SendString("\r\n==========receive AT Command:==========\r\n");
+ 152   4                                      SendString(Uart3_Rec_Buf); //输出接收到的信息
+ 153   4      
+ 154   4                                      return Success;
+ 155   4                              }
+ 156   3                              
+ 157   3                      }
+ 158   2                      Time_Cont = 0;
+ 159   2              }
+ 160   1              SendString("\r\n==========receive AT Command:==========\r\n");
+ 161   1              SendString(Uart3_Rec_Buf);//输出接收到的信息
+ 162   1              Uart3CLR_Buf();
+ 163   1              return Failure;
+ 164   1      }
+ 165          
+ 166          int Digcount(long num)
+ 167          {
+ 168   1              int i=0;        
+ 169   1              while(num>0)
+ 170   1              { 
+ 171   2                      i++;
+ 172   2                      num=num/10;
+ 173   2              }
+ 174   1        return i;
+ 175   1      }
+ 176          
+ 177          char* longitudeToOnenetFormat(char *lon_str_temp)               //经度
+ 178          {
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 4   
+
+ 179   1              unsigned long xdata lon_Onenet = 0;
+ 180   1              unsigned int xdata dd_int = 0;
+ 181   1              unsigned long xdata mm_int = 0;
+ 182   1              float xdata lon_Onenet_double = 0;
+ 183   1              int i = 0;
+ 184   1      
+ 185   1              unsigned long tempInt = 0;
+ 186   1              unsigned long tempPoint = 0;
+ 187   1              char xdata result[20];
+ 188   1              char xdata point_result[15];
+ 189   1              int pointLength = 0;
+ 190   1      
+ 191   1              //51单片机没有double，double和float，精度不够，这里只能分开整数和小数换算。
+ 192   1              sscanf(lon_str_temp, "%ld.%ld", &tempInt,&tempPoint);
+ 193   1              lon_Onenet = tempInt%100;
+ 194   1              pointLength = strlen(lon_str_temp) - 1 - Digcount(tempInt);             
+ 195   1              for( i = 0 ; i < pointLength ; i++)     //小数点几位，整数部分就放大10的几次方
+ 196   1              {
+ 197   2                      lon_Onenet *= 10;       
+ 198   2              }
+ 199   1      
+ 200   1              dd_int = tempInt / 100; //取出dd
+ 201   1      
+ 202   1              mm_int = lon_Onenet + tempPoint; //取出MM部分
+ 203   1      
+ 204   1              mm_int = mm_int*10/6;                   //本来是除以60，这里*10/6为了多2位小数点有有效数字
+ 205   1      
+ 206   1      
+ 207   1              sprintf(result,"%d.",dd_int);
+ 208   1              for( i = 0 ; i < pointLength + 1 - Digcount(mm_int) ; i++)
+ 209   1              {
+ 210   2                      strcat(result, "0");    
+ 211   2              }
+ 212   1              sprintf(point_result,"%ld",mm_int);
+ 213   1              strcat(result, point_result);
+ 214   1      
+ 215   1      //      SendString("\r\n==========ONENET FORMART==========\r\n");
+ 216   1      //      SendString(result);
+ 217   1              return result;
+ 218   1      }
+ 219          
+ 220          
+ 221          
+ 222          char* latitudeToOnenetFormat(char *lat_str_temp)                //纬度
+ 223          {
+ 224   1              unsigned long xdata lat_Onenet = 0;
+ 225   1              int xdata dd_int = 0;
+ 226   1              unsigned long xdata mm_int = 0;
+ 227   1      
+ 228   1              int i = 0;
+ 229   1      
+ 230   1              unsigned long tempInt = 0;
+ 231   1              unsigned long tempPoint = 0;
+ 232   1              char xdata result[20];
+ 233   1              char xdata point_result[15];
+ 234   1              int pointLength = 0;
+ 235   1      //      char xdata debugTest[30];
+ 236   1              
+ 237   1              //51单片机没有double，double和float，精度不够，这里只能分开整数和小数换算。
+ 238   1              sscanf(lat_str_temp, "%ld.%ld", &tempInt,&tempPoint);
+ 239   1              lat_Onenet = tempInt%100;
+ 240   1              
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 5   
+
+ 241   1      //      SendString("\r\n==========ONENET FORMART strlen(lat_str_temp)==========\r\n");
+ 242   1      //      sprintf(debugTest,"%d",strlen(lat_str_temp));
+ 243   1      //      SendString(debugTest);
+ 244   1      
+ 245   1              pointLength = strlen(lat_str_temp) - 1 - Digcount(tempInt);     
+ 246   1      
+ 247   1      //      SendString("\r\n==========ONENET FORMART pointLength==========\r\n");
+ 248   1      //      sprintf(debugTest,"%d",pointLength);
+ 249   1      //      SendString(debugTest);
+ 250   1              for( i = 0 ; i < pointLength ; i++)     //小数点几位，整数部分就放大10的几次方
+ 251   1              {
+ 252   2                      lat_Onenet *= 10;       
+ 253   2              }
+ 254   1      
+ 255   1      //      SendString("\r\n==========ONENET FORMART tempPoint==========\r\n");
+ 256   1      //      sprintf(debugTest,"%ld",tempPoint);
+ 257   1      //      SendString(debugTest);
+ 258   1      //
+ 259   1      //      SendString("\r\n==========ONENET FORMART tempInt==========\r\n");
+ 260   1      //      sprintf(debugTest,"%ld",tempInt);
+ 261   1      //      SendString(debugTest);
+ 262   1      //
+ 263   1      //      SendString("\r\n==========ONENET FORMART lat_Onenet==========\r\n");
+ 264   1      //      sprintf(debugTest,"%ld",lat_Onenet);
+ 265   1      //      SendString(debugTest);
+ 266   1      
+ 267   1              dd_int = tempInt / 100; //取出dd
+ 268   1      
+ 269   1              mm_int = lat_Onenet + tempPoint; //取出MM部分
+ 270   1      
+ 271   1              mm_int = mm_int*10/6;                   //本来是除以60，这里*10/6为了多2位小数点有有效数字
+ 272   1      
+ 273   1      //      SendString("\r\n==========ONENET FORMART mm_int==========\r\n");
+ 274   1      //      sprintf(debugTest,"%ld",mm_int);
+ 275   1      //      SendString(debugTest);
+ 276   1      
+ 277   1              
+ 278   1              sprintf(result,"%d.",dd_int);
+ 279   1              for( i = 0 ; i < pointLength + 1 - Digcount(mm_int) ; i++)
+ 280   1              {
+ 281   2                      strcat(result, "0");    
+ 282   2              }
+ 283   1              sprintf(point_result,"%ld",mm_int);
+ 284   1              strcat(result, point_result);
+ 285   1      
+ 286   1      //      SendString("\r\n==========ONENET FORMART==========\r\n");
+ 287   1      //      SendString(result);
+ 288   1              return result;
+ 289   1      }
+ 290          
+ 291          void postGpsDataToOneNet(char* API_VALUE_temp, char* device_id_temp, char* sensor_id_temp, char* lon_temp,
+             - char* lat_temp)
+ 292          {
+ 293   1              char xdata send_buf[400] = {0};
+ 294   1              char xdata text[200] = {0};
+ 295   1              char xdata tmp[25] = {0};
+ 296   1      
+ 297   1              char xdata lon_str_end[15] = {0};
+ 298   1              char xdata lat_str_end[15] = {0};
+ 299   1      
+ 300   1              char xdata sendCom[2] = {0x1A};
+ 301   1      
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 6   
+
+ 302   1      //      dtostrf(longitudeToOnenetFormat(lon_temp), 3, 6, lon_str_end); //转换成字符串输出
+ 303   1      //      dtostrf(latitudeToOnenetFormat(lat_temp), 2, 6, lat_str_end); //转换成字符串输出
+ 304   1      
+ 305   1      //      lon_temp = "11224.4992";
+ 306   1      //      lat_temp = "3438.1633";
+ 307   1      
+ 308   1              sprintf(lon_str_end,"%s", longitudeToOnenetFormat(lon_temp)); 
+ 309   1              sprintf(lat_str_end,"%s", latitudeToOnenetFormat(lat_temp)); 
+ 310   1      
+ 311   1              //连接服务器
+ 312   1              memset(send_buf, 0, 400);    //清空
+ 313   1              strcpy(send_buf, "AT+QIOPEN=\"TCP\",\"");
+ 314   1              strcat(send_buf, OneNetServer);
+ 315   1              strcat(send_buf, "\",80\r\n");
+ 316   1              if (sendCommand(send_buf, "CONNECT", 10000, 3) == Success);
+ 317   1              else errorLog(7);
+ 318   1      
+ 319   1              //发送数据
+ 320   1              if (sendCommand("AT+QISEND\r\n", ">", 3000, 1) == Success);
+ 321   1              else errorLog(8);
+ 322   1      
+ 323   1              memset(send_buf, 0, 400);    //清空
+ 324   1      
+ 325   1              /*准备JSON串*/
+ 326   1              //ARDUINO平台不支持sprintf的double的打印，只能转换到字符串然后打印
+ 327   1              sprintf(text, "{\"datastreams\":[{\"id\":\"%s\",\"datapoints\":[{\"value\":{\"lon\":%s,\"lat\":%s}}]}]}"
+ 328   1                      , sensor_id_temp, lon_str_end, lat_str_end);
+ 329   1      
+ 330   1              /*准备HTTP报头*/
+ 331   1              send_buf[0] = 0;
+ 332   1              strcat(send_buf, "POST /devices/");
+ 333   1              strcat(send_buf, device_id_temp);
+ 334   1              strcat(send_buf, "/datapoints HTTP/1.1\r\n"); //注意后面必须加上\r\n
+ 335   1              strcat(send_buf, "api-key:");
+ 336   1              strcat(send_buf, API_VALUE_temp);
+ 337   1              strcat(send_buf, "\r\n");
+ 338   1              strcat(send_buf, "Host:");
+ 339   1              strcat(send_buf, OneNetServer);
+ 340   1              strcat(send_buf, "\r\n");
+ 341   1              sprintf(tmp, "Content-Length:%d\r\n\r\n", strlen(text)); //计算JSON串长度
+ 342   1              strcat(send_buf, tmp);
+ 343   1              strcat(send_buf, text);
+ 344   1      
+ 345   1              if (sendCommand(send_buf, send_buf, 3000, 1) == Success);
+ 346   1              else errorLog(9);
+ 347   1      
+ 348   1              
+ 349   1              if (sendCommand(sendCom, "\"succ\"}", 3000, 1) == Success);
+ 350   1              else errorLog(10);
+ 351   1      
+ 352   1              delay_ms(100);
+ 353   1              if (sendCommand("AT+QICLOSE\r\n", "OK\r\n", 3000, 1) == Success);
+ 354   1              else errorLog(11);
+ 355   1              delay_ms(100);
+ 356   1      
+ 357   1              if (sendCommand("AT+QIDEACT\r\n", "OK\r\n", 3000, 1) == Success);
+ 358   1              else errorLog(11);
+ 359   1              delay_ms(100);
+ 360   1      
+ 361   1      }
+ 362          
+ 363          void soft_reset(void)    //制造重启命令
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 7   
+
+ 364          {
+ 365   1         ((void (code *) (void)) 0x0000) ();
+ 366   1      }
+ 367          
+ 368          void errorLog(int num)
+ 369          {
+ 370   1              SendString("ERROR");
+ 371   1              SendData(num+0x30);
+ 372   1              SendString("\r\n");
+ 373   1              while (1)
+ 374   1              {
+ 375   2                      if (sendCommand("AT\r\n", "OK", 100, 10) == Success)
+ 376   2                      {
+ 377   3                              SendString("\r\nRESET!!!!!!\r\n");
+ 378   3      
+ 379   3                              soft_reset();
+ 380   3                      }
+ 381   2                      delay_ms(200);
+ 382   2              }
+ 383   1      }
+ 384          
+ 385          
+ 386          
+ 387          
+ 388          void parseGpsBuffer()
+ 389          {
+ 390   1              char *subString;
+ 391   1              char *subStringNext;
+ 392   1              char i = 0;
+ 393   1              if (Save_Data.isGetData)
+ 394   1              {
+ 395   2                      Save_Data.isGetData = false;
+ 396   2                      SendString("**************\r\n");
+ 397   2                      SendString(Save_Data.GPS_Buffer);
+ 398   2      
+ 399   2                      
+ 400   2                      for (i = 0 ; i <= 6 ; i++)
+ 401   2                      {
+ 402   3                              if (i == 0)
+ 403   3                              {
+ 404   4                                      if ((subString = strstr(Save_Data.GPS_Buffer, ",")) == NULL)
+ 405   4                                              errorLog(1);    //解析错误
+ 406   4                              }
+ 407   3                              else
+ 408   3                              {
+ 409   4                                      subString++;
+ 410   4                                      if ((subStringNext = strstr(subString, ",")) != NULL)
+ 411   4                                      {
+ 412   5                                              char usefullBuffer[2]; 
+ 413   5                                              switch(i)
+ 414   5                                              {
+ 415   6                                                      case 1:memcpy(Save_Data.UTCTime, subString, subStringNext - subString);break;   //获取UTC时间
+ 416   6                                                      case 2:memcpy(usefullBuffer, subString, subStringNext - subString);break;       //获取UTC时间
+ 417   6                                                      case 3:memcpy(Save_Data.latitude, subString, subStringNext - subString);break;  //获取纬度信息
+ 418   6                                                      case 4:memcpy(Save_Data.N_S, subString, subStringNext - subString);break;       //获取N/S
+ 419   6                                                      case 5:memcpy(Save_Data.longitude, subString, subStringNext - subString);break; //获取经度信息
+ 420   6                                                      case 6:memcpy(Save_Data.E_W, subString, subStringNext - subString);break;       //获取E/W
+ 421   6      
+ 422   6                                                      default:break;
+ 423   6                                              }
+ 424   5      
+ 425   5                                              subString = subStringNext;
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 8   
+
+ 426   5                                              Save_Data.isParseData = true;
+ 427   5                                              if(usefullBuffer[0] == 'A')
+ 428   5                                                      Save_Data.isUsefull = true;
+ 429   5                                              else if(usefullBuffer[0] == 'V')
+ 430   5                                                      Save_Data.isUsefull = false;
+ 431   5      
+ 432   5                                      }
+ 433   4                                      else
+ 434   4                                      {
+ 435   5                                              errorLog(2);    //解析错误
+ 436   5                                      }
+ 437   4                              }
+ 438   3      
+ 439   3      
+ 440   3                      }
+ 441   2              }
+ 442   1      }
+ 443          
+ 444          void printGpsBuffer()
+ 445          {
+ 446   1              if (Save_Data.isParseData)
+ 447   1              {
+ 448   2                      Save_Data.isParseData = false;
+ 449   2                      
+ 450   2                      SendString("Save_Data.UTCTime = ");
+ 451   2                      SendString(Save_Data.UTCTime);
+ 452   2                      SendString("\r\n");
+ 453   2      
+ 454   2                      if(Save_Data.isUsefull)
+ 455   2                      {
+ 456   3                              Save_Data.isUsefull = false;
+ 457   3                              SendString("Save_Data.latitude = ");
+ 458   3                              SendString(Save_Data.latitude);
+ 459   3                              SendString("\r\n");
+ 460   3      
+ 461   3      
+ 462   3                              SendString("Save_Data.N_S = ");
+ 463   3                              SendString(Save_Data.N_S);
+ 464   3                              SendString("\r\n");
+ 465   3      
+ 466   3                              SendString("Save_Data.longitude = ");
+ 467   3                              SendString(Save_Data.longitude);
+ 468   3                              SendString("\r\n");
+ 469   3      
+ 470   3                              SendString("Save_Data.E_W = ");
+ 471   3                              SendString(Save_Data.E_W);
+ 472   3                              SendString("\r\n");
+ 473   3      
+ 474   3                              LED = LED_ON;
+ 475   3                              delay_ms(100);
+ 476   3                              LED = LED_OFF;
+ 477   3      
+ 478   3                              postGpsDataToOneNet(API_KEY, device_id, sensor_gps, Save_Data.longitude, Save_Data.latitude);           //发送数
+             -据到Onenet
+ 479   3      
+ 480   3                      }
+ 481   2                      else
+ 482   2                      {
+ 483   3                              SendString("GPS DATA is not usefull!\r\n");
+ 484   3                      }
+ 485   2                      
+ 486   2              }
+C51 COMPILER V9.00   MAIN                                                                  12/19/2017 14:59:32 PAGE 9   
+
+ 487   1      }
+ 488          
+ 489          
+ 490          void clrStruct()
+ 491          {
+ 492   1              Save_Data.isGetData = false;
+ 493   1              Save_Data.isParseData = false;
+ 494   1              Save_Data.isUsefull = false;
+ 495   1              memset(Save_Data.GPS_Buffer, 0, GPS_Buffer_Length);      //清空
+ 496   1              memset(Save_Data.UTCTime, 0, UTCTime_Length);
+ 497   1              memset(Save_Data.latitude, 0, latitude_Length);
+ 498   1              memset(Save_Data.N_S, 0, N_S_Length);
+ 499   1              memset(Save_Data.longitude, 0, longitude_Length);
+ 500   1              memset(Save_Data.E_W, 0, E_W_Length);
+ 501   1              
+ 502   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3278    ----
+   CONSTANT SIZE    =   1366    ----
+   XDATA SIZE       =   ----     751
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6      74
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

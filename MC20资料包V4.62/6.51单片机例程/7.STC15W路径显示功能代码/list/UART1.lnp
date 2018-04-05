@@ -1,0 +1,5 @@
+".\list\delay.obj",
+".\list\USART1.obj",
+".\list\main.obj" 
+TO ".\list\UART1" 
+PRINT(".\list\UART1.m51") RAMSIZE(256) 

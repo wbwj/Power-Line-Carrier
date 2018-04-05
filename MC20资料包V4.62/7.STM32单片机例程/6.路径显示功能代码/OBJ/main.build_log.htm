@@ -1,0 +1,69 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: wbwj wbwj, wbwj, LIC=EXJTG-VE8UX-63TMB-2MN4U-6GJ9G-UC77N
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Standard  Version: 5.14.0.0
+Toolchain Path:  C:\keil\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DARMSTM.DLL V1.65.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.13.0
+Dialog DLL:      TARMSTM.DLL V1.64.0.0
+ 
+<h2>Project:</h2>
+I:\机械硬盘\GitHub\Power-Line-Carrier\MC20资料包V4.62\7.STM32单片机例程\6.路径显示功能代码\USER\main.uvprojx
+Project File Date:  04/04/2018
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(235): warning:  #177-D: variable "lon_Onenet_double" was declared but never referenced
+        float lon_Onenet_double = 0;
+main.c(485): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                        if (strstr(USART2_RX_BUF, Response) != NULL)
+main.c(488): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+                                printf(USART2_RX_BUF);
+main.c(496): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+        printf(USART2_RX_BUF);
+main.c: 4 warnings, 0 errors
+compiling stm32f10x_it.c...
+compiling system_stm32f10x.c...
+compiling LED.c...
+compiling usart2.c...
+compiling core_cm3.c...
+assembling startup_stm32f10x_md.s...
+compiling misc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_dma.c...
+compiling stm32f10x_tim.c...
+compiling delay.c...
+compiling sys.c...
+compiling usart.c...
+..\SYSTEM\usart\usart.c(115): warning:  #550-D: variable "Res" was set but never used
+        u8 Res;
+..\SYSTEM\usart\usart.c: 1 warning, 0 errors
+linking...
+Program Size: Code=19896 RO-data=860 RW-data=128 ZI-data=3256  
+FromELF: creating hex file...
+"..\OBJ\main.axf" - 0 Error(s), 5 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  I:\机械硬盘\GitHub\Power-Line-Carrier\MC20资料包V4.62\7.STM32单片机例程\6.路径显示功能代码\USER\RTE
+  C:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0
+
+<h2>Collection of Component Files used:</h2>
+</pre>
+</body>
+</html>

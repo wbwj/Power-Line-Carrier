@@ -1,0 +1,6 @@
+".\list\main.obj",
+".\list\delay.obj",
+".\list\uart.obj" 
+TO ".\list\main" 
+PRINT(".\list\main.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

@@ -10,10 +10,9 @@
 
 extern u16 adcx_Voltage;           //ADC1通道1电压转换
 extern float temp_Voltage;         
-extern short temp_Control_Chip;
-//extern u8 Humiture_t;                
-extern u8 Humiture_Temperature_Indoor;   //室内温度
-extern u8 Humiture_Humidity_Indoor;      //室内湿度
+extern short temp_Control_Chip;               
+extern u8 Humiture_Temperature_Indoor;    //室内温度
+extern u8 Humiture_Humidity_Indoor;       //室内湿度
 extern u8 Humiture_Temperature_Outdoor;   //室外温度
 extern u8 Humiture_Humidity_Outdoor;      //室外湿度
 
@@ -32,7 +31,7 @@ void Adc_Voltage_Transition()             //用来测量小于3.3V电压使用
 		{
 //			LED0=!LED0;
 			delay_ms(1000);
-		}
+		}  
 }
 
 void Adc_Control_Chip_Temperature()    //用于测量主控芯片温度
@@ -65,10 +64,10 @@ void Adc_Humiture_Measure_Outdoor()     //测量室外温湿度
 }
 
 
-void Adc_Co_Gas(void)                  //有害气体含量 （直接使用了ADC电压直接转换）  
-{
-	
-}  
+//void Adc_Co_Gas(void)                  //有害气体含量 （直接使用了ADC电压直接转换）  
+//{
+//	
+//}  
 
 
 void Adc_Raindrop_Indoor()             //室内雨滴传感器（判断是否会出现水贱到从机主控芯片上面）

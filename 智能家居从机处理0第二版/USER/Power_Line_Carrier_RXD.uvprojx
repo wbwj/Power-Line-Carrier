@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\KEY;..\HARDWARE\ADC;..\HARDWARE\TIMER;..\HARDWARE\USART3;..\HARDWARE\OLED;..\HARDWARE\RX;..\HARDWARE\MANAGE;..\HARDWARE\ITEMP;..\HARDWARE\DHT11;..\HARDWARE\START;..\HARDWARE\DRIVER;..\HARDWARE\MOTOR;..\HARDWARE\RAINDROP</IncludePath>
+              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\KEY;..\HARDWARE\ADC;..\HARDWARE\TIMER;..\HARDWARE\USART3;..\HARDWARE\OLED;..\HARDWARE\RX;..\HARDWARE\MANAGE;..\HARDWARE\ITEMP;..\HARDWARE\DHT11;..\HARDWARE\START;..\HARDWARE\DRIVER;..\HARDWARE\MOTOR;..\HARDWARE\RAINDROP;..\HARDWARE\WINDOW</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -497,6 +497,11 @@
               <FileName>raindrop.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\RAINDROP\raindrop.c</FilePath>
+            </File>
+            <File>
+              <FileName>window.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\WINDOW\window.c</FilePath>
             </File>
           </Files>
         </Group>

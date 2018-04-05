@@ -1,0 +1,241 @@
+C51 COMPILER V9.00   MAIN                                                                  12/13/2017 21:46:37 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: E:\2.DevelopSoft\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*********************************************************************
+   2                           作者：神秘藏宝室
+   3                           店铺：ILoveMCU.taobao.com
+   4          
+   5                  本例程仅适用于在本店购买模块的用户使用，鄙视其它店铺的盗用行为
+   6                  版权所有，盗版必究！！！
+   7                  MC20 GSM/GPRS/GPS开发板：
+   8                  https://item.taobao.com/item.htm?id=562661881042
+   9                  SIM800 GSM/GPRS模块
+  10                  https://item.taobao.com/item.htm?id=521599424969
+  11                  STC89C52/STC12C5A60S2最小系统：
+  12                  https://item.taobao.com/item.htm?id=26410708738
+  13                  USB-TTL模块：
+  14                  https://item.taobao.com/item.htm?id=39481188174
+  15                  移动场合供电用锂电池套装：
+  16                  https://item.taobao.com/item.htm?id=530904849115
+  17          *********************************************************************/
+  18          
+  19          /**********************************************************************
+  20                           功能描述：
+  21                           发送短信 OFF，关闭
+  22                           发送短信 ON，打开
+  23          ***********************************************************************/
+  24          
+  25          #include "main.h"
+  26          #include "uart.h"
+  27          #include "LCD1602.h"
+  28          
+  29          //常量
+  30          #define Success 1U
+  31          #define Failure 0U
+  32          
+  33          //定义变量
+  34          unsigned long  Time_Cont = 0;       //定时器计数器
+  35          
+  36          
+  37          char xdata messageBuffer[100];
+  38          bit isTimeOut = 0;
+  39          
+  40          //****************************************************
+  41          //主函数
+  42          //****************************************************
+  43          void main()
+  44          {
+  45   1      
+  46   1          Uart_Init();
+  47   1              Init_LCD1602();
+  48   1              LCD1602_write_com(0x80);
+  49   1              LCD1602_write_word("ILoveMCU.       ");
+  50   1              LCD1602_write_com(0x80+0x40);
+  51   1              LCD1602_write_word("      taobao.com");
+  52   1      
+  53   1              if (sendCommand("AT\r\n", "OK\r\n", 3000, 10) == Success);
+  54   1              else errorLog();
+  55   1              delay_ms(10);
+C51 COMPILER V9.00   MAIN                                                                  12/13/2017 21:46:37 PAGE 2   
+
+  56   1      
+  57   1              if (sendCommand("AT+CPIN?\r\n", "READY", 1000, 10) == Success);
+  58   1              else errorLog();
+  59   1              delay_ms(10);
+  60   1      
+  61   1              if (sendCommand("AT+CREG?\r\n", "CREG: 0,1", 1000, 10) == Success);
+  62   1              else
+  63   1              {
+  64   2                      delay_ms(10);
+  65   2                      if (sendCommand("AT+CREG?\r\n", "CREG: 0,5", 1000, 10) == Success);
+  66   2                      else errorLog();
+  67   2              }
+  68   1      
+  69   1              if (sendCommand("AT+CMGF=1\r\n", "OK\r\n", 1000, 10) == Success);
+  70   1              else errorLog();
+  71   1              delay_ms(10);
+  72   1      
+  73   1              if (sendCommand("AT+CSCS=\"GSM\"\r\n", "OK\r\n", 1000, 10) == Success);
+  74   1              else errorLog();
+  75   1              delay_ms(10);
+  76   1      
+  77   1              if (sendCommand("AT+CNMI=2,2\r\n", "OK\r\n", 3000, 10) == Success);
+  78   1              else errorLog();
+  79   1              delay_ms(10);
+  80   1      
+  81   1      
+  82   1      
+  83   1              while(1)
+  84   1              {       
+  85   2                      if(isStartGetMessage)
+  86   2                      {
+  87   3                              isStartGetMessage = 0;
+  88   3                              Time_Cont = 0;
+  89   3                              
+  90   3                              while (Time_Cont < 1000)        //等待1s接收短信数据
+  91   3                              {
+  92   4                                      delay_ms(100);
+  93   4                                      Time_Cont += 100;
+  94   4                              }
+  95   3                              isGetMessage =  Success;
+  96   3                      }
+  97   2                      if( isGetMessage == Success)
+  98   2                      {
+  99   3                              parseMessage();
+ 100   3                                      
+ 101   3              
+ 102   3                              if(strstr(messageBuffer, "ON") != NULL) //打开
+ 103   3                              {
+ 104   4                                      relay1 = RELAY_ON;
+ 105   4      
+ 106   4                                      LCD1602_write_com(0x01); //清屏
+ 107   4      
+ 108   4                                      LCD1602_write_com(0x80);
+ 109   4                                      LCD1602_write_word(messageBuffer);
+ 110   4                              }
+ 111   3              
+ 112   3              
+ 113   3                              if(strstr(messageBuffer, "OFF") != NULL)//关闭
+ 114   3                              {
+ 115   4                                      relay1 = RELAY_OFF;
+ 116   4      
+ 117   4                                      LCD1602_write_com(0x01); //清屏
+C51 COMPILER V9.00   MAIN                                                                  12/13/2017 21:46:37 PAGE 3   
+
+ 118   4      
+ 119   4                                      LCD1602_write_com(0x80);
+ 120   4                                      LCD1602_write_word(messageBuffer);
+ 121   4                              }
+ 122   3                              isGetMessage = Failure  ;
+ 123   3                      }
+ 124   2              }
+ 125   1      }
+ 126          
+ 127          void parseMessage()
+ 128          {
+ 129   1              char *messageHead=NULL;
+ 130   1              char *messageEnd1=NULL;
+ 131   1              char *messageEnd2=NULL;
+ 132   1      
+ 133   1              memset(messageBuffer, 0, 100);  //清空短信内容缓冲区
+ 134   1              messageHead = strstr(Rec_Buf, "CMT");
+ 135   1              if (messageHead != NULL)
+ 136   1              {
+ 137   2                      messageEnd1 = strstr(messageHead, "\n");
+ 138   2                      if (messageEnd1 != NULL)
+ 139   2                      {
+ 140   3                              messageEnd1 ++;
+ 141   3                              messageEnd2 = strstr(messageEnd1, "\r");
+ 142   3                              if (messageEnd2 != NULL)
+ 143   3                              {       
+ 144   4                                      memcpy(messageBuffer, messageEnd1, messageEnd2 - messageEnd1);
+ 145   4              
+ 146   4                              }
+ 147   3                      }
+ 148   2      
+ 149   2              }
+ 150   1      
+ 151   1              CLR_Buf();
+ 152   1      }
+ 153          
+ 154          
+ 155          
+ 156          
+ 157          
+ 158          
+ 159          void errorLog()
+ 160          {
+ 161   1              while (1)
+ 162   1              {
+ 163   2                      if (sendCommand("AT\r\n", "OK", 100, 10) == Success)
+ 164   2                      {
+ 165   3                              soft_reset();
+ 166   3                      }
+ 167   2                      delay_ms(200);
+ 168   2              }
+ 169   1      }
+ 170          
+ 171          void soft_reset(void)    //制造重启命令
+ 172          {
+ 173   1         ((void (code *) (void)) 0x0000) ();
+ 174   1      }
+ 175          
+ 176          unsigned int sendCommand(char *Command, char *Response, unsigned long Timeout, unsigned char Retry)
+ 177          {
+ 178   1              unsigned char n;
+ 179   1              CLR_Buf();
+C51 COMPILER V9.00   MAIN                                                                  12/13/2017 21:46:37 PAGE 4   
+
+ 180   1              for (n = 0; n < Retry; n++)
+ 181   1              {
+ 182   2                      SendString(Command);            //发送GPRS指令
+ 183   2      
+ 184   2                      Time_Cont = 0;
+ 185   2                      while (Time_Cont < Timeout)
+ 186   2                      {
+ 187   3                              delay_ms(100);
+ 188   3                              Time_Cont += 100;
+ 189   3                              if (strstr(Rec_Buf, Response) != NULL)
+ 190   3                              {
+ 191   4                                      
+ 192   4                                      CLR_Buf();
+ 193   4                                      return Success;
+ 194   4                              }
+ 195   3                              
+ 196   3                      }
+ 197   2                      Time_Cont = 0;
+ 198   2              }
+ 199   1              
+ 200   1              CLR_Buf();
+ 201   1              return Failure;
+ 202   1      }
+ 203          
+ 204          //****************************************************
+ 205          //MS延时函数(12M晶振下测试)
+ 206          //****************************************************
+ 207          void delay_ms(unsigned int n)
+ 208          {
+ 209   1              unsigned int  i,j;
+ 210   1                      for(i=0;i<n;i++)
+ 211   1                              for(j=0;j<123;j++);
+ 212   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    870    ----
+   CONSTANT SIZE    =    152    ----
+   XDATA SIZE       =    100    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4      21
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

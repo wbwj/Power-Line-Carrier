@@ -1,0 +1,6 @@
+"main.obj",
+"uart.obj",
+"LCD1602.obj" 
+TO "main" 
+RAMSIZE(256) 
+DISABLEWARNING (16) 

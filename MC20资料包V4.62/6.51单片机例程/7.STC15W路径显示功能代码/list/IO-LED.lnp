@@ -1,0 +1,5 @@
+".\list\main.obj",
+".\list\delay.obj",
+".\list\uart.obj" 
+TO ".\list\IO-LED" 
+PRINT(".\list\IO-LED.m51") RAMSIZE(256) 

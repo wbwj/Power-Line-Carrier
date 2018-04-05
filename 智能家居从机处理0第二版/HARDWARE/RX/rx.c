@@ -30,8 +30,8 @@ void RX_1()       //接收数据函数
 					LED8=0;
 					LED9=0;
 					LED10=0;
-					Locate_Rle_Y(25600,50000,CCW);  //正转25600个脉冲（根据细分去计算圈数）
 				}
+				
 				else if(USART_RX_BUF[t]==49)
 				{
 					LED0=1;
@@ -45,8 +45,8 @@ void RX_1()       //接收数据函数
 					LED8=1;
 					LED9=1;
 					LED10=1;
-					Locate_Rle_X(25600,50000,CCW);  //正转25600个脉冲（根据细分去计算圈数）
 				}
+				
 			  if(USART_RX_BUF[t]==50)
 				{
 					LED0=!LED0;
@@ -91,16 +91,16 @@ void RX_1()       //接收数据函数
 				{
 					LED10=!LED10;
 				} 
+				
 				if(USART_RX_BUF[t]==98)
 				{
 					front_door = 0;   //模拟大门打开
 				}
+				
 				if(front_door == 0)
 				{
 					TIM_Cmd(TIM6,ENABLE);//开启定时器6
 				}
-				
-				
 				
 				printf("  %d\r\n",USART_RX_BUF[t]);//用于调试时查看数据是否完整接收
 			}

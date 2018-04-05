@@ -1,0 +1,51 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: wbwj wbwj, wbwj, LIC=EXJTG-VE8UX-63TMB-2MN4U-6GJ9G-UC77N
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Standard  Version: 5.14.0.0
+Toolchain Path:  C:\keil\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DARMSTM.DLL V1.65.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.13.0
+Dialog DLL:      TARMSTM.DLL V1.64.0.0
+ 
+<h2>Project:</h2>
+F:\桌面\MC20资料包V4.62\7.STM32单片机例程\2.STM32F103发送短信\USER\main.uvprojx
+Project File Date:  03/18/2018
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(48): warning:  #520-D: initialization with "{...}" expected for aggregate object
+  char msg[] =i;                //短信内容      
+main.c(48): error:  #28: expression must have a constant value
+  char msg[] =i;                //短信内容      
+main.c(170): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                        if (strstr(USART2_RX_BUF, Response) != NULL)
+main.c(173): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+                                printf(USART2_RX_BUF);
+main.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+        printf(USART2_RX_BUF);
+main.c: 4 warnings, 1 error
+"..\OBJ\main.axf" - 1 Error(s), 4 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  F:\桌面\MC20资料包V4.62\7.STM32单片机例程\2.STM32F103发送短信\USER\RTE
+  C:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+</pre>
+</body>
+</html>

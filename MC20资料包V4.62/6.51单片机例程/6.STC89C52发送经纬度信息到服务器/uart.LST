@@ -1,0 +1,134 @@
+C51 COMPILER V9.00   UART                                                                  12/18/2017 22:57:18 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN uart.OBJ
+COMPILER INVOKED BY: E:\2.DevelopSoft\Keil\C51\BIN\C51.EXE uart.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*********************************************************************
+   2                           作者：神秘藏宝室
+   3                           店铺：ILoveMCU.taobao.com
+   4          
+   5                  本例程仅适用于在本店购买模块的用户使用，鄙视其它店铺的盗用行为
+   6                  版权所有，盗版必究！！！
+   7                  MC20 GSM/GPRS/GPS开发板：
+   8                  https://item.taobao.com/item.htm?id=562661881042
+   9                  SIM800 GSM/GPRS模块
+  10                  https://item.taobao.com/item.htm?id=521599424969
+  11                  STC89C52/STC12C5A60S2最小系统：
+  12                  https://item.taobao.com/item.htm?id=26410708738
+  13                  USB-TTL模块：
+  14                  https://item.taobao.com/item.htm?id=39481188174
+  15                  移动场合供电用锂电池套装：
+  16                  https://item.taobao.com/item.htm?id=530904849115
+  17          *********************************************************************/
+  18          #include "uart.h"
+  19          
+  20          
+  21          #define Uart1_Buf_Max 120               //串口数据缓存长度
+  22          u8 idata  Rec_Buf[Uart1_Buf_Max];  //串口数据缓存
+  23          u8 point1 = 0;             //绶存指针
+  24          
+  25          void Uart_Init()                                                                   
+  26          {       
+  27   1              SCON = 0X50;  //UART方式1；8位UART
+  28   1              REN  = 1;     //不允许串行口接收数据
+  29   1              PCON = 0x00;  //SMOD=0;波特率不加倍
+  30   1              TMOD = 0x20;  //T1方式2，用于产生波特率
+  31   1              TH1  = 0xFD;  //装初值
+  32   1              TL1  = 0xFD;
+  33   1              TR1  = 1;     //启动定时器1
+  34   1              EA   = 1;     //打开全局中断控制
+  35   1              ES   = 1;     //串行口中断      
+  36   1      }
+  37          
+  38          
+  39          /*----------------------------
+  40          发送串口数据
+  41          ----------------------------*/
+  42          void SendData(unsigned char ch)
+  43          {
+  44   1          SBUF = ch;                 //写数据到UART数据寄存器
+  45   1                      while(TI == 0);
+  46   1                      TI = 0;
+  47   1      }
+  48          
+  49          /*----------------------------
+  50          发送字符串
+  51          ----------------------------*/
+  52          void SendString(char *s)
+  53          {
+  54   1          while (*s)                  //检测字符串结束标志
+  55   1          {
+C51 COMPILER V9.00   UART                                                                  12/18/2017 22:57:18 PAGE 2   
+
+  56   2              SendData(*s++);         //发送当前字符
+  57   2          }
+  58   1      }
+  59          
+  60          bit Hand(unsigned char *a)                   // 串口命令识别函数
+  61          { 
+  62   1          if(strstr(Rec_Buf,a)!=NULL)
+  63   1                  return 1;
+  64   1              else
+  65   1                      return 0;
+  66   1      }
+  67          
+  68          void CLR_Buf(void)                           // 串口缓存清理
+  69          {
+  70   1              memset(Rec_Buf, 0, Uart1_Buf_Max);      //清空
+  71   1      
+  72   1          point1 = 0;                    
+  73   1      }
+  74          
+  75          void RECEIVE_DATA(void) interrupt 4 using 1         //串口中断                  
+  76          {    
+  77   1              ES = 0;
+  78   1              if (RI)
+  79   1          {
+  80   2              RI = 0;                                //清除RI位
+  81   2                      Rec_Buf[point1] = SBUF; 
+  82   2      //              if (Rec_Buf[0] == 0xd9)
+  83   2      //                      {
+  84   2      //                              IAP_CONTR = 0x60;
+  85   2      //                      }
+  86   2                              
+  87   2                      point1++;               
+  88   2                      if(point1>=Uart1_Buf_Max)          
+  89   2                      {
+  90   3                              point1 = 0;
+  91   3                      }           
+  92   2      
+  93   2          }
+  94   1              ES =  1;
+  95   1      
+  96   1      }
+  97          
+  98          
+  99          
+ 100          
+ 101          
+ 102          
+ 103          
+ 104          
+ 105          
+ 106          
+ 107          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    158    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       6
+   IDATA SIZE       =    120    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.00   UART                                                                  12/18/2017 22:57:18 PAGE 3   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -7,46 +7,56 @@
 #include "led.h"    //LED显示
 #include "rx.h"     //从主机接收到的数据进行处理分析
 #include "adc.h"    //ADC各路通道采集
-#include "manage.h" //ADC采集信息处理
+#include "manage.h" //ADC采集信息处理-
 #include "tsensor.h"//内部主控芯片温度提示
 #include "dht11.h"  //室内温湿度提示
 #include "start.h"  //需要检测的各个模块检测初始化
 #include "driver.h" //步进电机控制
 #include "stepmotor.h"  //窗户以及窗帘控制
 #include "raindrop.h"  //窗外和窗内是否有水
+#include "window.h"    //窗和窗帘控制
 
 /*************************引脚定义******************************
-PG8：X轴方向控制引脚
-PG9：X轴使能脚
-PA11：X轴PWM控制脚
-PG6：Y轴方向控制脚
-PG7：Y轴使能脚
-PC9：Y轴PWM方向控制脚
-PG11：室内温湿度传感器输入端
-PG12：室外温湿度传感器输入端
-PA1：采集外部电压（3.3V 如果需要测量高电压则需要进过转压到0-3.3V）有害气体检测使用
-PA2：采集外部电压（3.3V 如果需要测量高电压则需要进过转压到0-3.3V）
-PB1：LED0
-PB2：	LED1
-PB5：LED2
-PE5：LED3
-PF9：LED4
-PF10：LED5
-PF11：LED6
-PG1：LED7
-PG2：LED8
-PG3：LED9
-PG4：LED10
-PG5：使用继电器模拟开门关门
+引脚使用情况：
+
+PA1--有害气体含量
+PA4--室内雨滴传感器
+PA5--左边限制过度关闭窗和窗帘
+PA6--右边限制过度关闭窗和窗帘
+PA8--室外雨滴传感器
+PA9--串口1（TXD）
+PA10--串口1（RXD）
+PA11--模拟窗和窗帘PWM（X）
+PB1--LED0
+PB5--LED2
+PC0--OLED（SCL）
+PC1--OLED（SDA）
+PC9--模拟窗和窗帘PWM（Y）
+PD3--OLED（DC）
+PE5--LED3
+PF9--LED4
+PF10--LED5
+PF11--LED6
+PG1--LED7
+PG2--LED8
+PG3--LED9
+PG4--LED10
+PG5--front_door（继电器模拟）
+PG6--模拟窗和窗帘方向（Y）
+PG7--模拟窗和窗帘使能（Y）
+PG8--模拟窗和窗帘方向（X）
+PG9--模拟窗和窗帘使能（X）
+PG11--室内温湿度检测
+PG12--室外温湿度检测
+PG15--OLED（RST）
 *****************************************************************/
  
  
 
 u16 t;        //串口1发送数据与接收到的长度一致
 u16 len;      //串口1接收到数据的长度
-//u8 Humiture_t=0;
-u8 Humiture_Temperature_Indoor;  //室内温度值
-u8 Humiture_Humidity_Indoor;     //室内湿度值
+u8 Humiture_Temperature_Indoor;   //室内温度值
+u8 Humiture_Humidity_Indoor;      //室内湿度值
 u8 Humiture_Temperature_Outdoor;  //室外温度值
 u8 Humiture_Humidity_Outdoor;     //室外湿度值
 
@@ -70,9 +80,10 @@ int main(void)
 	Driver_Init_Y();		     //Y轴驱动器初始化
 	TIM1_OPM_RCR_Init(999,72-1);   //1MHz计数频率  单脉冲+重复计数模式（X轴）
 	TIM8_OPM_RCR_Init(999,72-1);   //1MHz计数频率  单脉冲+重复计数模式（Y轴）
-	TIM6_Int_Init(9999,7199);   //10KHZ计数，延时1s
+	TIM6_Int_Init(9999,7199);      //10KHZ计数，延时1s
 	T_Adc_Init();           //主控芯片采集温度初始化
 	raindrop_Init();        //雨滴传感器初始化
+	windows_control_Init(); //窗和窗帘左右控制防撞
 	Humiture_Initialize();  //各个模块检测初始化
 	OLED_ShowString(30,0, "a: 00.00" ,12);	 //设定主控芯片温度初始值
 	OLED_ShowString(30,12,"b:  C",12);       //室内温度
@@ -86,7 +97,7 @@ int main(void)
 			RX_1();                          //接收主机过来的数据
 		  Adc_Voltage_Transition();        //引脚采集到的电压
 		  Adc_Control_Chip_Temperature();	 //主控芯片采集到的温度
-			Adc_Humiture_Measure_Indoor();   //室内采集到的温湿度
+			Adc_Humiture_Measure_Indoor();   //室内采集到的温湿度  
 		  Adc_Humiture_Measure_Outdoor();  //室内采集到的温湿度
       Window_Control();                //窗户控制
 			Curtain_Control();               //窗帘控制
