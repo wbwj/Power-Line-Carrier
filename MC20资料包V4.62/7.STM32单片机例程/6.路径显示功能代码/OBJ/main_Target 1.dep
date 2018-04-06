@@ -1,5 +1,5 @@
 Dependencies for Project 'main', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5A3A6FA5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32_FWLIB\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MyCode\led -I..\MyCode\USART2-I I:\机械硬盘\GitHub\Power-Line-Carrier\MC20资料包V4.62\7.STM32单片机例程\6.路径显示功能代码\USER\RTE-I C:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0-I C:\keil\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x5AC72C2C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32_FWLIB\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\MyCode\led -I..\MyCode\USART2-I I:\机械硬盘\GitHub\Power-Line-Carrier\MC20资料包V4.62\7.STM32单片机例程\6.路径显示功能代码\USER\RTE-I C:\keil\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0-I C:\keil\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (stm32f10x.h)(0x57D752D2)
 I (..\CORE\core_cm3.h)(0x57D75386)
 I (C:\keil\ARM\ARMCC\include\stdint.h)(0x5475F300)

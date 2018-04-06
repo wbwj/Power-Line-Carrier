@@ -15,7 +15,8 @@
 #include "stepmotor.h"  //窗户以及窗帘控制
 #include "raindrop.h"  //窗外和窗内是否有水
 #include "window.h"    //窗和窗帘控制
-
+#include "SFE_TSL2561.h" //光强处理函数
+#include "stdio.h" 
 /*************************引脚定义******************************
 引脚使用情况：
 
@@ -28,7 +29,9 @@ PA9--串口1（TXD）
 PA10--串口1（RXD）
 PA11--模拟窗和窗帘PWM（X）
 PB1--LED0
-PB5--LED2
+PB5--LED23
+PB6--IIC_SCL（光强IIC）
+PB7--IIC_SDA
 PC0--OLED（SCL）
 PC1--OLED（SDA）
 PC9--模拟窗和窗帘PWM（Y）
@@ -59,11 +62,11 @@ u8 Humiture_Temperature_Indoor;   //室内温度值
 u8 Humiture_Humidity_Indoor;      //室内湿度值
 u8 Humiture_Temperature_Outdoor;  //室外温度值
 u8 Humiture_Humidity_Outdoor;     //室外湿度值
-
+unsigned int data[4];             //存放LUX公式计算值
+unsigned char dat;                //发送接收字节使用
 u16 adcx_Voltage;         //引脚测量小电压（3.3V以内）
-float temp_Voltage;       
+float temp_Voltage;       //数字量电压值
 short temp_Control_Chip;  //主控芯片温度值（保留了两位小数）
-
 
 
 int main(void)
@@ -83,17 +86,23 @@ int main(void)
 	TIM6_Int_Init(9999,7199);      //10KHZ计数，延时1s
 	T_Adc_Init();           //主控芯片采集温度初始化
 	raindrop_Init();        //雨滴传感器初始化
+	SFE_TSL2561_init();     //光强检测初始化
 	windows_control_Init(); //窗和窗帘左右控制防撞
 	Humiture_Initialize();  //各个模块检测初始化
+	SFE_TSL2561_read(TSL2561_REG_COMMAND+TSL2561_REG_TIMING,1,&dat);  //发送字节
+	dat|=1<<4;
+	SFE_TSL2561_write(TSL2561_REG_COMMAND+TSL2561_REG_TIMING,1,&dat); //接收字节
 	OLED_ShowString(30,0, "a: 00.00" ,12);	 //设定主控芯片温度初始值
 	OLED_ShowString(30,12,"b:  C",12);       //室内温度
 	OLED_ShowString(30,24,"c:  %",12);       //室内湿度
 	OLED_ShowString(30,36,"d:  C",12);       //室外温度
 	OLED_ShowString(30,48,"e:  %",12);       //室外湿度
+	OLED_ShowString(86,0,"f:    ",12);	     //室内光强强度（单位W/cm^2）
 	OLED_Refresh_Gram();                     //OLED更新显示
 	
  while(1)
 	{
+		  
 			RX_1();                          //接收主机过来的数据
 		  Adc_Voltage_Transition();        //引脚采集到的电压
 		  Adc_Control_Chip_Temperature();	 //主控芯片采集到的温度
@@ -102,6 +111,7 @@ int main(void)
       Window_Control();                //窗户控制
 			Curtain_Control();               //窗帘控制
 		  Adc_Raindrop_Indoor();           //室内雨滴传感器（判断是否会出现水贱到从机主控芯片上面）
-		  Adc_Raindrop_outdoor();          //室外雨滴传感器（判断外面是否下雨）		
+		  Adc_Raindrop_outdoor();          //室外雨滴传感器（判断外面是否下雨）	
+      Light_Intensity();               //光强强度大小函数	
  } 
 }

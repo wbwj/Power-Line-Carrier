@@ -8,7 +8,7 @@ void Adc_Humiture_Measure_Outdoor(void);//室外温湿度返回
 void Adc_Co_Gas(void);                  //有害气体含量     
 void Adc_Raindrop_Indoor(void);             //室内雨滴传感器（判断是否会出现水贱到从机主控芯片上面）
 void Adc_Raindrop_outdoor(void);            //室外雨滴传感器（判断外面是否下雨）
-
+void Light_Intensity(void); 
 
 
 #endif

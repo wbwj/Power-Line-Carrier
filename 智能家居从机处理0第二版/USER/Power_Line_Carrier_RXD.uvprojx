@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\KEY;..\HARDWARE\ADC;..\HARDWARE\TIMER;..\HARDWARE\USART3;..\HARDWARE\OLED;..\HARDWARE\RX;..\HARDWARE\MANAGE;..\HARDWARE\ITEMP;..\HARDWARE\DHT11;..\HARDWARE\START;..\HARDWARE\DRIVER;..\HARDWARE\MOTOR;..\HARDWARE\RAINDROP;..\HARDWARE\WINDOW</IncludePath>
+              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\KEY;..\HARDWARE\ADC;..\HARDWARE\TIMER;..\HARDWARE\USART3;..\HARDWARE\OLED;..\HARDWARE\RX;..\HARDWARE\MANAGE;..\HARDWARE\ITEMP;..\HARDWARE\DHT11;..\HARDWARE\START;..\HARDWARE\DRIVER;..\HARDWARE\MOTOR;..\HARDWARE\RAINDROP;..\HARDWARE\WINDOW;..\HARDWARE\IIC;..\HARDWARE\SFE_TSL2561;..\HARDWARE\TSL2561</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -502,6 +502,26 @@
               <FileName>window.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\WINDOW\window.c</FilePath>
+            </File>
+            <File>
+              <FileName>myiic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\IIC\myiic.c</FilePath>
+            </File>
+            <File>
+              <FileName>tsl2561.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\TSL2561\tsl2561.c</FilePath>
+            </File>
+            <File>
+              <FileName>SFE_TSL2561.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\SFE_TSL2561\SFE_TSL2561.c</FilePath>
+            </File>
+            <File>
+              <FileName>lux.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\SFE_TSL2561\lux.c</FilePath>
             </File>
           </Files>
         </Group>

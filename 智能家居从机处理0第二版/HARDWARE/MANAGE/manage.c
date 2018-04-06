@@ -6,7 +6,7 @@
 #include "dht11.h"
 #include "led.h"
 #include "raindrop.h"
-
+#include "SFE_TSL2561.h" 
 
 extern u16 adcx_Voltage;           //ADC1Í¨µÀ1µçÑ¹×ª»»
 extern float temp_Voltage;         
@@ -15,8 +15,9 @@ extern u8 Humiture_Temperature_Indoor;    //ÊÒÄÚÎÂ¶È
 extern u8 Humiture_Humidity_Indoor;       //ÊÒÄÚÊª¶È
 extern u8 Humiture_Temperature_Outdoor;   //ÊÒÍâÎÂ¶È
 extern u8 Humiture_Humidity_Outdoor;      //ÊÒÍâÊª¶È
+extern unsigned int data[4];             //´æ·ÅLUX¹«Ê½¼ÆËãÖµ
 
-void Adc_Voltage_Transition()             //ÓÃÀ´²âÁ¿Ğ¡ÓÚ3.3VµçÑ¹Ê¹ÓÃ    
+void Adc_Voltage_Transition(void)             //ÓÃÀ´²âÁ¿Ğ¡ÓÚ3.3VµçÑ¹Ê¹ÓÃ    
 {
 		adcx_Voltage=Get_Adc_Average(ADC_Channel_1,10);
 //		OLED_ShowNum(0,0,adcx_Voltage,4,12);
@@ -34,7 +35,7 @@ void Adc_Voltage_Transition()             //ÓÃÀ´²âÁ¿Ğ¡ÓÚ3.3VµçÑ¹Ê¹ÓÃ
 		}  
 }
 
-void Adc_Control_Chip_Temperature()    //ÓÃÓÚ²âÁ¿Ö÷¿ØĞ¾Æ¬ÎÂ¶È
+void Adc_Control_Chip_Temperature(void)    //ÓÃÓÚ²âÁ¿Ö÷¿ØĞ¾Æ¬ÎÂ¶È
 {
 	temp_Control_Chip=Get_Temprate();	  //µÃµ½Ö÷¿ØĞ¾Æ¬ÎÂ¶È
 		if(temp_Control_Chip<0)            
@@ -47,7 +48,7 @@ void Adc_Control_Chip_Temperature()    //ÓÃÓÚ²âÁ¿Ö÷¿ØĞ¾Æ¬ÎÂ¶È
 		OLED_Refresh_Gram();     //OLED¸üĞÂÏÔÊ¾
 }
 
-void Adc_Humiture_Measure_Indoor()     //²âÁ¿ÊÒÄÚÎÂÊª¶È
+void Adc_Humiture_Measure_Indoor(void)     //²âÁ¿ÊÒÄÚÎÂÊª¶È
 {
 	DHT11_Read_Data_Indoor(&Humiture_Temperature_Indoor,&Humiture_Humidity_Indoor);	
 	OLED_ShowNum(42,12,Humiture_Temperature_Indoor,2,12);
@@ -55,7 +56,7 @@ void Adc_Humiture_Measure_Indoor()     //²âÁ¿ÊÒÄÚÎÂÊª¶È
 	OLED_Refresh_Gram();
 }
 
-void Adc_Humiture_Measure_Outdoor()     //²âÁ¿ÊÒÍâÎÂÊª¶È
+void Adc_Humiture_Measure_Outdoor(void)     //²âÁ¿ÊÒÍâÎÂÊª¶È
 {
 	DHT11_Read_Data_Outdoor(&Humiture_Temperature_Outdoor,&Humiture_Humidity_Outdoor);	
 	OLED_ShowNum(42,36,Humiture_Temperature_Outdoor,2,12);
@@ -70,7 +71,7 @@ void Adc_Humiture_Measure_Outdoor()     //²âÁ¿ÊÒÍâÎÂÊª¶È
 //}  
 
 
-void Adc_Raindrop_Indoor()             //ÊÒÄÚÓêµÎ´«¸ĞÆ÷£¨ÅĞ¶ÏÊÇ·ñ»á³öÏÖË®¼úµ½´Ó»úÖ÷¿ØĞ¾Æ¬ÉÏÃæ£©
+void Adc_Raindrop_Indoor(void)             //ÊÒÄÚÓêµÎ´«¸ĞÆ÷£¨ÅĞ¶ÏÊÇ·ñ»á³öÏÖË®¼úµ½´Ó»úÖ÷¿ØĞ¾Æ¬ÉÏÃæ£©
 {
 	if(raindrop_Indoor==0)
 	{
@@ -82,7 +83,15 @@ void Adc_Raindrop_Indoor()             //ÊÒÄÚÓêµÎ´«¸ĞÆ÷£¨ÅĞ¶ÏÊÇ·ñ»á³öÏÖË®¼úµ½´Ó»
 	}
 }
 
-void Adc_Raindrop_outdoor()            //ÊÒÍâÓêµÎ´«¸ĞÆ÷£¨ÅĞ¶ÏÍâÃæÊÇ·ñÏÂÓê£©
+void Adc_Raindrop_outdoor(void)            //ÊÒÍâÓêµÎ´«¸ĞÆ÷£¨ÅĞ¶ÏÍâÃæÊÇ·ñÏÂÓê£©
 {
 	
 }
+
+void Light_Intensity(void)                //¹âÇ¿Ç¿¶È´óĞ¡£¨W/cm^2£©
+{
+	SFE_TSL2561_read_data0_and_data1(data);
+  SFE_TSL2561_read_gain_and_intge(data+2);
+  data[0]=CalculateLux(data[2],data[3],data[0],data[1],1);
+  OLED_ShowNum(102,0,data[0],4,12);
+}	

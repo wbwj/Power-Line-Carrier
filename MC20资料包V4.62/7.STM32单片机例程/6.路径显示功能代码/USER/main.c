@@ -45,8 +45,8 @@ unsigned long  Time_Cont = 0;       //定时器计数器
 char OneNetServer[] = "183.230.40.33";       //不需要修改
 
 
-char device_id[] = "3225187";    //修改为自己的设备ID
-char API_KEY[] = "R9xO5NZm6oVI4YBHvCPKEqtwYtMA";    //修改为自己的API_KEY
+char device_id[] = "28331563";    //修改为自己的设备ID
+char API_KEY[] = "C=JDX56fLEovQdtaswYyVkgtRIs=";    //修改为自己的API_KEY
 char sensor_gps[] = "location";				//不需要修改
 
 unsigned int count = 0;
