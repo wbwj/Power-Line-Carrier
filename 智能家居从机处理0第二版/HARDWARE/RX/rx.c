@@ -102,6 +102,66 @@ void RX_1()       //接收数据函数
 					TIM_Cmd(TIM6,ENABLE);//开启定时器6
 				}
 				
+				if(USART_RX_BUF[t]==101)
+				{
+					Locate_Rle_Y(2560,50000,CCW);
+					Locate_Rle_X(2560,50000,CW);
+				}
+				
+				else if(USART_RX_BUF[t]==102)
+				{
+					Locate_Rle_Y(7680,50000,CCW);
+					Locate_Rle_X(7680,50000,CW);
+				}
+				
+				else if(USART_RX_BUF[t]==103)
+				{
+					Locate_Rle_Y(12800,50000,CCW);
+					Locate_Rle_X(12800,50000,CW);
+				}
+				
+				else if(USART_RX_BUF[t]==104)
+				{
+					Locate_Rle_Y(17920,50000,CCW);
+					Locate_Rle_X(17920,50000,CW);
+				}
+				
+				else if(USART_RX_BUF[t]==105)
+				{
+					Locate_Rle_Y(25600,50000,CCW);
+					Locate_Rle_X(25600,50000,CW);
+				}
+				
+				else if(USART_RX_BUF[t]==106)
+				{
+					Locate_Rle_Y(2560,50000,CW);
+					Locate_Rle_X(2560,50000,CCW);
+				}
+				
+				else if(USART_RX_BUF[t]==107)
+				{
+					Locate_Rle_Y(7680,50000,CW);
+					Locate_Rle_X(7680,50000,CCW);
+				}
+				
+				else if(USART_RX_BUF[t]==108)
+				{
+					Locate_Rle_Y(12800,50000,CW);
+					Locate_Rle_X(12800,50000,CCW);
+				}
+				
+				else if(USART_RX_BUF[t]==109)
+				{
+					Locate_Rle_Y(17920,50000,CW);
+					Locate_Rle_X(17920,50000,CCW);
+				}
+				
+				else if(USART_RX_BUF[t]==110)
+				{
+					Locate_Rle_Y(25600,50000,CW);
+					Locate_Rle_X(25600,50000,CCW);
+				}
+				
 				printf("  %d\r\n",USART_RX_BUF[t]);//用于调试时查看数据是否完整接收
 			}
 			USART_RX_STA=0;                 //清除缓存数据

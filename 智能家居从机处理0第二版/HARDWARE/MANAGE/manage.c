@@ -75,17 +75,24 @@ void Adc_Raindrop_Indoor(void)             //ÊÒÄÚÓêµÎ´«¸ĞÆ÷£¨ÅĞ¶ÏÊÇ·ñ»á³öÏÖË®¼úµ
 {
 	if(raindrop_Indoor==0)
 	{
-		LED4=0;
+		  OLED_ShowString(78,24,"splash",12);
+		  OLED_Refresh_Gram();
 	}
-	else if(raindrop_Indoor==1)
-	{
-		LED4=1;
-	}
+	else	
+	  OLED_ShowString(78,24,"      ",12);
+	  OLED_Refresh_Gram();
 }
 
 void Adc_Raindrop_outdoor(void)            //ÊÒÍâÓêµÎ´«¸ĞÆ÷£¨ÅĞ¶ÏÍâÃæÊÇ·ñÏÂÓê£©
 {
-	
+	if(raindrop_Outdoor==0)
+	{
+			OLED_ShowString(78,12,"raining",12);
+		  OLED_Refresh_Gram();
+	}
+	else
+		OLED_ShowString(78,12,"       ",12);
+		OLED_Refresh_Gram();
 }
 
 void Light_Intensity(void)                //¹âÇ¿Ç¿¶È´óĞ¡£¨W/cm^2£©

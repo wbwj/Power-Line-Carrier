@@ -4,6 +4,11 @@
 #include "driver.h"
 #include "led.h"
 #include "window.h"
+#include "SFE_TSL2561.h" 
+#include "raindrop.h"  
+#include "tsensor.h"
+#include "adc.h"
+#include "dht11.h"
 
 extern u8 Humiture_Temperature_Indoor;    //室内温度
 extern u8 Humiture_Humidity_Indoor;       //室内湿度
