@@ -8,26 +8,25 @@
 #include "os.h"               //ÏµÍ³Í·ÎÄ¼þ
 #include "delay.h"            //ÑÓÊ±Í·ÎÄ¼þ£¨µ÷ÊÔÊ±Ê¹ÓÃ£©
 
+
+
+/*************************ËùÓÐ´úÂë±äÁ¿*******************************/
 u32 Implementation_Password=0;                //ÓÃ»§ÊäÈëµÄÃÜÂë
 u8 Passward_Buf[6]={1,2,3,4,5,6};             //ÐèÒªÐ´ÈëµÄÃÜÂëÊý×é(ÁùÎ»)
 #define Passward_Size sizeof(Passward_Buf)    //ÃÜÂëµÄ³¤¶È£¬ÍùflashÖÐÐ´ÈëÊ¹ÓÃ
-#define Flash_Save_Passward_Addr 0x08040000   //´Ó0x08000000----0x08040000ÖÐ´æ·ÅÃÜÂë
-#define Flash_Save_Amend_Parameter_Addr0 0x08046000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr1 0x0804C000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr2 0x08053000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr3 0x08059000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr4 0x0805F000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr5 0x08066000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr6 0x0806C000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr7 0x08073000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr8 0x08079000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr9 0x0807F000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
-#define Flash_Save_Amend_Parameter_Addr10 0x0807A000  //´æ·ÅLED0µÄ¿ØÖÆµÆ
-
+#define Flash_Save_Passward_Addr 0x08032000   //´Ó0x08000000----0x08040000ÖÐ´æ·ÅÃÜÂë
 #define Amend_Parameter_Size sizeof(amend_parameter)  //¼ÇÂ¼µÆµÄ¸öÊýÒÔ¼°³¤¶È
-	
-
-
+#define Flash_Save_Amend_Parameter_Addr0 0x08038000   //´æ·ÅLED0µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr1 0x0803F000   //´æ·ÅLED1µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr2 0x08046000   //´æ·ÅLED2µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr3 0x0804C000   //´æ·ÅLED3µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr4 0x08053000   //´æ·ÅLED4µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr5 0x08059000   //´æ·ÅLED5µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr6 0x0805F000   //´æ·ÅLED6µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr7 0x08066000   //´æ·ÅLED7µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr8 0x0806C000   //´æ·ÅLED8µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr9 0x08073000   //´æ·ÅLED9µÄ¿ØÖÆµÆ
+#define Flash_Save_Amend_Parameter_Addr10 0x08079000  //´æ·ÅLED10µÄ¿ØÖÆµÆ
 u32 Test[6]={0};    //ÓÃÓÚ±È½ÏÃÜÂëÊ¹ÓÃ
 u32 Test_Passward;  //³õÊ¼ÃÜÂë
 u8 Bit=0;           //ÅÐ¶ÏÊÇµÚ¼¸Î»
@@ -39,30 +38,28 @@ u8 two;             //ÃÜÂëµÚ¶þÎ»
 u8 one;             //ÃÜÂëµÚÒ»Î»
 u8 Passward_i=0;    //¶ÁÈ¡ÊäÈëÃÜÂë°´Î»¸³Öµ
 u8 mode=0;          //Ä£Ê½Ñ¡Ôñ
-u16 response=300;   //µãµÆÏìÓ¦Ê±¼ä(ms)
+u16 response=500;   //µãµÆÏìÓ¦Ê±¼ä(ms)
 u8 i=0;             //µÆµÄÖ¸Õë
-u16 amend_parameter[20];    //ÓÃÓÚ±äÁ¿´æÈ¡Ê¹ÓÃ
-u16 abc1[20];
+u16 amend_parameter[12];    //ÓÃÓÚ±äÁ¿´æÈ¡Ê¹ÓÃ
 OS_ERR err;         //ÏµÍ³Ö¸Õë
 u8 data_Passward[Passward_Size];   //¶ÁÈ¡ÃÜÂëÊ±Ê¹ÓÃ
-u8 abc=0;
-u8 amend_parameter_i1;
-u8 amend_parameter_i2;
-u8 amend_parameter_i3;
-u8 amend_parameter_i4;
-u8 amend_parameter_i5;
-u8 amend_parameter_i6;
-u8 amend_parameter_i7;
-u8 amend_parameter_i8;
-u8 amend_parameter_i9;
-u8 amend_parameter_i10;
-u8 amend_parameter_i11;
-u8 amend_parameter_i12;
-
+u8 amend_parameter_i1=0;  //LED0ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i2=0;  //LED1ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i3=0;  //LED2ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i4=0;  //LED3ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i5=0;  //LED4ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i6=0;  //LED5ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i7=0;  //LED6ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i8=0;  //LED7ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i9=0;  //LED8ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i10=0; //LED9Ð¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i11=0; //LED10ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
+u8 amend_parameter_i12=0; //LED11ÖÐ¼ÇÂ¼ËûµÄ×´Ì¬£¨1-LED0ÁÁ£¬0-LED0Ãð£©
 extern char buf_led[];      //Í¨¹ýµçÁ¦ÏßÔØ²¨·¢ËÍµÄÊý¾Ý»º³åÇø
 
 
 
+/*************************ËùÓÐ½çÃæµÄUI*******************************/
 WM_HWIN CreateBoundary_1(void);     //´´½¨µÚÒ»¸ö½çÃæ(³õÊ¼½çÃæ)
 WM_HWIN CreateBoundary_2(void);     //´´½¨µÚ¶þ¸ö½çÃæ£¨LED½çÃæ£©
 WM_HWIN CreateBoundary_3(void);     //´´½¨µÚÈý¸ö½çÃæ£¨flashÑ¡ÔñLED½çÃæ£©
@@ -70,7 +67,7 @@ WM_HWIN CreateBoundary_4(void);     //´´½¨µÚËÄ¸ö½çÃæ£¨flash¶ÁÈ¡LED½çÃæ£©
 WM_HWIN CreateBoundary_5(void);     //´´½¨µÚÎå¸ö½çÃæ£¨ÃÜÂë½çÃæ£©
 WM_HWIN CreateBoundary_6(void);     //´´½¨µÚÁù¸ö½çÃæ£¨´°ºÍ´°»§¿ØÖÆ½çÃæ£©
 WM_HWIN CreateBoundary_7(void);     //´´½¨µÚÆß¸ö½çÃæ£¨°´¼üºÍµÆËæÒâÆ¥Åä½çÃæ£©
-WM_HWIN CreateBoundary_8(void);     //´´½¨µÚ°Ë¸ö½çÃæ£¨½çÃæ£©
+WM_HWIN CreateBoundary_8(void);     //´´½¨µÚ°Ë¸ö½çÃæ£¨ÐÞ¸Ä°´¼ü¿ØÖÆÈÎÒâµÆ½çÃæ£©
 WM_HWIN CreateBoundary_9(void);     //´´½¨µÚ¾Å¸ö½çÃæ£¨½çÃæ£©
 
 
@@ -87,6 +84,8 @@ WM_HWIN CreateBoundary_9(void);     //´´½¨µÚ¾Å¸ö½çÃæ£¨½çÃæ£©
 #define ID_BUTTON_47    (GUI_ID_USER + 0x5C)   //´ò¿ª»òÕß¹Ø±Õ´°ÒÔ¼°´°Á±
 #define ID_BUTTON_58    (GUI_ID_USER + 0x68)   //ÐÞ¸ÄµÆµÄ¿ØÖÆ
 #define ID_BUTTON_60    (GUI_ID_USER + 0x6B)   //
+
+
 
 /*************************ËùÓÐµÆÁÁ/µÆÃð½çÃæ********************************/
 #define ID_FRAMEWIN_1   (GUI_ID_USER + 0x08)   //½çÃæ¶þÃû³Æ
@@ -121,6 +120,8 @@ WM_HWIN CreateBoundary_9(void);     //´´½¨µÚ¾Å¸ö½çÃæ£¨½çÃæ£©
 #define ID_BUTTON_35    (GUI_ID_USER + 0x25)   //½øÈëÄ¸Ç×ÉèÖÃ½çÃæ
 #define ID_BUTTON_36    (GUI_ID_USER + 0x26)   //½øÈëÏÂÒ»½çÃæ
 
+
+
 /*************************flash  LED½çÃæ********************************/
 #define ID_FRAMEWIN_2     (GUI_ID_USER + 0x27) //½çÃæÈýÃû³Æ
 #define ID_CHECKBOX_0     (GUI_ID_USER + 0x28) //LED0
@@ -149,6 +150,8 @@ WM_HWIN CreateBoundary_9(void);     //´´½¨µÚ¾Å¸ö½çÃæ£¨½çÃæ£©
 #define ID_CHECKBOX_23    (GUI_ID_USER + 0x4F) //LED23
 #define ID_CHECKBOX_24    (GUI_ID_USER + 0x50) //LED24
 
+
+
 /*****************ÃÜÂë½âËø½ç¶Ô»°¿ò*********************************/
 #define ID_FRAMEWIN_3   (GUI_ID_USER + 0x51)     //½çÃæÈýÃû³Æ
 #define ID_BUTTON_37    (GUI_ID_USER + 0x52)     //Êý×Ö0
@@ -164,6 +167,8 @@ WM_HWIN CreateBoundary_9(void);     //´´½¨µÚ¾Å¸ö½çÃæ£¨½çÃæ£©
 #define ID_BUTTON_32    (GUI_ID_USER + 0x22)     //·µ»ØÖ÷½çÃæ
 #define ID_BUTTON_36    (GUI_ID_USER + 0x26)     //½øÈëÏÂÒ»½çÃæ
 
+
+
 /*****************´°»§¹Ø±Õ´ò¿ª½çÃæ*********************************/
 #define ID_FRAMEWIN_4   (GUI_ID_USER + 0x5D)     //½çÃæËÄÃû³Æ
 #define ID_BUTTON_48    (GUI_ID_USER + 0x5E)     //´ò¿ª´°»§10%
@@ -177,9 +182,13 @@ WM_HWIN CreateBoundary_9(void);     //´´½¨µÚ¾Å¸ö½çÃæ£¨½çÃæ£©
 #define ID_BUTTON_56    (GUI_ID_USER + 0x66)     //¹Ø±Õ´°»§70%
 #define ID_BUTTON_57    (GUI_ID_USER + 0x67)     //¹Ø±Õ´°»§100%
 
+
+
 /**************************ÐÞ¸Ä¿ØÖÆ°´¼üÄÜ²Ù¿ØËæ»úµÄµÆ*************************************************/
 #define ID_FRAMEWIN_5   (GUI_ID_USER + 0x69)     //½çÃæÎåÃû³Æ
 #define ID_BUTTON_59    (GUI_ID_USER + 0x6A)     //´æ´¢Êý¾Ý
+
+
 
 /***********************************BUTTONÈ«¾ÖÐÞ¸Ä*************************************************/
 #define ID_FRAMEWIN_6   (GUI_ID_USER + 0x6C)     //½çÃæÎåÃû³Æ
@@ -198,6 +207,8 @@ WM_HWIN CreateBoundary_9(void);     //´´½¨µÚ¾Å¸ö½çÃæ£¨½çÃæ£©
 #define ID_BUTTON_73    (GUI_ID_USER + 0x7A)     //´æ´¢Êý¾Ý
 #define ID_BUTTON_74    (GUI_ID_USER + 0x7B)     //´æ´¢Êý¾Ý
 #define ID_BUTTON_75    (GUI_ID_USER + 0x7C)     //´æ´¢Êý¾Ý
+
+
 
 /****************************³õÊ¼»¯½çÃæ£¨×ÜÌå½çÃæ£©***********************************************/
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate_1[] = {
@@ -248,6 +259,8 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_2[] = {
   { BUTTON_CreateIndirect,   "mather",      ID_BUTTON_35,  270, 250, 80, 40, 0, 0x0, 0 },
   { BUTTON_CreateIndirect,   "next",        ID_BUTTON_36,  360, 250, 80, 40, 0, 0x0, 0 },
 };
+
+
 
 /****************************ËùÓÐµÆÁÁ/µÆÃð/¶ÀÁ¢¿ØÖÆ½çÃæ*********************************************************/
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate_3[] = {
@@ -304,6 +317,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_4[] = {
 };
 
 
+
 /**************************´°ºÍ´°»§µÄ¿ØÖÆ½çÃæ*************************************************/
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate_6[] = {
   { FRAMEWIN_CreateIndirect, "Control",  ID_FRAMEWIN_4, 0, 0, 480, 320, 0, 0x0, 0 },
@@ -325,7 +339,8 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_6[] = {
 };
 
 
-/**************************ÐÞ¸Ä¿ØÖÆ°´¼üÄÜ²Ù¿ØËæ»úµÄµÆ*************************************************/
+
+/**************************Ñ¡ÔñÄ³¸öBUTTONÐèÒª¿ØÖÆµÄËæ»úµÆ****************************************/
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate_7[] = {
   { FRAMEWIN_CreateIndirect, "amend_parameter", ID_FRAMEWIN_5,  0, 0, 480, 320, 0, 0x0, 0 },
   { CHECKBOX_CreateIndirect, "LED0",            ID_CHECKBOX_0,  0, 0, 80, 30, 0, 0x0, 0 },
@@ -359,6 +374,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_7[] = {
 };
 
 
+
 /**************************ÐÞ¸Ä¿ØÖÆ°´¼üÄÜ²Ù¿ØËæ»úµÄµÆ*************************************************/
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate_8[] = {
   { FRAMEWIN_CreateIndirect, "Boundary_1",  ID_FRAMEWIN_6,     0, 0, 480, 320, 0, 0x0, 0 },
@@ -382,7 +398,9 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate_8[] = {
   { BUTTON_CreateIndirect,   "next",            ID_BUTTON_36,   360, 250, 80, 40, 0, 0x0, 0 },
 };
 
-/*********************************½çÃæ³õÊ¼»¯ÅäÖÃ*******************************************/
+
+
+/************************************½çÃæ³õÊ¼»¯ÅäÖÃ***********************************************/
 static void _cbDialog_1(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
   int     NCode;
@@ -422,6 +440,8 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
     BUTTON_SetFont(hItem, GUI_FONT_13B_1);
 		
     break;
+		
+		GUI_DispString("Hello world!");
 		
   case WM_NOTIFY_PARENT:
     Id    = WM_GetId(pMsg->hWinSrc);
@@ -529,6 +549,18 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
       case WM_NOTIFICATION_CLICKED:
         break;
       case WM_NOTIFICATION_RELEASED:     //°´ÏÂÊ±ËÉ¿ª´¥ÃþÆÁÓÐÐ§
+				  amend_parameter[0]=0;
+					amend_parameter[1]=0;
+					amend_parameter[2]=0;
+					amend_parameter[3]=0;
+					amend_parameter[4]=0;
+					amend_parameter[5]=0;
+					amend_parameter[6]=0;
+					amend_parameter[7]=0;
+					amend_parameter[8]=0;
+					amend_parameter[9]=0;
+					amend_parameter[10]=0;
+					amend_parameter[11]=0;
 				GUI_EndDialog(pMsg->hWin, 0);
 			  CreateBoundary_7();
 
@@ -536,14 +568,14 @@ static void _cbDialog_1(WM_MESSAGE * pMsg) {
 
       }
       break;
-			case ID_BUTTON_60: // ËùÓÐµÆÁÁ
+			case ID_BUTTON_60: // 
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
         break;
       case WM_NOTIFICATION_RELEASED:     //°´ÏÂÊ±ËÉ¿ª´¥ÃþÆÁÓÐÐ§
+				
 				GUI_EndDialog(pMsg->hWin, 0);
-			  CreateBoundary_8();
-
+			  CreateBoundary_8();        
         break;
 
       }
@@ -600,60 +632,70 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
 					{
 					printf("%c\r\n",buf_led[2]);
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					if(amend_parameter[0]==1)
 					{
 						printf("%c\r\n",buf_led[2]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[1]==1)
 					{
 						printf("%c\r\n",buf_led[3]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[2]==1)
 					{
 						printf("%c\r\n",buf_led[4]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[3]==1)
 					{
 						printf("%c\r\n",buf_led[5]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[4]==1)
 					{
 						printf("%c\r\n",buf_led[6]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[5]==1)
 					{
 						printf("%c\r\n",buf_led[7]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[6]==1)
 					{
 						printf("%c\r\n",buf_led[8]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[7]==1)
 					{
 						printf("%c\r\n",buf_led[9]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[8]==1)
 					{
 						printf("%c\r\n",buf_led[10]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[9]==1)
 					{
 						printf("%c\r\n",buf_led[11]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
-					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
+					
 					if(amend_parameter[10]==1)
 					{
 						printf("%c\r\n",buf_led[12]);
+						OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					}
 //					if(amend_parameter[11]=1)
 //					{
@@ -1593,6 +1635,8 @@ static void _cbDialog_2(WM_MESSAGE * pMsg) {
   }
 }
 
+
+
 /***************************flash  LED½çÃæ*********************************************************/
 static void _cbDialog_3(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
@@ -2141,6 +2185,8 @@ static void _cbDialog_3(WM_MESSAGE * pMsg) {
     break;
   }
 }
+
+
 
 /************************************ÃÜÂë½çÃæÅäÖÃ**************************************/
 static void _cbDialog_4(WM_MESSAGE * pMsg) {
@@ -2915,7 +2961,7 @@ static void _cbDialog_6(WM_MESSAGE * pMsg) {
 
 
 
-/***************************flash  LED½çÃæ*********************************************************/
+/************************Ñ¡ÔñÄ³¸öBUTTONÐèÒª¿ØÖÆµÄËæ»úµÆ************************************/
 static void _cbDialog_7(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
   int     NCode;
@@ -3048,16 +3094,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_0: // Notifications sent by 'LED0'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[0]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[0]=1;
 			   amend_parameter_i1++;
 			   if(amend_parameter_i1>=2)
 				 {
 					  amend_parameter[0]=0;
 						amend_parameter_i1=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3068,16 +3114,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_1: // Notifications sent by 'LED1'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-				 amend_parameter[1]=1;
+				
+        break;
+      case WM_NOTIFICATION_RELEASED:
+           amend_parameter[1]=1;
 			   amend_parameter_i2++;
 			   if(amend_parameter_i2>=2)
 				 {
 					  amend_parameter[1]=0;
 						amend_parameter_i2=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3088,16 +3134,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_2: // Notifications sent by 'LED2'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-				 amend_parameter[2]=1;
+				 
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[2]=1;
 				 amend_parameter_i3++;
 			   if(amend_parameter_i3>=2)
 				 {
 					  amend_parameter[2]=0;
 						amend_parameter_i3=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
          
@@ -3108,16 +3154,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_3: // Notifications sent by 'LED3'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[3]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[3]=1;
 			   amend_parameter_i4++;
 			   if(amend_parameter_i4>=2)
 				 {
 					  amend_parameter[3]=0;
 						amend_parameter_i4=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3128,16 +3174,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_4: // Notifications sent by 'LED4'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[4]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[4]=1;
 			   amend_parameter_i5++;
 			   if(amend_parameter_i5>=2)
 				 {
 					  amend_parameter[4]=0;
 						amend_parameter_i5=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3148,16 +3194,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_5: // Notifications sent by 'LED5'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[5]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[5]=1;
 			   amend_parameter_i6++;
 			   if(amend_parameter_i6>=2)
 				 {
 					  amend_parameter[5]=0;
 						amend_parameter_i6=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3168,16 +3214,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_6: // Notifications sent by 'LED6'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[6]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[6]=1;
 			   amend_parameter_i7++;
 			   if(amend_parameter_i7>=2)
 				 {
 					  amend_parameter[6]=0;
 						amend_parameter_i7=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
  
@@ -3188,16 +3234,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_7: // Notifications sent by 'LED7'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[7]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[7]=1;
          amend_parameter_i8++;
 			   if(amend_parameter_i8>=2)
 				 {
 					  amend_parameter[7]=0;
 						amend_parameter_i8=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3208,16 +3254,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_8: // Notifications sent by 'LED8'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[8]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[8]=1;
 			   amend_parameter_i9++;
 			   if(amend_parameter_i9>=2)
 				 {
 					  amend_parameter[8]=0;
 						amend_parameter_i9=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3228,16 +3274,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_9: // Notifications sent by 'LED9'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[9]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[9]=1;
 			   amend_parameter_i10++;
 			   if(amend_parameter_i10>=2)
 				 {
 					  amend_parameter[9]=0;
 						amend_parameter_i10=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3248,16 +3294,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_10: // Notifications sent by 'LED10'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[10]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[10]=1;
 			   amend_parameter_i11++;
 			   if(amend_parameter_i11>=2)
 				 {
 					  amend_parameter[10]=0;
 						amend_parameter_i11=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 				
@@ -3268,16 +3314,16 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
     case ID_CHECKBOX_11: // Notifications sent by 'LED11'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
-         amend_parameter[11]=1;
+         
+        break;
+      case WM_NOTIFICATION_RELEASED:
+          amend_parameter[11]=1;
 			   amend_parameter_i12++;
 			   if(amend_parameter_i12>=2)
 				 {
 					  amend_parameter[11]=0;
 						amend_parameter_i12=0;
 				 }
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
       case WM_NOTIFICATION_VALUE_CHANGED:
 
@@ -3548,14 +3594,7 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
 //			  printf("%d\r\n",amend_parameter[8]);
 //			  printf("%d\r\n",amend_parameter[9]);
 //			  printf("%d\r\n",amend_parameter[10]);
-//			  printf("%d\r\n",amend_parameter[11]); 			
-//			for(abc=0;abc>12;abc++)
-//			{
-//				printf("6");
-//				abc1[abc]=amend_parameter[abc];
-//				printf("%d\r\n",abc1[abc]);
-//				printf("5");		
-//			}			
+//			  printf("%d\r\n",amend_parameter[11]); 				
         break;
 
       }
@@ -3571,6 +3610,7 @@ static void _cbDialog_7(WM_MESSAGE * pMsg) {
 
 
 
+/***************************ÐÞ¸Ä¿ØÖÆ°´¼üÄÜ²Ù¿ØËæ»úµÄµÆ****************************************/
 static void _cbDialog_8(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
   int     NCode;
@@ -3774,6 +3814,9 @@ static void _cbDialog_8(WM_MESSAGE * pMsg) {
     case ID_BUTTON_67: // Notifications sent by 'passward_s'
       switch(NCode) {
       case WM_NOTIFICATION_CLICKED:
+          
+        break;
+      case WM_NOTIFICATION_RELEASED:
           STMFLASH_Write(Flash_Save_Amend_Parameter_Addr6,(u16*)amend_parameter,Amend_Parameter_Size);//BUTTON0¿ØÖÆµÆµÄÕµÊý´¢´æ£¬Ö®ºóÊ¹ÓÃ
 					OSTimeDlyHMSM(0,0,0,response,OS_OPT_TIME_PERIODIC,&err);//ÑÓÊ±200ms
 					amend_parameter[0]=0;
@@ -3788,9 +3831,6 @@ static void _cbDialog_8(WM_MESSAGE * pMsg) {
 					amend_parameter[9]=0;
 					amend_parameter[10]=0;
 					amend_parameter[11]=0;
-        break;
-      case WM_NOTIFICATION_RELEASED:
-
         break;
 
       }

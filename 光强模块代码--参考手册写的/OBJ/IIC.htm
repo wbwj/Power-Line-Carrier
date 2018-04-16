@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\IIC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\IIC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Apr 05 15:42:40 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Apr 06 11:17:52 2018
 <BR><P>
 <H3>Maximum Stack Usage =        152 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -247,19 +247,17 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[59]"></a>main</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[59]"></a>main</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = main &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_gain_and_intge
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_data0_and_data1
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_gain_and_intge
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_data0_and_data1
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_init
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalculateLux
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalculateLux
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -294,138 +292,136 @@ Global Symbols
 <P><STRONG><a name="[49]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
 </UL>
 <P><STRONG><a name="[b0]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, system_stm32f10x.o(.text), UNUSED)
 
-<P><STRONG><a name="[6a]"></a>IIC_Init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[68]"></a>IIC_Init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = IIC_Init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_init
 </UL>
 
-<P><STRONG><a name="[6d]"></a>IIC_Start</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[6b]"></a>IIC_Start</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_Start
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
 </UL>
 
-<P><STRONG><a name="[6f]"></a>IIC_Stop</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[6d]"></a>IIC_Stop</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_Stop
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 </UL>
 
-<P><STRONG><a name="[70]"></a>IIC_Wait_Ack</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[6e]"></a>IIC_Wait_Ack</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = IIC_Wait_Ack &rArr; IIC_Stop
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
 </UL>
 
-<P><STRONG><a name="[71]"></a>IIC_Ack</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[6f]"></a>IIC_Ack</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_Ack
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
 </UL>
 
-<P><STRONG><a name="[72]"></a>IIC_NAck</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[70]"></a>IIC_NAck</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_NAck
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
 </UL>
 
-<P><STRONG><a name="[73]"></a>IIC_Send_Byte</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, myiic.o(.text))
+<P><STRONG><a name="[71]"></a>IIC_Send_Byte</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = IIC_Send_Byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
 </UL>
 
-<P><STRONG><a name="[74]"></a>IIC_Read_Byte</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, myiic.o(.text))
+<P><STRONG><a name="[72]"></a>IIC_Read_Byte</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = IIC_Read_Byte &rArr; IIC_NAck
 </UL>
-<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
 </UL>
 
-<P><STRONG><a name="[67]"></a>CalculateLux</STRONG> (Thumb, 368 bytes, Stack size 36 bytes, lux.o(.text))
+<P><STRONG><a name="[65]"></a>CalculateLux</STRONG> (Thumb, 368 bytes, Stack size 36 bytes, lux.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = CalculateLux
 </UL>
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[62]"></a>SFE_TSL2561_read</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, sfe_tsl2561.o(.text))
+<P><STRONG><a name="[73]"></a>SFE_TSL2561_read</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, sfe_tsl2561.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SFE_TSL2561_read &rArr; IIC_Read_Byte &rArr; IIC_NAck
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
+<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 </UL>
-<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_gain_and_intge
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_data0_and_data1
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_gain_and_intge
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read_data0_and_data1
 </UL>
 
-<P><STRONG><a name="[63]"></a>SFE_TSL2561_write</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, sfe_tsl2561.o(.text))
+<P><STRONG><a name="[74]"></a>SFE_TSL2561_write</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, sfe_tsl2561.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = SFE_TSL2561_write &rArr; IIC_Send_Byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
+<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 </UL>
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_init
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[61]"></a>SFE_TSL2561_init</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, sfe_tsl2561.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SFE_TSL2561_init &rArr; SFE_TSL2561_write &rArr; IIC_Send_Byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
+<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_write
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[64]"></a>SFE_TSL2561_read_data0_and_data1</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, sfe_tsl2561.o(.text))
+<P><STRONG><a name="[62]"></a>SFE_TSL2561_read_data0_and_data1</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, sfe_tsl2561.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SFE_TSL2561_read_data0_and_data1 &rArr; SFE_TSL2561_read &rArr; IIC_Read_Byte &rArr; IIC_NAck
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[65]"></a>SFE_TSL2561_read_gain_and_intge</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, sfe_tsl2561.o(.text))
+<P><STRONG><a name="[63]"></a>SFE_TSL2561_read_gain_and_intge</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, sfe_tsl2561.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SFE_TSL2561_read_gain_and_intge &rArr; SFE_TSL2561_read &rArr; IIC_Read_Byte &rArr; IIC_NAck
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SFE_TSL2561_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -438,14 +434,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6e]"></a>delay_us</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, delay.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
+<P><STRONG><a name="[6c]"></a>delay_us</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, delay.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 </UL>
 
 <P><STRONG><a name="[b1]"></a>delay_ms</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, delay.o(.text), UNUSED)
@@ -464,8 +460,8 @@ Global Symbols
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -690,10 +686,10 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphResetCmd
 </UL>
 
-<P><STRONG><a name="[6c]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(.text))
+<P><STRONG><a name="[6a]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
 
@@ -779,8 +775,8 @@ Global Symbols
 
 <P><STRONG><a name="[d6]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
 
-<P><STRONG><a name="[6b]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
+<P><STRONG><a name="[69]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
 
@@ -889,7 +885,7 @@ Global Symbols
 
 <P><STRONG><a name="[f5]"></a>__use_no_semihosting</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi_2.o(.text), UNUSED)
 
-<P><STRONG><a name="[66]"></a>__2printf</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, noretval__2printf.o(.text))
+<P><STRONG><a name="[64]"></a>__2printf</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, noretval__2printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
 <LI>Call Chain = __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -938,7 +934,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ferror
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 
 <P><STRONG><a name="[88]"></a>_printf_char_common</STRONG> (Thumb, 32 bytes, Stack size 64 bytes, _printf_char_common.o(.text))
@@ -981,16 +977,16 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[69]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(.text))
+<P><STRONG><a name="[67]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo72
 </UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 
-<P><STRONG><a name="[68]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(.text))
+<P><STRONG><a name="[66]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
+<BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
 </UL>
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>

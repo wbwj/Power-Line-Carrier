@@ -202,7 +202,6 @@ void start_task(void *p_arg)
 	OS_TaskSuspend((OS_TCB*)&StartTaskTCB,&err);		//挂起开始任务			 
 	OS_CRITICAL_EXIT();	//退出临界区
 }
-
 //EMWINDEMO任务
 void emwindemo_task(void *p_arg)
 {
